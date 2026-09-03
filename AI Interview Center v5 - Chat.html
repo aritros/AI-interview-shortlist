@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>AI Interview Center v5 — Chat</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" />
+<style>
+*, *::before, *::after { box-sizing:border-box; }
+html, body { margin:0; padding:0; background:#fff; height:100%; }
+body { font-family:'Gilroy','Source Sans Pro',system-ui,sans-serif; color:var(--grey-color-90,#1a212e); font-weight:500; -webkit-font-smoothing:antialiased; }
+body *:not(.material-icons-round) { font-family:'Gilroy','Source Sans Pro',system-ui,sans-serif; }
+.material-icons-round { font-family:'Material Icons Round' !important; font-weight:normal; font-style:normal; letter-spacing:normal; text-transform:none; white-space:nowrap; direction:ltr; -webkit-font-feature-settings:'liga'; font-feature-settings:'liga'; -webkit-font-smoothing:antialiased; }
+a { color:var(--primary-color-70,#146da6); }
+a:hover { color:var(--primary-color-80,#054d7b); }
+.topbar { position:sticky; top:0; z-index:50; height:80px; background:rgba(255,255,255,0.88); backdrop-filter:blur(10px); border-bottom:1px solid var(--grey-color-20,#d9dce1); display:flex; align-items:center; padding:0 24px; }
+.brand { display:flex; align-items:center; gap:12px; }
+.brand-logo { width:24px; height:24px; background:url('uploads/Eightfold Logos.png') center/contain no-repeat; }
+.brand-divider { width:1px; height:24px; background:var(--grey-color-20,#d9dce1); }
+.product { display:flex; align-items:center; gap:10px; padding:0 16px; }
+.product-ic { width:32px; height:32px; background:url('uploads/[Legacy] Product Icons.png') center/contain no-repeat; }
+.product-text { line-height:1.15; font-size:13px; color:var(--grey-color-60,#69717f); font-weight:500; }
+.product-text b { display:block; font-weight:600; color:var(--grey-color-70,#4f5666); }
+.primary-tabs { margin-left:24px; display:flex; align-items:center; gap:2px; height:100%; }
+.primary-tabs .tab { position:relative; display:flex; align-items:center; gap:4px; padding:0 12px; height:100%; font-size:14px; font-weight:600; color:var(--grey-color-70,#4f5666); cursor:pointer; white-space:nowrap; }
+.primary-tabs .tab .material-icons-round { font-size:18px; }
+.topbar-right { margin-left:auto; display:flex; align-items:center; gap:4px; min-width:0; }
+.search { width:220px; height:36px; border:1px solid var(--grey-color-20,#d9dce1); border-radius:999px; background:#fff; display:flex; align-items:center; padding:0 14px; gap:8px; font-size:13px; color:var(--grey-color-60,#69717f); flex-shrink:0; }
+.search .material-icons-round { font-size:18px; }
+.icon-btn { width:36px; height:36px; border-radius:50%; border:none; outline:none; background:transparent; display:flex; align-items:center; justify-content:center; color:var(--grey-color-70,#4f5666); cursor:pointer; position:relative; padding:0; }
+.icon-btn:hover { background:var(--grey-color-10,#f6f7f8); }
+.icon-btn .material-icons-round { font-size:20px; }
+.icon-btn .badge { position:absolute; top:2px; right:2px; min-width:16px; height:16px; padding:0 4px; border-radius:8px; background:var(--error-color,#993838); color:#fff; font-size:11px; font-weight:600; display:flex; align-items:center; justify-content:center; }
+.avatar-btn { display:flex; align-items:center; gap:6px; padding:2px 6px 2px 2px; border:none; background:transparent; border-radius:999px; cursor:pointer; }
+/* layout */
+.app { display:flex; height:calc(100vh - 80px); }
+/* === chat === */
+.chat { width:408px; flex-shrink:0; border-right:1px solid var(--grey-color-20,#d9dce1); display:flex; flex-direction:column; background:#fff; }
+.chat-h { display:flex; align-items:center; gap:10px; padding:16px 20px; border-bottom:1px solid var(--grey-color-20,#d9dce1); }
+.chat-h .ai-av { width:34px; height:34px; }
+.chat-h .t { font-size:15px; font-weight:600; }
+.chat-h .s { font-size:12px; color:var(--grey-color-60,#69717f); margin-top:1px; }
+.thread { flex:1; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:16px; }
+.msg { display:flex; gap:10px; align-items:flex-start; animation:msgIn .25s cubic-bezier(0.2,0,0,1); }
+@keyframes msgIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+.ai-av { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,#f5f3fe,#fdf0f9); border:1px solid #e6d9f5; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.ai-av .material-icons-round { font-size:15px; background:linear-gradient(135deg,#7b2ff7,#cb2c9e); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.msg .body { font-size:13.5px; line-height:1.55; color:var(--grey-color-80,#343c4c); min-width:0; }
+.msg .body b { font-weight:600; color:var(--grey-color-90,#1a212e); }
+.msg.user { justify-content:flex-end; }
+.msg.user .body { background:var(--grey-color-10,#f6f7f8); border-radius:14px 14px 4px 14px; padding:9px 14px; max-width:85%; color:var(--grey-color-90,#1a212e); }
+.chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+.chip { border:1px solid var(--grey-color-30,#bdc1c9); background:#fff; border-radius:999px; padding:6px 12px; font-size:12.5px; font-weight:600; color:var(--grey-color-80,#343c4c); cursor:pointer; text-align:left; }
+.chip:hover { background:var(--grey-color-10,#f6f7f8); }
+.typing { display:inline-flex; gap:4px; padding:6px 0; }
+.typing i { width:6px; height:6px; border-radius:50%; background:var(--grey-color-40,#a1a6b1); animation:tp 1s infinite; }
+.typing i:nth-child(2){ animation-delay:.15s } .typing i:nth-child(3){ animation-delay:.3s }
+@keyframes tp { 0%,60%,100% { transform:none; opacity:.5 } 30% { transform:translateY(-3px); opacity:1 } }
+.composer { padding:14px 16px 16px; border-top:1px solid var(--grey-color-20,#d9dce1); }
+.in-wrap { display:flex; align-items:flex-end; gap:8px; border:1.5px solid transparent; border-radius:16px; background:linear-gradient(var(--grey-color-10,#f6f7f8),var(--grey-color-10,#f6f7f8)) padding-box, linear-gradient(90deg,#a5a8ec,#e596cf) border-box; padding:6px 6px 6px 14px; }
+.in-wrap textarea { flex:1; border:none; outline:none; background:transparent; resize:none; font-size:13.5px; font-weight:500; color:var(--grey-color-90,#1a212e); line-height:1.5; max-height:96px; padding:6px 0; }
+.in-wrap textarea::placeholder { color:var(--grey-color-50,#858b98); }
+.send { width:34px; height:34px; border-radius:50%; border:none; cursor:pointer; background:linear-gradient(90deg,#4a50d8,#cb2c9e); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.send .material-icons-round { font-size:17px; }
+.composer .hint { font-size:11px; color:var(--grey-color-50,#858b98); margin-top:8px; text-align:center; }
+/* === board === */
+.board { flex:1; min-width:0; overflow-y:auto; padding:24px 32px 96px; background:var(--grey-color-10,#f6f7f8); }
+.crumbs { display:flex; align-items:center; gap:6px; font-size:13px; font-weight:500; margin-bottom:10px; }
+.crumbs a { color:var(--grey-color-60,#69717f); text-decoration:none; }
+.crumbs a:hover { color:var(--primary-color-70,#146da6); text-decoration:underline; }
+.crumbs .material-icons-round { font-size:16px; color:var(--grey-color-40,#a1a6b1); }
+.crumbs .cur { color:var(--grey-color-80,#343c4c); font-weight:600; }
+.b-head { display:flex; align-items:flex-end; gap:16px; margin-bottom:16px; }
+.b-head h1 { font-size:26px; font-weight:600; letter-spacing:-0.01em; margin:0; color:#000; }
+.b-head .pos { font-size:14px; color:var(--grey-color-60,#69717f); margin-top:4px; }
+.refresh-note { margin-left:auto; display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--grey-color-60,#69717f); white-space:nowrap; }
+.refresh-note .material-icons-round { font-size:16px; color:var(--green-color-60,#3d8f79); }
+/* dynamic stats */
+.stats { display:flex; gap:14px; margin-bottom:16px; }
+.stat { flex:1; background:#fff; border:1px solid var(--grey-color-20,#d9dce1); border-radius:14px; padding:14px 16px; animation:statIn .35s cubic-bezier(0.2,0,0,1) both; }
+.stat:nth-child(2){ animation-delay:.05s } .stat:nth-child(3){ animation-delay:.1s } .stat:nth-child(4){ animation-delay:.15s }
+@keyframes statIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+.stat .l { font-size:11px; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--grey-color-60,#69717f); }
+.stat .v { font-size:24px; font-weight:600; color:var(--grey-color-90,#1a212e); margin-top:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.stat .v small { font-size:13px; font-weight:500; color:var(--grey-color-60,#69717f); }
+.stat .d { font-size:12px; color:var(--grey-color-60,#69717f); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.stat.q { border:1.5px solid transparent; background:linear-gradient(#fff,#fff) padding-box, linear-gradient(90deg,#a5a8ec,#e596cf) border-box; }
+/* showing bar */
+.showing { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px; font-size:12.5px; font-weight:600; color:var(--grey-color-70,#4f5666); min-height:28px; }
+.fchip { display:inline-flex; align-items:center; gap:6px; height:28px; padding:0 6px 0 12px; border-radius:999px; border:1px solid #dcc8f2; background:#faf6fe; color:#6d3fa8; font-size:12.5px; font-weight:600; }
+.fchip .material-icons-round { font-size:15px; cursor:pointer; color:#9a7bc4; }
+.fchip .material-icons-round:hover { color:#6d3fa8; }
+.clear-all { border:none; background:none; font-size:12.5px; font-weight:600; color:var(--primary-color-70,#146da6); cursor:pointer; padding:0; }
+.clear-all:hover { text-decoration:underline; }
+/* table */
+.lb-list { background:#fff; border:1px solid var(--grey-color-20,#d9dce1); border-radius:16px; overflow:hidden; }
+.fhead { display:grid; grid-template-columns:28px 40px 1.4fr 150px 1.6fr; gap:14px; align-items:center; padding:13px 20px; border-bottom:1px solid var(--grey-color-20,#d9dce1); font-size:13px; font-weight:600; color:var(--grey-color-70,#4f5666); }
+.frow { position:relative; display:grid; grid-template-columns:28px 40px 1.4fr 150px 1.6fr; gap:14px; align-items:center; padding:11px 20px; border-bottom:1px solid var(--grey-color-10,#f6f7f8); cursor:pointer; animation:rowIn .3s cubic-bezier(0.2,0,0,1) both; }
+@keyframes rowIn { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:none; } }
+.frow:last-child { border-bottom:none; }
+.frow:hover { background:var(--grey-color-10,#f6f7f8); }
+.frow.hl { background:var(--primary-color-10,#ebf7ff); }
+.frow .rk { text-align:center; font-size:13.5px; font-weight:600; color:var(--grey-color-50,#858b98); }
+.avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:#fff; }
+.avatar.red{background:#c15151}.avatar.yellow{background:#858707}.avatar.green{background:#1999ac}.avatar.orange{background:#c97e19}.avatar.blue{background:#2c8cc9}.avatar.violet{background:#5962b7}.avatar.yellow2{background:#a88f00}.avatar.red2{background:#d26743}.avatar.magenta{background:#b5548e}
+.frow .nm { font-size:14px; font-weight:600; color:var(--grey-color-90,#1a212e); white-space:nowrap; }
+.frow .rl { font-size:12.5px; color:var(--grey-color-70,#4f5666); margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.frow .sc { font-size:19px; font-weight:600; color:var(--green-color-70,#2b715f); }
+.frow .sc.low { color:var(--orange-color-70,#a86a15); }
+.frow .sc small { font-size:12px; color:var(--grey-color-70,#4f5666); font-weight:500; }
+.flag-chip { display:inline-flex; align-items:center; gap:3px; margin-left:8px; padding:2px 8px; border-radius:999px; background:var(--orange-color-10,#fdf2e3); color:var(--orange-color-80,#8a5411); font-size:11px; font-weight:600; vertical-align:2px; }
+.flag-chip .material-icons-round { font-size:12px; }
+.comp-cell { font-size:13px; color:var(--grey-color-70,#4f5666); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.row-acts { position:absolute; right:14px; top:50%; transform:translateY(-50%); display:none; align-items:center; gap:8px; background:var(--grey-color-10,#f6f7f8); padding:4px 0 4px 12px; }
+.frow:hover .row-acts { display:flex; }
+.ract { height:30px; padding:0 13px; border-radius:999px; border:1px solid var(--grey-color-30,#bdc1c9); background:#fff; font-size:12.5px; font-weight:600; color:var(--grey-color-80,#343c4c); cursor:pointer; white-space:nowrap; }
+.ract:hover { background:var(--grey-color-10,#f6f7f8); }
+.ract.hm { background:var(--primary-color-80,#054d7b); border-color:var(--primary-color-80,#054d7b); color:#fff; }
+.ract.hm:hover { background:var(--primary-color-70,#146da6); }
+.status-chip { display:inline-flex; align-items:center; gap:4px; height:24px; padding:0 10px; border-radius:999px; font-size:11.5px; font-weight:600; white-space:nowrap; }
+.status-chip.adv { background:var(--green-color-20,#b9f4e4); color:var(--green-color-80,#1b5143); }
+.status-chip.hm { background:var(--primary-color-10,#ebf7ff); color:var(--primary-color-70,#146da6); }
+.status-chip .material-icons-round { font-size:13px; }
+.empty { padding:36px 24px; text-align:center; font-size:13.5px; color:var(--grey-color-60,#69717f); }
+.empty .material-icons-round { display:block; font-size:26px; color:var(--grey-color-40,#a1a6b1); margin:0 auto 8px; }
+/* version switcher + toast */
+.ver-fab { position:fixed; bottom:24px; left:32px; z-index:93; }
+.ver-btn { display:inline-flex; align-items:center; gap:8px; height:40px; padding:0 16px; border-radius:999px; border:1px solid var(--grey-color-20,#d9dce1); background:#fff; box-shadow:0 8px 24px rgba(26,33,46,0.16); font-size:13px; font-weight:600; color:var(--grey-color-80,#343c4c); cursor:pointer; white-space:nowrap; }
+.ver-btn:hover { background:var(--grey-color-10,#f6f7f8); }
+.ver-btn .material-icons-round { font-size:18px; color:var(--grey-color-60,#69717f); }
+.ver-menu { position:absolute; bottom:calc(100% + 8px); left:0; width:280px; background:#fff; border-radius:12px; box-shadow:0 8px 24px rgba(26,33,46,0.16), 0 2px 8px rgba(26,33,46,0.08); padding:6px; display:none; }
+.ver-fab.open .ver-menu { display:block; }
+.ver-item { display:flex; flex-direction:column; gap:1px; padding:10px 12px; border-radius:8px; text-decoration:none; cursor:pointer; }
+.ver-item:hover { background:var(--grey-color-10,#f6f7f8); }
+.ver-item .vt { font-size:13px; font-weight:600; color:var(--grey-color-90,#1a212e); }
+.ver-item .vd { font-size:12px; color:var(--grey-color-60,#69717f); }
+.ver-item.cur { background:var(--primary-color-10,#ebf7ff); }
+.ver-item.cur .vt { color:var(--primary-color-70,#146da6); }
+.toast { position:fixed; top:96px; left:50%; transform:translateX(-50%) translateY(-16px); z-index:99; background:#1a212e; color:#fff; font-size:13.5px; font-weight:600; padding:11px 18px; border-radius:12px; box-shadow:0 8px 24px rgba(26,33,46,0.3); opacity:0; pointer-events:none; transition:all .25s ease; display:flex; align-items:center; gap:8px; }
+.toast.on { opacity:1; transform:translateX(-50%) translateY(0); }
+.toast .material-icons-round { font-size:18px; color:#8be3c9; }
+[hidden] { display:none !important; }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><div class="brand-logo" aria-hidden="true"></div><div class="brand-divider"></div></div>
+    <div class="product"><div class="product-ic"></div><div class="product-text"><b>Talent</b>Acquisition</div></div>
+    <nav class="primary-tabs" aria-label="Primary">
+      <div class="tab" onclick="location.href='Pipeline Page.html'">Positions <span class="material-icons-round">expand_more</span></div>
+      <div class="tab">Talent <span class="material-icons-round">expand_more</span></div>
+      <div class="tab">Engage <span class="material-icons-round">expand_more</span></div>
+      <div class="tab">Insights <span class="material-icons-round">expand_more</span></div>
+      <div class="tab">More <span class="material-icons-round">expand_more</span></div>
+    </nav>
+    <div class="topbar-right">
+      <div class="search" role="search"><span class="material-icons-round">search</span><span>Position &amp; Candidate</span></div>
+      <button class="icon-btn" title="Centers"><span class="material-icons-round">business_center</span></button>
+      <button class="icon-btn" title="Calendar"><span class="material-icons-round">event</span></button>
+      <button class="icon-btn" title="Notifications"><span class="material-icons-round">notifications</span><span class="badge">4</span></button>
+      <button class="icon-btn" title="Apps"><span class="material-icons-round">apps</span></button>
+      <button class="avatar-btn" title="Account">
+        <div aria-hidden="true" style="width:32px;height:32px;border-radius:50%;background:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=160&amp;h=160&amp;fit=crop&amp;crop=faces&amp;auto=format&amp;q=80') center/cover;"></div>
+        <span class="material-icons-round" style="font-size:16px;color:var(--grey-color-70)">expand_more</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="app" data-screen-label="AI Interview Center v5 — Chat">
+    <aside class="chat">
+      <div class="chat-h">
+        <div class="ai-av"><span class="material-icons-round">auto_awesome</span></div>
+        <div><div class="t">Ask AI</div><div class="s">Filters and answers update the leaderboard live</div></div>
+      </div>
+      <div class="thread" id="thread"></div>
+      <div class="composer">
+        <div class="in-wrap">
+          <textarea id="chatIn" rows="1" placeholder="Describe who you're looking for..."></textarea>
+          <button class="send" id="chatSend" title="Send"><span class="material-icons-round">arrow_upward</span></button>
+        </div>
+        <div class="hint">AI can filter, compare and act on candidates. Verify before advancing.</div>
+      </div>
+    </aside>
+    <main class="board" id="board">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="Pipeline Page.html">Positions</a>
+        <span class="material-icons-round">chevron_right</span>
+        <a href="Pipeline Page.html">User Experience Designer</a>
+        <span class="material-icons-round">chevron_right</span>
+        <span class="cur">AI Interview Center</span>
+      </nav>
+      <div class="b-head">
+        <div><h1>AI Interview leaderboard</h1><div class="pos">User Experience Designer · 20 interviews scored</div></div>
+        <span class="refresh-note"><span class="material-icons-round">autorenew</span>Refreshed today, 9:00 AM</span>
+      </div>
+      <div class="stats" id="stats"></div>
+      <div class="showing" id="showing"></div>
+      <div class="lb-list">
+        <div class="fhead"><div></div><div></div><div>Candidate</div><div>AI Interview score</div><div>Core competencies</div></div>
+        <div id="rows"></div>
+      </div>
+    </main>
+  </div>
+
+  <div class="ver-fab" id="verFab">
+    <button class="ver-btn" onclick="event.stopPropagation();this.parentNode.classList.toggle('open')"><span class="material-icons-round">layers</span>Version 5 · Chat<span class="material-icons-round">expand_less</span></button>
+    <div class="ver-menu">
+      <a class="ver-item" href="AI Interview Center v3.html"><span class="vt">Version 3 · Guided</span><span class="vd">Fresh vs acted upon, inline highlights</span></a>
+      <a class="ver-item" href="AI Interview Center v3.1.html"><span class="vt">Version 3.1 · Action history</span><span class="vd">Single leaderboard, actions log on top</span></a>
+      <a class="ver-item" href="AI Interview Center v4.html"><span class="vt">Version 4 · Refined</span><span class="vd">Audit fixes — hierarchy, copy, states</span></a>
+      <a class="ver-item cur" href="AI Interview Center v5.html"><span class="vt">Version 5 · Chat</span><span class="vd">Chat with AI, live leaderboard</span></a>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><span class="material-icons-round">check_circle</span><span id="toastTxt"></span></div>
+<script src="ai-interview-center-v5.js"></script>
+</body>
+</html>

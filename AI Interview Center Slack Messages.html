@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI Interview Center — Slack notifications</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Lato:wght@400;700;900&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0&display=swap" />
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg-2);font-family:'Source Sans 3','Source Sans Pro',system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:var(--fg-primary);font-size:14px;line-height:1.55}
+a{color:var(--fg-link);text-decoration:none}
+a:hover{color:var(--fg-link);text-decoration:underline}
+.ms{font-family:'Material Symbols Outlined';font-weight:400;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20;font-size:var(--icon-mdi-m)}
+.page{min-height:100vh;padding:var(--space-xxl) var(--space-l) var(--space-xxxl)}
+.pagehead{max-width:1320px;margin:0 auto var(--space-xl)}
+.brandline{display:flex;align-items:center;gap:var(--space-xs);color:var(--accent-primary);margin-bottom:var(--space-s)}
+.brandline span{font-family:'Gilroy',sans-serif;font-weight:600;font-size:14px;color:var(--fg-primary)}
+h1{font-family:'Gilroy',sans-serif;font-weight:700;font-size:var(--type-header-1-size);line-height:var(--type-header-1-lh);letter-spacing:var(--type-header-1-tr);margin:0 0 var(--space-xs)}
+.lede{font-size:var(--type-body-1-size);line-height:var(--type-body-1-lh);color:var(--fg-secondary);max-width:720px;text-wrap:pretty}
+/* cadence */
+.cad{max-width:1320px;margin:0 auto var(--space-xxl);background:var(--surface-raised);border-radius:var(--radius-l);box-shadow:var(--shadow-object-s);padding:var(--space-l)}
+.cad h2{font-family:'Gilroy',sans-serif;font-weight:600;font-size:var(--type-header-4-size);line-height:var(--type-header-4-lh);margin:0 0 var(--space-xxs)}
+.cad .sub{font-size:var(--type-body-2-size);line-height:var(--type-body-2-lh);color:var(--fg-secondary);margin-bottom:var(--space-m);max-width:780px;text-wrap:pretty}
+.ct{width:100%;border-collapse:collapse;font-size:13.5px}
+.ct th{text-align:left;font-family:'Gilroy',sans-serif;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--fg-tertiary);padding:8px 16px 8px 0;border-bottom:2px solid var(--border-default)}
+.ct td{padding:11px 16px 11px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top;color:var(--fg-secondary);line-height:1.45}
+.ct tr:last-child td{border-bottom:none}
+.ct td.c{font-family:'Gilroy',sans-serif;font-weight:600;color:var(--fg-primary);white-space:nowrap}
+.ct td.c small{display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;font-size:12px;color:var(--fg-tertiary);margin-top:1px}
+.tag{display:inline-block;font-family:'Gilroy',sans-serif;font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:var(--radius-pill);white-space:nowrap;margin-right:4px}
+.tag.rt{background:var(--status-success-bg);color:var(--status-success-fg)}
+.tag.bt{background:var(--status-info-bg);color:var(--status-info-fg)}
+.tag.wk{background:var(--accent-soft-bg);color:var(--accent-primary)}
+.tag.em{background:var(--bg-3);color:var(--fg-secondary)}
+.rules{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-s);margin-top:var(--space-l)}
+.rule{background:var(--bg-3);border-radius:var(--radius-m);padding:var(--space-s) var(--space-m)}
+.rule b{display:block;font-family:'Gilroy',sans-serif;font-weight:600;font-size:13.5px;margin-bottom:3px;color:var(--fg-primary)}
+.rule span{font-size:12.5px;color:var(--fg-secondary);line-height:1.45;text-wrap:pretty}
+/* columns */
+.rail{overflow-x:auto;padding:var(--space-xxs) var(--space-l) var(--space-xl)}
+.rail-in{display:flex;gap:var(--space-xxxl);align-items:flex-start;width:max-content;margin:0 auto}
+.col{width:620px;min-width:620px;display:flex;flex-direction:column;gap:var(--space-l)}
+.colhead{font-family:'Gilroy',sans-serif;font-weight:600;font-size:var(--type-header-4-size);line-height:var(--type-header-4-lh);display:flex;align-items:center;gap:var(--space-xs)}
+.colhead .cnt{font-size:12.5px;font-weight:500;color:var(--fg-tertiary);font-family:'Source Sans 3',sans-serif}
+.case{display:flex;flex-direction:column;gap:var(--space-s)}
+.trigger{background:var(--surface-raised);border-radius:var(--radius-l);box-shadow:var(--shadow-object-s);padding:var(--space-m) var(--space-l)}
+.trigger .top{display:flex;align-items:center;gap:var(--space-xs);margin-bottom:var(--space-s)}
+.trigger .num{width:28px;height:28px;min-width:28px;border-radius:var(--radius-circle);background:var(--accent-primary);color:var(--fg-on-primary);display:flex;align-items:center;justify-content:center;font-family:'Gilroy',sans-serif;font-weight:600;font-size:11.5px}
+.trigger .when{font-family:'Gilroy',sans-serif;font-size:var(--type-caption-size);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-tertiary)}
+.trigger .tt{font-family:'Gilroy',sans-serif;font-weight:600;font-size:var(--type-subtitle-1-size);line-height:var(--type-subtitle-1-lh);margin-bottom:var(--space-xxs)}
+.trigger .td{font-size:var(--type-body-2-size);line-height:var(--type-body-2-lh);color:var(--fg-tertiary);text-wrap:pretty}
+/* slack mock */
+.slack{font-family:'Lato',-apple-system,'Segoe UI',sans-serif;background:#fff;border:1px solid #dddddd;border-radius:10px;overflow:hidden;box-shadow:var(--shadow-object-m);color:#1d1c1d}
+.sl-top{display:flex;align-items:center;gap:8px;padding:10px 16px;border-bottom:1px solid #dddddd;font-size:15px;font-weight:900}
+.sl-ico{width:20px;height:20px;border-radius:4px;background:linear-gradient(135deg,#4a50d8,#cb2c9e);display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0}
+.sl-top .dm{font-weight:400;font-size:13px;color:#616061;margin-left:auto}
+.sl-msg{display:flex;gap:8px;padding:12px 20px 14px}
+.sl-av{width:36px;height:36px;min-width:36px;border-radius:4px;background:linear-gradient(135deg,#4a50d8,#cb2c9e);display:flex;align-items:center;justify-content:center;color:#fff;margin-top:2px}
+.sl-body{flex:1;min-width:0}
+.sl-meta{display:flex;align-items:center;gap:6px;margin-bottom:2px}
+.sl-meta b{font-weight:900;font-size:15px}
+.sl-badge{font-size:10px;font-weight:700;background:#e8e8e8;color:#616061;border-radius:2px;padding:1px 4px;text-transform:uppercase;line-height:1.3}
+.sl-time{font-size:12px;color:#616061}
+.sl-text{font-size:15px;line-height:1.4667;text-wrap:pretty}
+.sl-text b,.sl-list b,.sl-fields b{font-weight:900}
+.sl-text a,.sl-list a{color:#1264a3}
+.sl-quote{border-left:4px solid #dddddd;padding-left:12px;margin-top:8px;font-size:15px;line-height:1.4667;color:#1d1c1d}
+.sl-fields{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;margin-top:8px;font-size:15px;line-height:1.4667}
+.sl-fields div span{display:block;font-size:13px;color:#616061}
+.sl-list{margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px;font-size:15px;line-height:1.4667}
+.sl-list li{display:flex;gap:10px;align-items:baseline}
+.sl-list .sc{font-weight:900;min-width:30px;font-variant-numeric:tabular-nums}
+.sl-list .sc.hi{color:#007a5a}
+.sl-list .vd{font-weight:900;min-width:92px}
+.sl-ctx{display:flex;align-items:center;gap:6px;margin-top:9px;font-size:12px;color:#616061}
+.sl-ctx .ms{font-size:14px}
+.sl-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.sl-btn{display:inline-flex;align-items:center;height:30px;padding:0 12px;border-radius:4px;border:1px solid #bbbfc4;background:#fff;color:#1d1c1d;font-family:inherit;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 1px 3px rgba(0,0,0,0.08)}
+.sl-btn:hover{background:#f8f8f8;color:#1d1c1d;text-decoration:none}
+.sl-btn.primary{background:#007a5a;border-color:#007a5a;color:#fff}
+.sl-btn.primary:hover{background:#148567;color:#fff}
+.sl-thread{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:13px;color:#1264a3;font-weight:700}
+.sl-thread .rep{display:flex}
+.sl-thread .rep span{width:20px;height:20px;border-radius:4px;background:linear-gradient(135deg,#4a50d8,#cb2c9e);display:inline-block;border:2px solid #fff;margin-left:-6px}
+.sl-thread .rep span:first-child{margin-left:0}
+.sl-thread small{font-weight:400;color:#616061}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="pagehead">
+    <div class="brandline"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M 15.757 13.343 L 13.292 13.343 L 13.292 17.331 C 13.295 20.947 10.426 23.907 6.826 24 C 6.087 24.012 5.477 23.42 5.465 22.678 C 5.453 21.935 6.042 21.323 6.782 21.311 L 6.867 21.311 C 8.97 21.193 10.617 19.447 10.618 17.331 L 10.618 13.343 L 9.625 13.343 C 8.885 13.343 8.286 12.741 8.286 11.998 C 8.286 11.256 8.885 10.654 9.625 10.654 L 10.618 10.654 L 10.618 6.671 C 10.615 3.044 13.5 0.08 17.111 0 C 17.85 0.017 18.436 0.632 18.42 1.374 C 18.404 2.117 17.791 2.706 17.051 2.689 C 14.943 2.801 13.292 4.551 13.292 6.671 L 13.292 10.658 L 15.757 10.658 C 16.496 10.658 17.096 11.26 17.096 12.003 C 17.096 12.746 16.496 13.348 15.757 13.348 L 15.757 13.343 Z M 5.101 22.658 C 5.101 22.095 5.368 21.566 5.819 21.233 C 3.833 20.806 2.487 18.943 2.699 16.914 C 2.912 14.885 4.615 13.345 6.646 13.343 L 8.545 13.343 C 8.154 13.006 7.929 12.515 7.929 11.998 C 7.929 11.482 8.154 10.99 8.545 10.654 L 6.646 10.654 C 3.173 10.653 0.285 13.34 0.02 16.818 C -0.246 20.296 2.201 23.393 5.635 23.924 C 5.294 23.591 5.102 23.135 5.101 22.658 Z M 18.801 1.462 C 18.837 0.945 18.645 0.438 18.276 0.075 C 20.554 0.427 22.487 1.94 23.381 4.085 C 24.243 6.145 24.022 8.501 22.791 10.363 C 21.561 12.225 19.485 13.345 17.26 13.348 L 16.834 13.348 C 17.225 13.011 17.449 12.52 17.449 12.003 C 17.449 11.486 17.225 10.995 16.834 10.658 L 17.26 10.658 C 19.3 10.669 21.017 9.126 21.231 7.088 C 21.445 5.051 20.087 3.181 18.09 2.764 C 18.505 2.456 18.765 1.98 18.801 1.462 Z"></path></svg><span>Eightfold · AI Interview Center</span></div>
+    <h1>AI Interview Center Slack notifications</h1>
+    <div class="lede">Slack carries the moments that need a person today; email carries digests and records. The same event never goes to both. Four messages in total — two for recruiters, two for hiring managers — each batched, capped and deep-linked into the leaderboard.</div>
+  </div>
+
+  <div class="cad">
+    <h2>Cases and cadence</h2>
+    <div class="sub">Every message is a direct message from the AI Interviewer app. Nothing sends between 7:00 pm and 8:00 am local or on weekends — it waits for the next window. Recruiters can mute any position; hiring managers can hand a request back.</div>
+    <table class="ct">
+      <thead><tr><th style="width:190px">Case</th><th style="width:120px">Audience</th><th>Fires when</th><th>Cadence and caps</th><th style="width:170px">Channel</th></tr></thead>
+      <tbody>
+        <tr><td class="c">R1 · Batch scored<small>Daily rhythm</small></td><td>Recruiter</td><td>New AI interviews scored for a position since the last message</td><td>Once per position per weekday at 9:00 local. Scores landing later the same day post as thread replies, never a second DM.</td><td><span class="tag bt">Batched</span>Slack DM</td></tr>
+        <tr><td class="c">R2 · Going stale<small>Weekly check</small></td><td>Recruiter</td><td>Candidates scoring 4.0+ have sat unactioned 5+ business days</td><td>Tuesday 9:00 local, one message per position, snoozable a week. Suppressed the moment any of them is actioned.</td><td><span class="tag wk">Weekly</span>Slack DM</td></tr>
+        <tr><td class="c">H1 · Review request<small>The handoff</small></td><td>Hiring manager</td><td>A recruiter shares candidates for review</td><td>Real-time, one message per share. The share also goes by email, so it lands wherever the HM works.</td><td><span class="tag rt">Real-time</span>Slack DM + email</td></tr>
+        <tr><td class="c">H2 · Loop closed<small>What happened next</small></td><td>Hiring manager</td><td>The recruiter advances, rejects or replies on a candidate the HM reviewed</td><td>Grouped, 5:00 pm local. A busy day is one message, not five.</td><td><span class="tag bt">Batched</span>Slack DM</td></tr>
+        <tr><td class="c">Fresh batch · HM review request<small>Email only</small></td><td>Recruiter · HM</td><td>See the Emails file</td><td>Fresh batch on scoring, deduplicated within 24h; review request the moment a recruiter shares.</td><td><span class="tag em">Email</span>Inbox</td></tr>
+      </tbody>
+    </table>
+    <div class="rules">
+      <div class="rule"><b>Email digests, Slack moments</b><span>Records and summaries go to the inbox. Slack gets only what a person should act on today — and no event goes to both.</span></div>
+      <div class="rule"><b>Batch by default</b><span>One DM per position per day; later updates thread under it, so a busy day is still one message.</span></div>
+      <div class="rule"><b>Quiet hours</b><span>Nothing between 7:00 pm and 8:00 am local or on weekends. Held messages merge into the next window's batch.</span></div>
+      <div class="rule"><b>No decisions from Slack</b><span>Every button deep-links into the evidence view. Advancing, rejecting and sharing happen where the receipts are.</span></div>
+    </div>
+  </div>
+
+  <div class="rail">
+  <div class="rail-in">
+
+    <!-- ============ RECRUITER ============ -->
+    <div class="col" data-screen-label="Recruiter Slack messages">
+      <div class="colhead">Recruiter<span class="cnt">2 messages</span></div>
+
+      <div class="case">
+        <div class="trigger">
+          <div class="top"><span class="num">R1</span><span class="when">New interviews scored · once per position, 9:00 local</span></div>
+          <div class="tt">Batch scored</div>
+          <div class="td">Everything scored for a position since yesterday's message, in one DM. Later scores that day post as thread replies — the recruiter never gets a second ping for the same position.</div>
+        </div>
+        <div class="slack">
+          <div class="sl-top"><span class="sl-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M 15.757 13.343 L 13.292 13.343 L 13.292 17.331 C 13.295 20.947 10.426 23.907 6.826 24 C 6.087 24.012 5.477 23.42 5.465 22.678 C 5.453 21.935 6.042 21.323 6.782 21.311 L 6.867 21.311 C 8.97 21.193 10.617 19.447 10.618 17.331 L 10.618 13.343 L 9.625 13.343 C 8.885 13.343 8.286 12.741 8.286 11.998 C 8.286 11.256 8.885 10.654 9.625 10.654 L 10.618 10.654 L 10.618 6.671 C 10.615 3.044 13.5 0.08 17.111 0 C 17.85 0.017 18.436 0.632 18.42 1.374 C 18.404 2.117 17.791 2.706 17.051 2.689 C 14.943 2.801 13.292 4.551 13.292 6.671 L 13.292 10.658 L 15.757 10.658 C 16.496 10.658 17.096 11.26 17.096 12.003 C 17.096 12.746 16.496 13.348 15.757 13.348 L 15.757 13.343 Z M 5.101 22.658 C 5.101 22.095 5.368 21.566 5.819 21.233 C 3.833 20.806 2.487 18.943 2.699 16.914 C 2.912 14.885 4.615 13.345 6.646 13.343 L 8.545 13.343 C 8.154 13.006 7.929 12.515 7.929 11.998 C 7.929 11.482 8.154 10.99 8.545 10.654 L 6.646 10.654 C 3.173 10.653 0.285 13.34 0.02 16.818 C -0.246 20.296 2.201 23.393 5.635 23.924 C 5.294 23.591 5.102 23.135 5.101 22.658 Z M 18.801 1.462 C 18.837 0.945 18.645 0.438 18.276 0.075 C 20.554 0.427 22.487 1.94 23.381 4.085 C 24.243 6.145 24.022 8.501 22.791 10.363 C 21.561 12.225 19.485 13.345 17.26 13.348 L 16.834 13.348 C 17.225 13.011 17.449 12.52 17.449 12.003 C 17.449 11.486 17.225 10.995 16.834 10.658 L 17.26 10.658 C 19.3 10.669 21.017 9.126 21.231 7.088 C 21.445 5.051 20.087 3.181 18.09 2.764 C 18.505 2.456 18.765 1.98 18.801 1.462 Z"></path></svg></span>AI Interviewer<span class="dm">Direct message</span></div>
+          <div class="sl-msg">
+            <div class="sl-av"><span class="ms" style="font-size:20px">leaderboard</span></div>
+            <div class="sl-body">
+              <div class="sl-meta"><b>AI Interviewer</b><span class="sl-badge">App</span><span class="sl-time">9:00 AM</span></div>
+              <div class="sl-text"><b>17 new AI interviews scored</b> for <a href="AI Interview Center v7.html">User Experience Designer</a> — 4 scored 4.3+, 4 carry proctoring flags.</div>
+              <ul class="sl-list">
+                <li><span class="sc hi">4.6</span><span><b>Priya Venkatesh</b> — problem solving stood out; skipped the design case</span></li>
+                <li><span class="sc">4.2</span><span><b>Aiden Park</b> — coding stood out; proctoring flags to review</span></li>
+                <li><span class="sc">4.1</span><span><b>Marcus Chen</b> — steady across the board</span></li>
+              </ul>
+              <div class="sl-ctx"><span class="ms">info</span>Batch average 3.5 · 20 of 24 invited have completed</div>
+              <div class="sl-actions"><a class="sl-btn primary" href="AI Interview Center v7.html">View shortlist</a><a class="sl-btn" href="AI Interview Center v7.html">Top 10 only</a><a class="sl-btn" href="#">Mute this position</a></div>
+              <div class="sl-thread"><span class="rep"><span></span><span></span></span>2 replies<small>Last reply today at 2:15 PM — 3 more scored</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="trigger">
+          <div class="top"><span class="num">R2</span><span class="when">Strong candidates unactioned 5+ days · Tuesday 9:00</span></div>
+          <div class="tt">Strong candidates going stale</div>
+          <div class="td">A weekly check, not a countdown. One message per position while anyone scoring 4.0+ has sat without an action; it disappears the moment one of them is advanced, rejected or shared.</div>
+        </div>
+        <div class="slack">
+          <div class="sl-top"><span class="sl-ico"><span class="ms" style="font-size:13px">leaderboard</span></span>AI Interviewer<span class="dm">Direct message</span></div>
+          <div class="sl-msg">
+            <div class="sl-av"><span class="ms" style="font-size:20px">leaderboard</span></div>
+            <div class="sl-body">
+              <div class="sl-meta"><b>AI Interviewer</b><span class="sl-badge">App</span><span class="sl-time">9:00 AM</span></div>
+              <div class="sl-text"><b>3 strong candidates</b> for <a href="AI Interview Center v7.html">User Experience Designer</a> have waited 5+ business days without an action.</div>
+              <ul class="sl-list">
+                <li><span class="sc hi">4.4</span><span><b>Charles Berg</b> — waiting 7 days · HM said thumbs up</span></li>
+                <li><span class="sc">4.1</span><span><b>Sophie Williams</b> — waiting 6 days</span></li>
+                <li><span class="sc">4.0</span><span><b>Olivia Brooks</b> — waiting 5 days</span></li>
+              </ul>
+              <div class="sl-ctx"><span class="ms">schedule</span>Sent once a week per position while strong candidates are waiting</div>
+              <div class="sl-actions"><a class="sl-btn primary" href="AI Interview Center v7.html">Review now</a><a class="sl-btn" href="#">Snooze a week</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ HIRING MANAGER ============ -->
+    <div class="col" data-screen-label="Hiring manager Slack messages">
+      <div class="colhead">Hiring manager<span class="cnt">2 messages</span></div>
+
+      <div class="case">
+        <div class="trigger">
+          <div class="top"><span class="num">H1</span><span class="when">Recruiter shares candidates · real-time, one per share</span></div>
+          <div class="tt">Review request</div>
+          <div class="td">The handoff. Also sent by email, because not every hiring manager lives in Slack — both point at the same shared-with-you view.</div>
+        </div>
+        <div class="slack">
+          <div class="sl-top"><span class="sl-ico"><span class="ms" style="font-size:13px">leaderboard</span></span>AI Interviewer<span class="dm">Direct message</span></div>
+          <div class="sl-msg">
+            <div class="sl-av"><span class="ms" style="font-size:20px">leaderboard</span></div>
+            <div class="sl-body">
+              <div class="sl-meta"><b>AI Interviewer</b><span class="sl-badge">App</span><span class="sl-time">10:26 AM</span></div>
+              <div class="sl-text"><b>Sarah Johnson</b> shared <b>2 candidates</b> for your review — <a href="AI Interview Center v7 - HM view.html">User Experience Designer</a>.</div>
+              <div class="sl-quote">"Both scored strong on the criteria we set. I'd like to move them to onsite this week before they cool off — flag anything that gives you pause."</div>
+              <ul class="sl-list">
+                <li><span class="sc hi">4.4</span><span><b>Charles Berg</b> · Product Designer — strong on communication, nothing flagged</span></li>
+                <li><span class="sc">4.1</span><span><b>Zara Ahmed</b> · Design Lead — strong communicator; some coding tests failed</span></li>
+              </ul>
+              <div class="sl-ctx"><span class="ms">schedule</span>About 5 minutes · your verdict lands on the candidate profile and Sarah is notified</div>
+              <div class="sl-actions"><a class="sl-btn primary" href="AI Interview Center v7 - HM view.html">Review 2 candidates</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="trigger">
+          <div class="top"><span class="num">H2</span><span class="when">Recruiter acts on a reviewed candidate · 5:00 pm, grouped</span></div>
+          <div class="tt">Loop closed</div>
+          <div class="td">Hiring managers stop asking "what happened with…". Grouped at the end of the day so a busy day is one message, not five.</div>
+        </div>
+        <div class="slack">
+          <div class="sl-top"><span class="sl-ico"><span class="ms" style="font-size:13px">leaderboard</span></span>AI Interviewer<span class="dm">Direct message</span></div>
+          <div class="sl-msg">
+            <div class="sl-av"><span class="ms" style="font-size:20px">leaderboard</span></div>
+            <div class="sl-body">
+              <div class="sl-meta"><b>AI Interviewer</b><span class="sl-badge">App</span><span class="sl-time">5:00 PM</span></div>
+              <div class="sl-text">Your review moved things along for <a href="AI Interview Center v7 - HM view v2.html">User Experience Designer</a>:</div>
+              <ul class="sl-list">
+                <li><span class="vd" style="color:#007a5a">Onsite</span><span><b>Charles Berg</b> — advanced by Sarah after your review</span></li>
+                <li><span class="vd">Replied</span><span><b>Zara Ahmed</b> — Sarah: "Case study is on her profile now — take a look when you can."</span></li>
+              </ul>
+              <div class="sl-actions"><a class="sl-btn" href="AI Interview Center v7 - HM view v2.html">View candidates</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  </div>
+</div>
+</body>
+</html>

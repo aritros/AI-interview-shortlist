@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>User Flow — AI Interview</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" />
+<style>
+*, *::before, *::after { box-sizing:border-box; }
+html, body { margin:0; padding:0; background:#eceef1; }
+body { font-family:'Gilroy','Source Sans Pro',system-ui,sans-serif; color:var(--grey-color-90,#1a212e); font-weight:500; -webkit-font-smoothing:antialiased; }
+body *:not(.material-icons-round) { font-family:'Gilroy','Source Sans Pro',system-ui,sans-serif; }
+.material-icons-round { font-family:'Material Icons Round' !important; font-weight:normal; font-style:normal; letter-spacing:normal; text-transform:none; white-space:nowrap; direction:ltr; -webkit-font-feature-settings:'liga'; font-feature-settings:'liga'; -webkit-font-smoothing:antialiased; }
+a { color:var(--primary-color-70,#146da6); }
+a:hover { color:var(--primary-color-80,#054d7b); }
+.wrap { padding:20px 24px 32px; overflow-x:auto; }
+.hd { display:flex; align-items:flex-end; gap:24px; margin:4px 4px 16px; min-width:1200px; }
+.hd h1 { font-size:22px; font-weight:600; margin:0; letter-spacing:-0.01em; }
+.hd .sub { font-size:13px; color:var(--grey-color-70,#4f5666); margin-top:3px; }
+.legend { margin-left:auto; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+.lg-i { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:var(--grey-color-70,#4f5666); white-space:nowrap; }
+.lg-i i { width:12px; height:12px; border-radius:4px; }
+.canvas { position:relative; width:2480px; height:790px; background:#fff; border:1px solid var(--grey-color-20,#d9dce1); border-radius:16px; }
+.band { position:absolute; top:52px; height:708px; border-radius:12px; background:var(--grey-color-10,#f6f7f8); }
+.band b { position:absolute; top:12px; left:14px; font-size:11px; font-weight:600; letter-spacing:0.09em; text-transform:uppercase; color:var(--grey-color-60,#69717f); white-space:nowrap; }
+#edges { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.elabel { position:absolute; z-index:2; background:#fff; border:1px solid var(--grey-color-20,#d9dce1); border-radius:999px; padding:2px 9px; font-size:11px; font-weight:600; color:var(--grey-color-70,#4f5666); white-space:nowrap; }
+.nd { position:absolute; z-index:1; background:#fff; border:1px solid var(--grey-color-30,#bdc1c9); border-radius:12px; box-shadow:0 1px 3px rgba(26,33,46,0.08); padding:12px 14px; display:flex; gap:10px; align-items:flex-start; }
+.nd .ic { width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.nd .ic .material-icons-round { font-size:17px; }
+.nd .tt { font-size:13.5px; font-weight:600; color:var(--grey-color-90,#1a212e); line-height:1.25; }
+.nd .ss { font-size:11.5px; line-height:1.4; color:var(--grey-color-70,#4f5666); margin-top:3px; }
+.t-screen { border-top:3px solid #0f8276; }
+.t-screen .ic { background:#d9f2ef; color:#025966; }
+.t-system .ic { background:var(--grey-color-20,#d9dce1); color:var(--grey-color-80,#343c4c); }
+.t-actor { border-style:dashed; }
+.t-actor .ic { background:var(--grey-color-10,#f6f7f8); color:var(--grey-color-70,#4f5666); }
+.t-ai { border:1.5px solid transparent; background:linear-gradient(#fff,#fff) padding-box, linear-gradient(90deg,#a5a8ec,#e596cf) border-box; }
+.t-ai .ic { background:linear-gradient(135deg,#f5f3fe,#fdf0f9); }
+.t-ai .ic .material-icons-round { background:linear-gradient(135deg,#7b2ff7,#cb2c9e); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.t-action .ic { background:var(--primary-color-10,#ebf7ff); color:var(--primary-color-70,#146da6); }
+.t-danger { border-color:var(--red-color-30,#f2b8b5); }
+.t-danger .ic { background:var(--red-color-10,#fff1f1); color:var(--red-color-70,#a13f3f); }
+.t-decision { border-color:var(--orange-color-40,#f6b968); align-items:center; }
+.t-decision .ic { background:var(--orange-color-20,#fce3c2); color:var(--orange-color-80,#8a5411); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hd">
+    <div>
+      <h1>AI Interview — user flow</h1>
+      <div class="sub">From automated outreach on the Pipeline page to advance / share / reject on the AI Interview leaderboard (v3).</div>
+    </div>
+    <div class="legend">
+      <span class="lg-i"><i style="background:#0f8276"></i>Screen</span>
+      <span class="lg-i"><i style="background:linear-gradient(90deg,#7b2ff7,#cb2c9e)"></i>AI</span>
+      <span class="lg-i"><i style="background:#146da6"></i>Action</span>
+      <span class="lg-i"><i style="background:#f29d31"></i>Decision</span>
+      <span class="lg-i"><i style="background:#a1a6b1"></i>External</span>
+    </div>
+  </div>
+  <div class="canvas" data-screen-label="User flow">
+    <div class="band" style="left:24px;width:308px"><b>1 · Source &amp; interview</b></div>
+    <div class="band" style="left:356px;width:296px"><b>2 · Enter</b></div>
+    <div class="band" style="left:676px;width:776px"><b>3 · Review &amp; shortlist</b></div>
+    <div class="band" style="left:1476px;width:660px"><b>4 · Act</b></div>
+    <div class="band" style="left:2160px;width:296px"><b>5 · Track &amp; loop</b></div>
+    <svg id="edges"></svg>
+    <div class="nd t-screen" style="left:40px;top:120px;width:260px;height:92px"><div class="ic"><span class="material-icons-round">table_view</span></div><div><div class="tt">Pipeline — Contacted tab</div><div class="ss">Match score, AI interview score, feedback column.</div></div></div>
+    <div class="nd t-system" style="left:40px;top:268px;width:260px;height:88px"><div class="ic"><span class="material-icons-round">bolt</span></div><div><div class="tt">Automation banner</div><div class="ss">45 applicants auto-invited to the AI interview.</div></div></div>
+    <div class="nd t-actor" style="left:40px;top:412px;width:260px;height:88px"><div class="ic"><span class="material-icons-round">person</span></div><div><div class="tt">Candidate takes AI interview</div><div class="ss">Video Q&amp;A · coding &amp; case exercises.</div></div></div>
+    <div class="nd t-ai" style="left:40px;top:556px;width:260px;height:96px"><div class="ic"><span class="material-icons-round">auto_awesome</span></div><div><div class="tt">AI scores the interview</div><div class="ss">Weighted criteria → score /5 · buckets · highlights.</div></div></div>
+    <div class="nd t-action" style="left:380px;top:150px;width:240px;height:92px"><div class="ic"><span class="material-icons-round">smart_button</span></div><div><div class="tt">“AI Interview leaderboard” button</div><div class="ss">Position header · shimmer · “5 new” tag.</div></div></div>
+    <div class="nd t-action" style="left:380px;top:330px;width:240px;height:88px"><div class="ic"><span class="material-icons-round">business_center</span></div><div><div class="tt">Centers ▸ AI Interview Center</div><div class="ss">Briefcase menu in the top nav.</div></div></div>
+    <div class="nd t-screen" style="left:700px;top:120px;width:290px;height:104px"><div class="ic"><span class="material-icons-round">leaderboard</span></div><div><div class="tt">AI Interview leaderboard</div><div class="ss">Fresh candidates ranked /5 · guided banner · position switcher.</div></div></div>
+    <div class="nd t-system" style="left:700px;top:300px;width:290px;height:100px"><div class="ic"><span class="material-icons-round">category</span></div><div><div class="tt">Smart buckets</div><div class="ss">Ready to advance · HM review · Proctoring flags · Below bar.</div></div></div>
+    <div class="nd t-ai" style="left:700px;top:456px;width:290px;height:88px"><div class="ic"><span class="material-icons-round">auto_awesome</span></div><div><div class="tt">Filter with AI</div><div class="ss">Plain-language query → removable criteria tokens.</div></div></div>
+    <div class="nd t-action" style="left:700px;top:600px;width:290px;height:84px"><div class="ic"><span class="material-icons-round">checklist</span></div><div><div class="tt">Bulk select</div><div class="ss">Row checkboxes → bottom action bar.</div></div></div>
+    <div class="nd t-screen" style="left:1090px;top:150px;width:300px;height:116px"><div class="ic"><span class="material-icons-round">view_sidebar</span></div><div><div class="tt">Candidate detail drawer</div><div class="ss">AI summary + standout quote · hiring criteria evaluation · key moments · highlight reel player.</div></div></div>
+    <div class="nd t-ai" style="left:1090px;top:330px;width:300px;height:88px"><div class="ic"><span class="material-icons-round">forum</span></div><div><div class="tt">Ask AI about candidate</div><div class="ss">Performance Q&amp;A · compare candidates.</div></div></div>
+    <div class="nd t-action" style="left:1090px;top:474px;width:300px;height:84px"><div class="ic"><span class="material-icons-round">swap_horiz</span></div><div><div class="tt">Candidate switcher</div><div class="ss">Bucket · 1 of N — flip without closing.</div></div></div>
+    <div class="nd t-action" style="left:1090px;top:614px;width:300px;height:84px"><div class="ic"><span class="material-icons-round">sticky_note_2</span></div><div><div class="tt">Notes</div><div class="ss">Add context · HM responses appear here.</div></div></div>
+    <div class="nd t-decision" style="left:1500px;top:330px;width:200px;height:96px"><div class="ic"><span class="material-icons-round">alt_route</span></div><div><div class="tt">Confident to move?</div><div class="ss">Evidence-based call.</div></div></div>
+    <div class="nd t-action" style="left:1790px;top:140px;width:260px;height:96px"><div class="ic"><span class="material-icons-round">upgrade</span></div><div><div class="tt">Advance stage</div><div class="ss">Recruiter screen · HM screen · Onsite · Offer.</div></div></div>
+    <div class="nd t-action" style="left:1790px;top:330px;width:260px;height:96px"><div class="ic"><span class="material-icons-round">send</span></div><div><div class="tt">Share with HM</div><div class="ss">Approval request · reply lands in notes.</div></div></div>
+    <div class="nd t-danger" style="left:1790px;top:520px;width:260px;height:88px"><div class="ic"><span class="material-icons-round">block</span></div><div><div class="tt">Reject</div><div class="ss">Disruptive action · undo from toast.</div></div></div>
+    <div class="nd t-screen" style="left:2200px;top:240px;width:240px;height:100px"><div class="ic"><span class="material-icons-round">history</span></div><div><div class="tt">Acted upon tab</div><div class="ss">Sent to HM · Advanced — status &amp; timestamps.</div></div></div>
+    <div class="nd t-system" style="left:2200px;top:430px;width:240px;height:88px"><div class="ic"><span class="material-icons-round">autorenew</span></div><div><div class="tt">Next batch</div><div class="ss">New candidates every 3 days.</div></div></div>
+  </div>
+</div>
+<script>
+const EDGES = [
+  {d:'M170,212 L170,262'},
+  {d:'M170,356 L170,406'},
+  {d:'M170,500 L170,550'},
+  {d:'M300,604 L644,604 L644,172 L694,172', label:'scored & ranked', lx:420, ly:590},
+  {d:'M300,166 L340,166 L340,196 L374,196'},
+  {d:'M300,190 L348,190 L348,374 L374,374'},
+  {d:'M620,196 L694,196'},
+  {d:'M620,374 L656,374 L656,210 L694,210'},
+  {d:'M845,300 L845,230', label:'filters', lx:856, ly:252},
+  {d:'M845,456 L845,406'},
+  {d:'M845,600 L845,550'},
+  {d:'M990,172 L1040,172 L1040,208 L1084,208', label:'click a candidate', lx:996, ly:140},
+  {d:'M1240,266 L1240,324'},
+  {d:'M1240,418 L1240,468'},
+  {d:'M1240,558 L1240,608'},
+  {d:'M1390,208 L1450,208 L1450,378 L1494,378', label:'evidence reviewed', lx:1398, ly:290},
+  {d:'M1600,330 L1600,188 L1784,188', label:'yes', lx:1616, ly:162},
+  {d:'M1700,378 L1784,378', label:'second opinion', lx:1694, ly:352},
+  {d:'M1600,426 L1600,564 L1784,564', label:'below bar', lx:1616, ly:572},
+  {d:'M990,642 L1030,642 L1030,716 L1560,716 L1560,432', dash:1, label:'bulk actions', lx:1200, ly:702},
+  {d:'M2050,188 L2125,188 L2125,272 L2194,272'},
+  {d:'M2050,378 L2125,378 L2125,308 L2194,308', label:'awaiting reply', lx:2054, ly:394},
+  {d:'M2200,474 L2168,474 L2168,735 L668,735 L668,150 L694,150', dash:1, label:'new batch every 3 days → fresh list', lx:1310, ly:722}
+];
+const svg = document.getElementById('edges');
+let s = '<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#858b98"></path></marker></defs>';
+for (const e of EDGES) s += `<path d="${e.d}" fill="none" stroke="#858b98" stroke-width="1.5" ${e.dash?'stroke-dasharray="5 4"':''} marker-end="url(#ah)"></path>`;
+svg.innerHTML = s;
+const cv = document.querySelector('.canvas');
+for (const e of EDGES) if (e.label){ const d = document.createElement('div'); d.className = 'elabel'; d.style.left = e.lx+'px'; d.style.top = e.ly+'px'; d.textContent = e.label; cv.appendChild(d); }
+</script>
+</body>
+</html>

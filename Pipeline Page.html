@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Pipeline — User Experience Designer</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" />
+<style>
+  /* === Base =================================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:#f6f7f8; }
+  body {
+    font-family: 'Gilroy', 'Source Sans Pro', system-ui, -apple-system, sans-serif;
+    color: var(--grey-color-90, #1a212e);
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display:flex; justify-content:center;
+  }
+  /* Use Gilroy everywhere per request — body/UI too */
+  .page, .page *:not(.material-icons-round):not(.material-icons) { font-family: 'Gilroy', 'Source Sans Pro', system-ui, sans-serif !important; }
+  .material-icons-round { font-family: 'Material Icons Round' !important; font-weight: normal; font-style: normal; letter-spacing: normal; text-transform: none; white-space: nowrap; direction: ltr; -webkit-font-feature-settings: 'liga'; font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased; }
+
+  .page {
+    position: relative;
+    width: 1440px;
+    min-height: 900px;
+    background: #fff;
+  }
+
+  /* === Top header =============================================== */
+  .topbar {
+    position: sticky; top:0; z-index:50;
+    height: 80px;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--grey-color-20, #d9dce1);
+    display:flex; align-items:center;
+    padding: 0 24px;
+    gap: 0;
+  }
+  .brand { display:flex; align-items:center; gap:12px; }
+  .brand-logo {
+    width:24px; height:24px;
+    background: url('uploads/Eightfold Logos.png') center/contain no-repeat;
+  }
+  .brand-divider { width:1px; height:24px; background: var(--grey-color-20, #d9dce1); }
+  .product {
+    display:flex; align-items:center; gap:10px;
+    padding: 0 16px;
+  }
+  .product-ic {
+    width:32px; height:32px;
+    background: url('uploads/[Legacy] Product Icons.png') center/contain no-repeat;
+  }
+  .product-text { line-height:1.15; font-size:13px; color: var(--grey-color-60, #69717f); font-weight:500; }
+  .product-text b { display:block; font-weight:600; color: var(--grey-color-70, #4f5666);}
+
+  /* Tabs in header */
+  .primary-tabs {
+    margin-left: 24px;
+    display:flex; align-items:center; gap: 2px;
+    height: 100%;
+  }
+  .primary-tabs .tab {
+    position: relative;
+    display:flex; align-items:center; gap:4px;
+    padding: 0 12px; height: 100%;
+    font-size: 14px; font-weight: 600;
+    color: var(--grey-color-70, #4f5666);
+    cursor:pointer;
+    white-space: nowrap;
+  }
+  .primary-tabs .tab.active {
+    color: var(--primary-color-70, #146da6);
+  }
+  .primary-tabs .tab.active::after {
+    content:''; position:absolute; left:12px; right:12px; bottom:0;
+    height:3px; border-radius:2px 2px 0 0;
+    background: var(--primary-color-70, #146da6);
+  }
+  .primary-tabs .tab .material-icons-round { font-size:18px; }
+
+  .topbar-right { margin-left:auto; display:flex; align-items:center; gap:4px; min-width:0; }
+  .search {
+    width: 240px; height: 36px;
+    border: 1px solid var(--grey-color-20, #d9dce1);
+    border-radius: 999px;
+    background: #fff;
+    display:flex; align-items:center; padding: 0 14px; gap:8px;
+    font-size: 13px; color: var(--grey-color-60, #69717f);
+    flex-shrink: 0;
+  }
+  .search .material-icons-round { font-size: 18px; }
+  /* Octuple System UI button — borderless, transparent, circular hover */
+  .icon-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: none; outline: none; background: transparent;
+    display:flex; align-items:center; justify-content:center;
+    color: var(--grey-color-70, #4f5666);
+    cursor:pointer;
+    position: relative;
+    padding: 0;
+    -webkit-appearance: none; appearance: none;
+  }
+  .icon-btn:hover { background: var(--grey-color-10, #f6f7f8); }
+  .icon-btn:focus { outline: none; }
+  .icon-btn:focus-visible { box-shadow: 0 0 0 2px var(--primary-color-40, #68baef); }
+  .icon-btn .material-icons-round { font-size: 20px; }
+  .icon-btn .badge {
+    position:absolute; top:2px; right:2px;
+    min-width:16px; height:16px; padding: 0 4px;
+    border-radius: 8px; background: var(--error-color, #993838);
+    color:#fff; font-size:11px; font-weight:600;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .avatar-btn {
+    display:flex; align-items:center; gap:6px; padding: 2px 6px 2px 2px;
+    border: none; outline: none; background: transparent;
+    border-radius: 999px; cursor:pointer;
+    -webkit-appearance: none; appearance: none;
+  }
+  .avatar-btn:hover { background: transparent; }
+  .avatar-btn:focus { outline: none; }
+  .avatar-img {
+    width:40px; height:40px; border-radius:50%; object-fit:cover;
+    background: linear-gradient(135deg,#2c8cc9,#1999ac);
+  }
+
+  a { color: var(--primary-color-70, #146da6); }
+  a:hover { color: var(--primary-color-80, #054d7b); }
+  /* === Centers dropdown ========================================= */
+  .centers-wrap { position: relative; }
+  .centers-wrap > .icon-btn.open { color: var(--primary-color-70, #146da6); background: var(--primary-color-10, #ebf7ff); }
+  .centers-menu {
+    position: absolute; top: calc(100% + 8px); right: 0; z-index: 50;
+    width: 280px; padding: 12px 0;
+    background: #fff; border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(26,33,46,0.16), 0 2px 8px rgba(26,33,46,0.08);
+    display: none;
+  }
+  .centers-menu.open { display: block; }
+  .centers-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 12px 24px;
+    font-size: 16px; font-weight: 500;
+    color: var(--grey-color-80, #343c4c);
+    cursor: pointer; white-space: nowrap;
+  }
+  .centers-item:hover { background: var(--grey-color-10, #f6f7f8); }
+  .centers-item .material-icons-round { font-size: 20px; color: var(--grey-color-70, #4f5666); }
+
+  /* === Automation banner ======================================== */
+  .live-toolbar {
+    position: relative;
+    height: 76px;
+    box-sizing: border-box;
+    padding: 0 20px 24px 24px;
+    display: flex; align-items: center; gap: 16px;
+    background: linear-gradient(90deg, #7A2BC8 0%, #B21BA4 55%, #E80F63 100%);
+    color: #fff;
+  }
+  .lt-status {
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:14.5px; font-weight:500; color:#fff;
+    white-space:nowrap;
+  }
+  .lt-status b { font-weight:700; }
+  .lt-dot { width:8px; height:8px; border-radius:50%; background:#7DF3B0; box-shadow:0 0 0 3px rgba(125,243,176,0.25); }
+  .lt-link { color:#fff; font-size:13.5px; font-weight:600; text-decoration:underline; text-underline-offset:3px; cursor:pointer; white-space:nowrap; }
+  .lt-link:hover { color:#fff; opacity:0.85; text-decoration:underline; }
+  .lt-status button.lt-link { text-decoration:underline; text-underline-offset:3px; }
+  .lt-chev { width:26px; height:26px; border:none; background:transparent; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0; }
+  .lt-chev:hover { background:rgba(255,255,255,0.16); }
+  .lt-chev .material-icons-round { font-size:18px; }
+  .lt-counters { margin-left:auto; display:flex; align-items:center; gap:22px; }
+  .lt-count {
+    display:inline-flex; align-items:center; gap:7px;
+    font-size:13.5px; font-weight:500; color:#fff;
+  }
+  .lt-count b { font-weight:700; }
+  .lt-count .material-icons-round { font-size:17px; color:#fff; }
+  .lt-actions { display:flex; align-items:center; gap:4px; }
+  .lt-actions .icon-btn { width:28px; height:28px; color:#fff; }
+  .lt-actions .icon-btn:hover { background:rgba(255,255,255,0.16); }
+  .lt-actions .icon-btn .material-icons-round { font-size:18px; }
+  .content-card {
+    position:relative;
+    background:#fff;
+    border-radius:16px 16px 0 0;
+    margin-top:-24px;
+  }
+
+  /* === Page header ============================================== */
+  .page-header {
+    padding: 40px 40px 0 40px;
+  }
+  .page-header-row {
+    display:flex; align-items:center; gap: 16px;
+  }
+  .page-title {
+    font-family: 'Gilroy', sans-serif !important;
+    font-weight: 600; font-size: 32px; line-height: 40px;
+    letter-spacing: -0.01em; color: #000;
+    margin: 0;
+  }
+  .round-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    background: #fff;
+    border: 1px solid var(--grey-color-20, #d9dce1);
+    color: var(--grey-color-70, #4f5666);
+    cursor:pointer;
+  }
+  .round-btn:hover { background: var(--grey-color-10, #f6f7f8); }
+  .round-btn .material-icons-round { font-size:20px; }
+
+  .page-header .actions { margin-left:auto; display:flex; align-items:center; gap: 8px;}
+  .btn {
+    height: 40px; padding: 0 20px; border-radius: 999px;
+    font-size: 14px; font-weight: 600;
+    display:inline-flex; align-items:center; gap:8px;
+    cursor: pointer;
+    border: 1px solid var(--primary-color-70, #146da6);
+    background: #fff; color: var(--primary-color-70, #146da6);
+    transition: background .15s ease, border-color .15s ease;
+  }
+  .btn:hover { background: var(--primary-color-10, #ebf7ff); }
+  .btn.kebab {
+    width: 40px; padding: 0; justify-content:center;
+  }
+  .btn.kebab .material-icons-round { font-size: 20px; color: var(--primary-color-70, #146da6); }
+  .btn.primary { background: var(--primary-color-80, #054d7b); color:#fff; border-color: var(--primary-color-80, #054d7b); }
+  .btn.primary:hover { background: var(--primary-color-90, #002a47); border-color: var(--primary-color-90, #002a47); }
+  .btn.agentic { position:relative; border:none; color:#2b3271; background:linear-gradient(#fff,#fff) padding-box, linear-gradient(90deg,#4a50d8,#9038c9 55%,#cb2c9e) border-box; border:1.5px solid transparent; display:inline-flex; align-items:center; gap:8px; }
+  .btn.agentic .material-icons-round { font-size:18px; background:linear-gradient(90deg,#4a50d8,#9038c9 55%,#cb2c9e); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .btn.agentic:hover { color:#fff; background:linear-gradient(90deg,#4a50d8,#9038c9 55%,#cb2c9e) padding-box, linear-gradient(90deg,#4a50d8,#9038c9 55%,#cb2c9e) border-box; }
+  .btn.agentic:hover .material-icons-round { background:none; -webkit-text-fill-color:#fff; }
+  .btn.agentic::after { content:''; position:absolute; inset:0; border-radius:inherit; background:linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.85) 50%, transparent 70%) no-repeat; background-size:250% 100%; background-position:220% 0; animation:agShimmer 2.4s ease-out 0.6s 3; pointer-events:none; }
+  .btn.agentic:hover::after { display:none; }
+  @keyframes agShimmer { 0% { background-position:220% 0; } 55%, 100% { background-position:-120% 0; } }
+  .btn.agentic.ico-only { width:36px; height:36px; padding:0; justify-content:center; border-radius:50%; }
+  .btn.agentic.ico-only .ag-tip { position:absolute; top:calc(100% + 8px); left:50%; transform:translateX(-50%) translateY(-3px); padding:5px 9px; border-radius:6px; background:var(--grey-color-90,#1a212e); color:#fff; font-size:12px; font-weight:500; line-height:16px; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .14s ease, transform .14s ease; z-index:20; }
+  .btn.agentic.ico-only:hover .ag-tip, .btn.agentic.ico-only:focus-visible .ag-tip { opacity:1; transform:translateX(-50%) translateY(0); }
+  .ag-new { position:absolute; top:-9px; right:-10px; height:18px; padding:0 7px; border-radius:999px; background:linear-gradient(90deg,#9038c9,#cb2c9e); color:#fff; font-size:10.5px; font-weight:700; letter-spacing:0.02em; display:flex; align-items:center; box-shadow:0 2px 8px rgba(144,56,201,0.35); white-space:nowrap; }
+
+  .meta-row {
+    margin-top: 8px;
+    display:flex; align-items:center; gap: 8px;
+    color: var(--grey-color-60, #69717f);
+    font-size: 16px;
+  }
+  .status-tag {
+    display:inline-flex; align-items:center; gap:6px;
+    font-weight: 600; color: var(--green-color-60, #3d8f79);
+    font-size: 14px;
+  }
+  .status-tag::before {
+    content:''; width:8px; height:8px; border-radius:50%;
+    background: var(--green-color-60, #3d8f79);
+  }
+  .sep-dot { width:4px; height:4px; border-radius:50%; background: var(--grey-color-30, #bdc1c9);}
+
+  /* === Section tabs (Leads/Pipeline/Analytics) ================== */
+  .section-tabs {
+    margin-top: 32px;
+    padding: 0 40px;
+    display:flex; align-items:flex-end; gap: 8px;
+    border-bottom: 1px solid var(--grey-color-20, #d9dce1);
+  }
+  .section-tab {
+    position: relative;
+    padding: 12px 16px 14px 16px;
+    display:inline-flex; align-items:center; gap: 8px;
+    font-size: 16px; font-weight: 600;
+    color: var(--grey-color-70, #4f5666);
+    cursor:pointer;
+  }
+  .section-tab.active { color: var(--primary-color-70, #146da6); }
+  .section-tab.active::after {
+    content:''; position:absolute; left:16px; right:16px; bottom:-1px;
+    height:3px; border-radius:2px 2px 0 0;
+    background: var(--primary-color-70, #146da6);
+  }
+  .count-pill {
+    font-size: 12px; font-weight: 600;
+    background: var(--grey-color-20, #d9dce1);
+    color: var(--grey-color-70, #4f5666);
+    padding: 2px 8px; border-radius: 999px;
+    min-width: 22px; text-align:center;
+  }
+  .section-tab.active .count-pill {
+    background: var(--primary-color-10, #ebf7ff);
+    color: var(--primary-color-70, #146da6);
+  }
+
+  /* === Filters row ============================================== */
+  .filters {
+    padding: 20px 40px 16px;
+    display:flex; align-items:center; gap: 12px;
+  }
+  .chip {
+    height: 36px; padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid var(--grey-color-20, #d9dce1);
+    background: #fff;
+    display:inline-flex; align-items:center; gap:6px;
+    font-size: 14px; font-weight: 600;
+    color: var(--grey-color-80, #343c4c);
+    cursor:pointer;
+    white-space: nowrap;
+  }
+  .chip:hover { background: var(--grey-color-10, #f6f7f8); }
+  .chip .material-icons-round { font-size: 18px; color: var(--grey-color-60, #69717f);}
+  .chip .chip-count {
+    display:inline-flex; align-items:center; justify-content:center;
+    min-width:18px; height:18px; padding: 0 5px;
+    font-size:12px; font-weight:600;
+    background: rgba(255,255,255,0.6);
+    color: var(--green-color-80, #1b5143);
+    border-radius: 999px;
+  }
+  .chip.applied {
+    background: var(--green-color-20, #b9f4e4);
+    color: var(--green-color-80, #1b5143);
+    border-color: transparent;
+  }
+  .chip.applied .material-icons-round { color: var(--green-color-70, #2b715f);}
+  .chip.divider-before { position: relative; margin-left:8px;}
+  .chip.divider-before::before {
+    content:''; position:absolute; left:-14px; top:50%; transform: translateY(-50%);
+    width:1px; height: 24px; background: var(--grey-color-20, #d9dce1);
+  }
+  .chip.icon-only { padding: 0; width:36px; justify-content:center; }
+  .filters .spacer { flex:1; }
+  .chip.circle {
+    width: 36px; padding: 0; justify-content:center;
+    background: var(--primary-color-10, #ebf7ff);
+    border-color: transparent;
+    color: var(--primary-color-70, #146da6);
+  }
+  .chip.circle .material-icons-round { color: var(--primary-color-70, #146da6);}
+
+  /* === Table ==================================================== */
+  .table-wrap { padding: 0 40px 40px; }
+  .table {
+    background: #fff;
+    border-radius: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .thead {
+    display:grid;
+    grid-template-columns: 380px 200px 190px 190px 190px 280px 190px 56px;
+    column-gap: 32px;
+    align-items:center;
+    padding: 12px 24px 12px 0;
+    width: max-content; min-width: 100%;
+    border-bottom: 1px solid var(--grey-color-20, #d9dce1);
+    font-size: 14px; font-weight: 600;
+    color: var(--grey-color-70, #4f5666);
+  }
+  .thead .cell { display:flex; align-items:center; gap:6px; cursor:pointer; }
+  .thead .cell .material-icons-round { font-size:18px; color: var(--grey-color-60, #69717f);}
+  .thead .cb-head { display:flex; align-items:center; gap: 12px; }
+  .pill-count {
+    font-size: 12px; font-weight: 600;
+    background: var(--grey-color-20, #d9dce1);
+    color: var(--grey-color-70, #4f5666);
+    padding: 2px 8px; border-radius: 999px;
+  }
+
+  /* Sticky candidate column */
+  .thead .cb-head, .row .personal {
+    position: sticky; left: 0; z-index: 2;
+    background: #fff;
+    align-self: stretch;
+    margin: -12px 0;
+    padding: 12px 16px 12px 24px;
+    box-shadow: 8px 0 8px -8px rgba(26,33,46,0.08);
+  }
+  .row:hover .personal { background: var(--grey-color-10, #f6f7f8); }
+
+  /* Checkboxes */
+  .cb {
+    width: 16px; height:16px;
+    border: 2px solid var(--grey-color-70, #4f5666);
+    border-radius: 4px; background:#fff;
+    flex-shrink: 0;
+    cursor: pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition: background .12s ease, border-color .12s ease, box-shadow .12s ease;
+    outline: none;
+  }
+  .cb:hover { background: var(--blue-green-10, #ebfdff); border-color: var(--blue-green-80, #025966); }
+  .cb:active { background: var(--blue-green-30, #7be4f4); border-color: var(--blue-green-80, #025966); }
+  .cb:focus-visible { box-shadow: 0 0 0 2px #8c7cf5; }
+  .cb.checked, .cb.some {
+    background: var(--blue-green-20, #b0f3fe);
+    border-color: var(--blue-green-80, #025966);
+  }
+  .cb.checked:hover, .cb.some:hover { background: var(--blue-green-10, #ebfdff); }
+  .cb.checked:active, .cb.some:active { background: var(--blue-green-30, #7be4f4); }
+  .cb.checked::after {
+    content:''; width:4px; height: 8px;
+    border: solid var(--blue-green-80, #025966); border-width: 0 2px 2px 0;
+    transform: rotate(45deg) translate(-1px,-1px);
+  }
+  .cb.some::after { content:''; width:8px; height:2px; border-radius:1px; background: var(--blue-green-80, #025966); }
+
+  /* Row */
+  .row {
+    display:grid;
+    grid-template-columns: 380px 200px 190px 190px 190px 280px 190px 56px;
+    column-gap: 32px;
+    align-items:center;
+    padding: 12px 24px 12px 0;
+    width: max-content; min-width: 100%;
+    border-bottom: 1px solid var(--grey-color-10, #f6f7f8);
+    transition: background .15s ease;
+  }
+  .row:hover { background: var(--grey-color-10, #f6f7f8); }
+  .row:last-child { border-bottom: none; }
+  .row .more-btn { visibility: hidden; }
+  .row:hover .more-btn { visibility: visible; }
+
+  /* Personal cell */
+  .personal { display:flex; align-items:center; gap:12px; min-width:0; }
+  .avatar {
+    width:40px; height:40px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px; font-weight:600; color:#fff;
+    flex-shrink:0;
+  }
+  .avatar.red    { background: var(--red-color-60, #c15151); }
+  .avatar.yellow { background: var(--yellowgreen-color-60, #858707); }
+  .avatar.green  { background: var(--accent-color-60, #1999ac); }
+  .avatar.orange { background: var(--orange-color-60, #c97e19); }
+  .avatar.blue   { background: var(--primary-color-60, #2c8cc9); }
+  .avatar.violet { background: var(--bluecustom, #5962b7); background: #5962b7;}
+  .avatar.yellow2{ background: var(--yellow-color-60, #a88f00); }
+  .avatar.red2   { background: var(--redorange-color-60, #d26743); }
+  .avatar.magenta{ background: #b5548e; }
+
+  .p-name-row { display:flex; align-items:center; gap: 8px; min-width:0;}
+  .p-name {
+    font-weight: 600; font-size: 14px; color: var(--grey-color-90, #1a212e);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .star-btn {
+    width: 24px; height: 24px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    border: none; outline: none; background: transparent;
+    -webkit-appearance: none; appearance: none;
+    color: var(--grey-color-50, #858b98); cursor:pointer;
+    padding: 0;
+  }
+  .star-btn:focus { outline: none; }
+  .star-btn:hover { background: transparent; color: var(--orange-color-60, #c97e19); }
+  .star-btn.on { color: var(--orange-color-50, #f29d31);}
+  .star-btn .material-icons-round { font-size: 18px;}
+  .new-tag {
+    display:inline-flex; align-items:center; gap: 4px;
+    font-size: 13px; font-weight: 600;
+    color: var(--green-color-70, #2b715f);
+  }
+  .new-tag::before {
+    content:''; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green-color-60, #3d8f79);
+  }
+  .p-meta {
+    margin-top: 2px;
+    display:flex; align-items:center; gap: 6px;
+    font-size: 13px; color: var(--grey-color-60, #69717f);
+    white-space: nowrap; overflow:hidden;
+  }
+  .p-meta .sep { width: 3px; height:3px; border-radius:50%; background: var(--grey-color-30, #bdc1c9); flex-shrink:0;}
+
+  /* Feedback column */
+  .fb-cell { position:relative; font-size:13.5px; font-weight:600; color:var(--grey-color-70,#4f5666); white-space:nowrap; }
+  .fb-p { color:var(--orange-color-70,#a86a15); }
+  .fb-s { color:var(--primary-color-70,#146da6); }
+  .fb-pop { position:absolute; top:50%; right:calc(100% + 12px); transform:translateY(-50%) translateX(4px); z-index:70; width:330px; background:#fff; border-radius:14px; box-shadow:0 12px 32px rgba(26,33,46,0.2), 0 2px 8px rgba(26,33,46,0.08); padding:14px 16px; opacity:0; pointer-events:none; transition:opacity .15s ease, transform .15s ease; white-space:normal; }
+  .fb-cell:hover .fb-pop { opacity:1; transform:translateY(-50%); pointer-events:auto; }
+  .fb-pop::after { content:''; position:absolute; left:100%; top:50%; transform:translateY(-50%); border:7px solid transparent; border-left-color:#fff; }
+  .fb-h { font-size:14px; font-weight:700; color:var(--grey-color-90,#1a212e); display:flex; align-items:center; gap:6px; margin:10px 0 6px; }
+  .fb-h:first-child { margin-top:0; }
+  .fb-n { background:var(--grey-color-20,#d9dce1); border-radius:4px; padding:0 6px; font-size:12px; font-weight:600; color:var(--grey-color-80,#343c4c); }
+  .fb-e { display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; color:#7b3fc4; margin:5px 0; }
+  .fb-e > .material-icons-round { font-size:16px; background:linear-gradient(135deg,#7b2ff7,#cb2c9e); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .fb-thumb { display:inline-flex; align-items:center; justify-content:center; width:30px; height:22px; border-radius:6px; background:var(--green-color-20,#b9f4e4); margin-left:2px; }
+  .fb-thumb .ti { font-size:14px; color:var(--green-color-80,#1b5143); }
+
+  /* Match score */
+  .match { display:flex; flex-direction:column; gap: 6px; }
+  .dots { display:flex; gap: 4px;}
+  .dot {
+    width: 12px; height:12px; border-radius:50%;
+    background: var(--primary-color-70, #146da6);
+  }
+  .dot.half {
+    background: linear-gradient(90deg, var(--primary-color-70, #146da6) 50%, var(--grey-color-20, #d9dce1) 50%);
+  }
+  .dot.empty { background: var(--grey-color-20, #d9dce1);}
+  .match-label {
+    font-size: 13px; font-weight: 600;
+    color: var(--primary-color-70, #146da6);
+  }
+
+  /* Columns with primary+secondary text */
+  .twoline { display:flex; flex-direction:column; gap: 2px; min-width:0;}
+  .twoline .primary-text {
+    font-size: 14px; font-weight: 600; color: var(--grey-color-90, #1a212e);
+    white-space: nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .twoline .secondary-text {
+    font-size: 13px; color: var(--grey-color-60, #69717f);
+    white-space: nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .twoline .dated {
+    display:flex; align-items:center; gap:6px;
+    font-size: 14px; font-weight: 600; color: var(--grey-color-90, #1a212e);
+  }
+  .twoline .sep { width: 3px; height:3px; border-radius:50%; background: var(--grey-color-30, #bdc1c9);}
+  .twoline .source-chip {
+    font-size: 13px; font-weight:600; color: var(--grey-color-70, #4f5666);
+  }
+
+  /* AI interview score */
+  .ai-score { display:flex; align-items:center; }
+  .score-pill { font-size: 14px; font-weight: 600; padding: 2px 10px; border-radius: 6px; }
+  .score-pill.good { background: var(--green-color-20, #b9f4e4); color: var(--green-color-80, #1b5143); }
+  .score-pill.mid { background: var(--orange-color-20, #fce3c2); color: var(--orange-color-80, #8a5411); }
+  .score-state {
+    width: 28px; height: 28px; border-radius: 6px;
+    border: 1px dashed var(--grey-color-30, #bdc1c9);
+    background: var(--grey-color-10, #f6f7f8);
+    display:flex; align-items:center; justify-content:center;
+    overflow: hidden;
+    color: var(--grey-color-60, #69717f);
+  }
+  .score-state .material-icons-round { font-size: 16px; }
+  .score-state.alert { color: var(--error-color, #993838); }
+
+  /* utility */
+  .more-btn { width:28px; height:28px; border-radius:50%; border:none; background:transparent; cursor:pointer; color: var(--grey-color-60, #69717f); display:flex; align-items:center; justify-content:center;}
+  .more-btn:hover { background: var(--grey-color-20, #d9dce1);}
+
+  .hide-lg { }
+  @media (max-width: 1440px) {
+    .page { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ============ TOP BAR ============ -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-logo" aria-hidden="true"></div>
+      <div class="brand-divider"></div>
+    </div>
+    <div class="product">
+      <div class="product-ic"></div>
+      <div class="product-text"><b>Talent</b>Acquisition</div>
+    </div>
+
+    <nav class="primary-tabs" aria-label="Primary">
+      <div class="tab active">Positions <span class="material-icons-round">expand_more</span></div>
+      <div class="tab">Talent <span class="material-icons-round">expand_more</span></div>
+      <div class="tab">Engage <span class="material-icons-round">expand_more</span></div>
+      <div class="tab">Insights <span class="material-icons-round">expand_more</span></div>
+      <div class="tab">More <span class="material-icons-round">expand_more</span></div>
+    </nav>
+
+    <div class="topbar-right">
+      <div class="search" role="search">
+        <span class="material-icons-round">search</span>
+        <span>Position &amp; Candidate</span>
+      </div>
+      <div class="centers-wrap">
+        <button class="icon-btn" id="centersBtn" title="Centers" aria-haspopup="true" aria-expanded="false"><span class="material-icons-round">business_center</span></button>
+        <div class="centers-menu" id="centersMenu" role="menu">
+          <div class="centers-item" role="menuitem" id="aiCenterLink"><span class="material-icons-round">leaderboard</span>AI Interview shortlist</div>
+          <div class="centers-item" role="menuitem"><span class="material-icons-round">event_note</span>Scheduling Center</div>
+          <div class="centers-item" role="menuitem"><span class="material-icons-round">edit</span>Interview Feedback Center</div>
+          <div class="centers-item" role="menuitem"><span class="material-icons-round">laptop</span>Interview Center</div>
+          <div class="centers-item" role="menuitem"><span class="material-icons-round">how_to_reg</span>Screening Center</div>
+          <div class="centers-item" role="menuitem"><span class="material-icons-round">mail_outline</span>Communication Center</div>
+          <div class="centers-item" role="menuitem"><span class="material-icons-round">person_add_alt</span>Preboarding Center</div>
+          <div class="centers-item" role="menuitem"><span class="material-icons-round">verified_user</span>Approval Center</div>
+        </div>
+      </div>
+      <button class="icon-btn" title="Calendar"><span class="material-icons-round">event</span></button>
+      <button class="icon-btn" title="Notifications">
+        <span class="material-icons-round">notifications</span>
+        <span class="badge">4</span>
+      </button>
+      <button class="icon-btn" title="Apps"><span class="material-icons-round">apps</span></button>
+      <button class="avatar-btn" title="Account">
+        <div class="avatar-img" aria-hidden="true"
+             style="width:32px;height:32px;background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=160&amp;h=160&amp;fit=crop&amp;crop=faces&amp;auto=format&amp;q=80');background-size:cover;background-position:center;"></div>
+        <span class="material-icons-round" style="font-size:16px;color:var(--grey-color-70)">expand_more</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ AUTOMATION BANNER ============ -->
+  <div class="live-toolbar">
+    <span class="lt-status"><span class="lt-dot"></span><b>Hey Martha 👋</b>&nbsp;Top 5 candidates have scored 4.3+</span>
+    <button class="lt-link" style="border:none; padding:0; font-size:13.5px; cursor:pointer; background:transparent;" onclick="location.href='AI Interview Center v7.html'">View shortlist</button>
+    <button class="lt-chev" title="Expand"><span class="material-icons-round">expand_more</span></button>
+    <div class="lt-counters">
+      <span class="lt-count"><span class="material-icons-round">mail_outline</span><b>12</b>&nbsp;Invites sent</span>
+      <span class="lt-count"><span class="material-icons-round">task_alt</span><b>0</b>&nbsp;Interviews completed</span>
+      <span class="lt-count"><span class="material-icons-round">error_outline</span><b>0</b>&nbsp;Assistance requests</span>
+    </div>
+    <div class="lt-actions">
+      <button class="icon-btn" title="More"><span class="material-icons-round">more_vert</span></button>
+    </div>
+  </div>
+
+  <main class="content-card">
+  <!-- ============ PAGE HEADER ============ -->
+  <section class="page-header">
+    <div class="page-header-row">
+      <h1 class="page-title">User Experience Designer</h1>
+      <button class="round-btn" title="Switch position"><span class="material-icons-round">expand_more</span></button>
+      <button class="round-btn" title="Description"><span class="material-icons-round">description</span></button>
+      <button class="round-btn" title="Save"><span class="material-icons-round">bookmark_border</span></button>
+
+      <div class="actions">
+        <button class="btn">Calibrate position</button>
+        <button class="btn">Automate workflows</button>
+        <button class="btn agentic ico-only" aria-label="AI Interview shortlist" onclick="location.href='AI Interview Center v7.html'"><span class="material-icons-round">leaderboard</span><span class="ag-new">5</span><span class="ag-tip">AI Interview shortlist</span></button>
+        <button class="btn kebab" title="More"><span class="material-icons-round">more_vert</span></button>
+      </div>
+    </div>
+
+    <div class="meta-row">
+      <span class="status-tag">Open</span>
+      <span class="sep-dot"></span>
+      <span>Bangalore, Karnataka, India</span>
+    </div>
+  </section>
+
+  <!-- ============ SECTION TABS ============ -->
+  <nav class="section-tabs" aria-label="Position view">
+    <div class="section-tab">Overview</div>
+    <div class="section-tab">Leads <span class="count-pill">8</span></div>
+    <div class="section-tab">Applicants <span class="count-pill">8</span></div>
+    <div class="section-tab active">Contacted <span class="count-pill">8</span></div>
+    <div class="section-tab">Initial screening <span class="count-pill">50</span></div>
+    <div class="section-tab">Interviews <span class="count-pill">8</span></div>
+    <div class="section-tab">Offer</div>
+  </nav>
+
+  <!-- ============ FILTERS ============ -->
+  <div class="filters" role="toolbar" aria-label="Filters">
+    <button class="chip applied">
+      View : All matched candidates
+      <span class="material-icons-round">expand_more</span>
+    </button>
+    <button class="chip divider-before">Highlights <span class="material-icons-round">expand_more</span></button>
+    <button class="chip applied">ATS details <span class="chip-count">2</span> <span class="material-icons-round">expand_more</span></button>
+    <button class="chip applied">Education <span class="chip-count">3</span> <span class="material-icons-round">expand_more</span></button>
+    <button class="chip">Diversity <span class="material-icons-round">expand_more</span></button>
+    <button class="chip applied">
+      <span class="material-icons-round">tune</span>
+      All filters <span class="chip-count">8</span>
+      <span class="material-icons-round">expand_more</span>
+    </button>
+    <div class="spacer"></div>
+    <button class="chip circle" title="Search"><span class="material-icons-round">search</span></button>
+  </div>
+
+  <!-- ============ TABLE ============ -->
+  <div class="table-wrap">
+    <div class="table" role="table">
+
+      <!-- Header row -->
+      <div class="thead" role="row">
+        <div class="cb-head">
+          <div class="cb" id="cb-all" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="cell">Candidates <span class="pill-count">100</span></div>
+        </div>
+        <div class="cell">Match <span class="material-icons-round">expand_more</span></div>
+        <div class="cell">AI interview score <span class="material-icons-round">info_outline</span></div>
+        <div class="cell">Feedback</div>
+        <div class="cell">Last contacted <span class="material-icons-round">expand_more</span></div>
+        <div class="cell">Last application <span class="material-icons-round">expand_more</span></div>
+        <div class="cell">Contacted on <span class="material-icons-round">expand_more</span></div>
+        <div></div>
+      </div>
+
+      <!-- ROWS -->
+      <!-- Row template filled by JS for clean iteration -->
+      <div id="rows"></div>
+
+    </div>
+  </div>
+  </main>
+
+</div>
+
+<script>
+/* ============ Row data ================================= */
+const ROWS = [
+  {
+    initials:'ML', color:'red', name:'Maria Lubin', isNew:true, starred:false,
+    title:'UX Designer', company:'Fiverr', school:null,
+    match: 4.5, diversity:'Diversity (Female)',
+    lastContact: {date:'Mar 15, 2018', by:'msloan'},
+    lastApp:    {date:'Dec, 2017', src:'Career Site', role:'User Experience Designer'},
+    contactedOn:{date:'', by:''}
+  },
+  {
+    initials:'CB', color:'yellow2', name:'Carla Ekstrom Bothman', isNew:true,
+    title:'UX Designer', company:'Spotsetter',
+    match: 4.5, diversity:'Diversity (Female)',
+    lastContact:{date:'Mar 15, 2018', by:'msloan'},
+    lastApp:{date:'Dec, 2017', src:'Career Site', role:'User Experience Designer'},
+    contactedOn:{date:'', by:''}
+  },
+  {
+    initials:'LB', color:'green', name:'Livia Baptista', isNew:true,
+    title:'UX Designer', company:'Ex-Googler', school:'Savannah College of Art and Design',
+    match: 4.5, diversity:'Diversity (Top US School)',
+    lastContact:{date:'Mar 15, 2018', by:'msloan'},
+    lastApp:{date:'Dec, 2017', src:'Career Site', role:'User Experience Designer'},
+    contactedOn:{date:'', by:''}
+  },
+  {
+    initials:'MD', color:'orange', name:'Marcus Donin', starred:true,
+    title:'UX Designer', company:'Ex-Googler',
+    match: 4.5, diversity:'Diversity (Veteran)',
+    lastContact:{date:'Mar 15, 2018', by:'msloan'},
+    lastApp:{date:'Dec, 2017', src:'Career Site', role:'User Experience Designer'},
+    contactedOn:{date:'Apr 6, 2022', by:'jdelauri'}
+  },
+  {
+    initials:'AS', color:'blue', name:'Alfonso Septimus',
+    title:'UX Designer', company:'Zynga',
+    match: 4.5, diversity:'Diversity (Female)',
+    lastContact:{date:'Mar 15, 2018', by:'msloan'},
+    lastApp:{date:'Dec, 2017', src:'Career Site', role:'User Experience Designer'},
+    contactedOn:{date:'Apr 6, 2022', by:'jdelauri'}
+  },
+  {
+    initials:'NS', color:'violet', name:'Natalia Saris',
+    title:'UX Designer', company:'Meta', school:'UC Berkeley',
+    match: 4, diversity:'Diversity (Top US School)',
+    lastContact:{date:'Mar 15, 2018', by:'msloan'},
+    lastApp:{date:'Dec, 2017', src:'Career Site', role:'User Experience Designer'},
+    contactedOn:{date:'Apr 6, 2022', by:'jdelauri'}
+  },
+  {
+    initials:'WV', color:'magenta', name:'Wilhelm Vaccaro',
+    title:'UX Designer', company:'Airbnb', school:'Princeton University',
+    match: 4, diversity:'Diversity (Top US School)',
+    lastContact:{date:'Mar 15, 2018', by:'msloan'},
+    lastApp:{date:'Dec, 2017', src:'Career Site', role:'User Experience Designer'},
+    contactedOn:{date:'Apr 6, 2022', by:'jdelauri'}
+  },
+  {
+    initials:'RT', color:'red2', name:'Randy Torff',
+    title:'UX Designer', company:'Apple',
+    match: 4, diversity:'Diversity (Veteran)',
+    lastContact:{date:'Mar 15, 2018', by:'msloan'},
+    lastApp:{date:'Dec, 2017', src:'Career Site', role:'User Experience Designer'},
+    contactedOn:{date:'Apr 6, 2022', by:'jdelauri'}
+  },
+];
+
+/* AI interview score states per row */
+const AI = [
+  {score:4.0}, {score:4.0}, {score:3.0}, {invited:true},
+  {alert:true}, {invited:true}, {score:4.0}, {score:3.0}
+];
+const FB = [
+  {p:4,s:0}, {p:0,s:2}, {p:1,s:1}, {p:8,s:5},
+  {p:0,s:0}, {p:0,s:1}, {p:1,s:1}, {p:0,s:0}
+];
+function fbHtml(f){
+  if (!f.p && !f.s) return '<div class="fb-cell"><span style="color:var(--grey-color-40,#a1a6b1)">—</span></div>';
+  const sum = [f.p?`<span class="fb-p">${f.p} pending</span>`:'', f.s?`<span class="fb-s">${f.s} submitted</span>`:''].filter(Boolean).join(', ');
+  const ent = (n, sub) => {
+    let out = '';
+    for (let k=0; k<Math.min(n,2); k++) out += `<div class="fb-e"><span class="material-icons-round">auto_awesome</span>Eightfold Demo User – ${sub?'May 11, 2025':'since Jan 19, 2026'}${sub?'<span class="fb-thumb"><span class="material-icons-round ti">thumb_up</span></span>':''}</div>`;
+    if (n>2) out += `<div class="fb-e" style="color:var(--grey-color-60,#69717f)">+${n-2} more</div>`;
+    return out;
+  };
+  return `<div class="fb-cell"><span>${sum}</span><div class="fb-pop">${f.p?`<div class="fb-h">Pending <span class="fb-n">${f.p}</span> :</div>`+ent(f.p,false):''}${f.s?`<div class="fb-h">Submitted <span class="fb-n">${f.s}</span> :</div>`+ent(f.s,true):''}</div></div>`;
+}
+function aiHtml(a){
+  if (a.score) return `<span class="score-pill ${a.score>=4?'good':'mid'}">${a.score.toFixed(1)}</span>`;
+  if (a.invited) return '<span class="score-state" title="Invite sent"><span class="material-icons-round">mail_outline</span></span>';
+  return '<span class="score-state alert" title="Needs attention"><span class="material-icons-round">error_outline</span></span>';
+}
+
+/* ============ Renderers ================================= */
+function dotsFor(score) {
+  // 5 dots, filled = floor, .5 = half
+  const full = Math.floor(score);
+  const half = score - full >= 0.5 ? 1 : 0;
+  const empty = 5 - full - half;
+  let html = '';
+  for (let i=0;i<full;i++)  html += '<div class="dot"></div>';
+  for (let i=0;i<half;i++)  html += '<div class="dot half"></div>';
+  for (let i=0;i<empty;i++) html += '<div class="dot empty"></div>';
+  return html;
+}
+
+function personalMeta(r){
+  const parts = [];
+  if (r.title)  parts.push(`<span>${r.title}</span>`);
+  if (r.company)parts.push(`<span>${r.company}</span>`);
+  if (r.school) parts.push(`<span>${r.school}</span>`);
+  return parts.join('<span class="sep"></span>');
+}
+
+function rowHtml(r, idx) {
+  return `
+  <div class="row" role="row">
+    <div class="personal">
+      <div class="cb row-cb" role="checkbox" aria-checked="false" tabindex="0"></div>
+      <div class="avatar ${r.color}">${r.initials}</div>
+      <div style="min-width:0;">
+        <div class="p-name-row">
+          <div class="p-name">${r.name}</div>
+          <button class="star-btn ${r.starred ? 'on':''}" title="Star">
+            <span class="material-icons-round">${r.starred ? 'star' : 'star_border'}</span>
+          </button>
+          ${r.isNew ? '<span class="new-tag">New</span>' : ''}
+        </div>
+        <div class="p-meta">${personalMeta(r)}</div>
+      </div>
+    </div>
+
+    <div class="match">
+      <div class="dots">${dotsFor(r.match)}</div>
+      <div class="match-label">${r.diversity}</div>
+    </div>
+
+    <div class="ai-score">${aiHtml(AI[idx])}</div>
+
+    ${fbHtml(FB[idx])}
+
+    <div class="twoline">
+      <div class="primary-text">${r.lastContact.date}</div>
+      <div class="secondary-text">${r.lastContact.by}</div>
+    </div>
+
+    <div class="twoline">
+      <div class="dated">
+        <span>${r.lastApp.date}</span>
+        <span class="sep"></span>
+        <span class="source-chip">${r.lastApp.src}</span>
+      </div>
+      <div class="secondary-text">${r.lastApp.role}</div>
+    </div>
+
+    <div class="twoline">
+      ${r.contactedOn.date ? `<div class="primary-text">${r.contactedOn.date}</div>` : '<div class="secondary-text" style="color:var(--grey-color-40,#a1a6b1)">—</div>'}
+      ${r.contactedOn.by   ? `<div class="secondary-text">${r.contactedOn.by}</div>` : ''}
+    </div>
+
+    <div><button class="more-btn" title="More"><span class="material-icons-round">more_vert</span></button></div>
+  </div>
+  `;
+}
+
+document.getElementById('rows').innerHTML = ROWS.map(rowHtml).join('');
+
+/* ============ Checkbox interactions =================== */
+function toggleCb(el){
+  el.classList.toggle('checked');
+  el.setAttribute('aria-checked', el.classList.contains('checked'));
+}
+function syncAll(){
+  const all = document.getElementById('cb-all'), rows = [...document.querySelectorAll('.row-cb')];
+  const n = rows.filter(r => r.classList.contains('checked')).length;
+  all.classList.toggle('checked', n>0 && n===rows.length);
+  all.classList.toggle('some', n>0 && n<rows.length);
+  all.setAttribute('aria-checked', n===0 ? 'false' : n===rows.length ? 'true' : 'mixed');
+}
+document.querySelectorAll('.cb').forEach(cb => {
+  cb.addEventListener('click', () => {
+    if (cb.id === 'cb-all') {
+      const on = !(cb.classList.contains('checked'));
+      cb.classList.remove('some');
+      document.querySelectorAll('.row-cb').forEach(r => {
+        r.classList.toggle('checked', on);
+        r.setAttribute('aria-checked', on);
+      });
+    } else toggleCb(cb);
+    syncAll();
+  });
+  cb.addEventListener('keydown', e => { if (e.key===' '||e.key==='Enter'){e.preventDefault(); cb.click();} });
+});
+
+/* ============ Star toggle =================== */
+document.querySelectorAll('.star-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    btn.classList.toggle('on');
+    const ic = btn.querySelector('.material-icons-round');
+    ic.textContent = btn.classList.contains('on') ? 'star' : 'star_border';
+  });
+});
+
+/* Section tabs */
+document.querySelectorAll('.section-tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.section-tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+  });
+});
+
+/* Centers dropdown */
+const cBtn = document.getElementById('centersBtn');
+const cMenu = document.getElementById('centersMenu');
+cBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = cMenu.classList.toggle('open');
+  cBtn.classList.toggle('open', open);
+  cBtn.setAttribute('aria-expanded', open);
+});
+document.addEventListener('click', (e) => {
+  if (!cMenu.contains(e.target)) { cMenu.classList.remove('open'); cBtn.classList.remove('open'); cBtn.setAttribute('aria-expanded','false'); }
+});
+document.getElementById('aiCenterLink').addEventListener('click', () => { location.href = 'AI Interview Center v7.html'; });
+</script>
+
+</body>
+</html>

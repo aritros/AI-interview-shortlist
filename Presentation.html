@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>AI Interview Leaderboard — Leadership Presentation Script</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<style>
+doc-page:not(:defined){visibility:hidden}
+doc-page { font-family:'Source Sans 3','Source Sans Pro',sans-serif; font-size:14.5px; line-height:1.65; color:var(--grey-color-90,#1a212e); }
+h1,h2,h3 { font-family:'Gilroy','Source Sans 3',sans-serif; line-height:1.25; }
+h1 { font-size:30px; font-weight:600; margin:0 0 4px; letter-spacing:-0.3px; }
+.sub { font-size:15px; color:var(--grey-color-60,#69717f); margin:0 0 28px; }
+h2 { font-size:20px; font-weight:600; margin:36px 0 10px; padding-top:14px; border-top:1px solid var(--grey-color-20,#d9dce1); }
+h2 .t { float:right; font-size:13px; font-weight:600; color:var(--blue-green-80,#02596b); background:var(--blue-green-10,#ebfdff); border-radius:999px; padding:3px 12px; margin-top:-2px; }
+h3 { font-size:15.5px; font-weight:600; margin:20px 0 6px; }
+p { margin:0 0 10px; text-wrap:pretty; orphans:3; widows:3; }
+ul, ol { margin:0 0 12px; padding-left:22px; }
+li { margin-bottom:5px; }
+b { font-weight:600; }
+a { color:var(--blue-green-80,#02596b); }
+a:hover { color:var(--blue-green-90,#00333b); text-decoration:underline; }
+.say { border-left:3px solid var(--blue-green-40,#50cee1); background:var(--grey-color-5,#fafbfc); padding:10px 14px; margin:0 0 12px; font-style:italic; color:var(--grey-color-80,#343c4c); break-inside:avoid; }
+.say::before { content:'Say'; display:block; font-style:normal; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--blue-green-70,#0b7b8b); margin-bottom:3px; }
+.do { background:var(--grey-color-10,#f6f7f8); border-radius:8px; padding:10px 14px; margin:0 0 12px; break-inside:avoid; }
+.do::before { content:'On screen'; display:block; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--grey-color-60,#69717f); margin-bottom:3px; }
+table { border-collapse:collapse; width:100%; margin:0 0 14px; font-size:13.5px; }
+th { text-align:left; font-family:'Gilroy',sans-serif; font-weight:600; font-size:12.5px; letter-spacing:0.02em; color:var(--grey-color-70,#4f5666); border-bottom:2px solid var(--grey-color-30,#bdc1c9); padding:6px 10px 6px 0; }
+td { border-bottom:1px solid var(--grey-color-20,#d9dce1); padding:7px 10px 7px 0; vertical-align:top; }
+td.min { white-space:nowrap; font-weight:600; color:var(--blue-green-80,#02596b); }
+.note { font-size:13px; color:var(--grey-color-60,#69717f); }
+</style>
+</head>
+<body>
+<doc-page margin="0.75in">
+<h1>AI Interview Leaderboard — presentation script</h1>
+<p class="sub">45 minutes · Leadership pitch and full flow walkthrough · Presenter: you, live in the prototype</p>
+
+<h2>Run of show<span class="t">45 min total</span></h2>
+<table>
+<thead><tr><th style="width:56px">Time</th><th style="width:190px">Segment</th><th>Files open</th></tr></thead>
+<tbody>
+<tr><td class="min">0–4</td><td>The problem and the pitch</td><td>Leadership Deck 1 - Problem and Pitch.html (4 slides)</td></tr>
+<tr><td class="min">4–10</td><td>Entry points: pipeline, email, Slack</td><td>Pipeline Page.html, AI Interview Center Emails.html, AI Interview Center Slack Messages.html</td></tr>
+<tr><td class="min">10–16</td><td>The leaderboard at first glance</td><td>AI Interview Center v7.html</td></tr>
+<tr><td class="min">16–23</td><td>Filtering: pills + Filter with AI</td><td>AI Interview Center v7.html</td></tr>
+<tr><td class="min">23–30</td><td>One candidate deep: summary, Ask, evidence, highlights</td><td>AI Interview Center v7.html</td></tr>
+<tr><td class="min">30–36</td><td>Acting: advance, share, bulk, compare</td><td>AI Interview Center v7.html</td></tr>
+<tr><td class="min">36–41</td><td>The hiring manager's side</td><td>Emails, Slack Messages, AI Interview Center v7 - HM view.html</td></tr>
+<tr><td class="min">41–45</td><td>Why this ships hires faster + asks</td><td>AI Interview Leaderboard PRD.html</td></tr>
+</tbody>
+</table>
+<p class="note">Before you start: open all five files in tabs, reset the leaderboard to its default state (Top 10 selected, nothing picked), and close the version switcher. Have v6.4 as fallback if anything misbehaves.</p>
+
+<h2>1 · The problem and the pitch<span class="t">0–4 min</span></h2>
+<div class="do"><a href="Leadership Deck 1 - Problem and Pitch.html">Leadership Deck 1 - Problem and Pitch.html</a> — four slides, one per beat: title, the bottleneck, the pitch, the three claims. Advance with →.</div>
+<p><b>Beat 1 — the volume problem.</b> Frame the pain before showing anything.</p>
+<div class="say">AI interviews solved scheduling — we can now screen an entire pipeline in days instead of weeks. But we moved the bottleneck, we didn't remove it. Twenty completed AI interviews is twenty transcripts, twenty score sheets, twenty videos. The recruiter's question is unchanged: who do I move forward, and can I defend that call?</div>
+<p><b>Beat 2 — the pitch, one sentence.</b></p>
+<div class="say">The AI Interview Leaderboard turns completed interviews into a ranked, evidence-backed, filterable shortlist — a place where reviewing 20 interviews takes minutes, every ranking is explainable, and the next pipeline action is one click away, for the recruiter and the hiring manager.</div>
+<p><b>Beat 3 — the three claims</b> you'll prove in the next 40 minutes. Say them now so the demo has a spine:</p>
+<ol>
+<li><b>Zero-effort entry</b> — the leaderboard finds the recruiter, not the other way around.</li>
+<li><b>Explainable AI</b> — every score, every filter, every ranking traces to transcript evidence.</li>
+<li><b>Review ends in action</b> — advance, share, and verdicts live on the same page as the evidence.</li>
+</ol>
+
+<h2>2 · Entry points<span class="t">4–10 min</span></h2>
+<div class="do">Pipeline Page.html — the recruiter's daily surface.</div>
+<div class="say">Recruiters live here, in the position pipeline. We don't ask them to remember a new tool — the leaderboard announces itself where they already work.</div>
+<ul>
+<li>Point at the <b>circular gradient button</b> in the page header: the leaderboard icon with the <b>"5" ticker</b> — five new scored interviews since the recruiter's last visit. Hover to show the tooltip.</li>
+<li>Note the restraint: one small button, not a banner. The ticker gives it urgency only when there's genuinely something new.</li>
+</ul>
+<div class="do">Switch to AI Interview Center Emails.html — two columns.</div>
+<div class="say">Second entry point: email, because recruiters and HMs triage in their inbox. Two emails, each with one job — a fresh-batch digest when interviews score, and a review request when a recruiter shares. Nothing else lands in the inbox.</div>
+<ul>
+<li><b>Fresh batch</b> (left): the gradient digest banner carries the four numbers, then the top 5 with one-line summaries and a single <b>View leaderboard</b> CTA deep-linked to the position.</li>
+<li><b>HM review request</b> (right): same anatomy — banner, the recruiter's note, the shared candidates, one CTA. Come back to it in section 7.</li>
+<li>Selling point: emails are teasers, not reports. Every number exists to justify one click into the leaderboard.</li>
+</ul>
+<div class="do">Switch to AI Interview Center Slack Messages.html. Scroll the cadence table first, then the recruiter column.</div>
+<div class="say">Third entry point: Slack, for the moments that need a person today. The split is deliberate — email carries digests and records, Slack carries moments. The same event never goes to both.</div>
+<ul>
+<li>Recruiters get four: <b>batch scored</b> (one DM per position each morning, later scores thread under it), <b>standout candidate</b> (real-time, capped at three a day), <b>HM verdict returned</b>, and <b>strong candidates going stale</b> (a Tuesday check, gone the moment they act).</li>
+<li>Hiring managers get three: <b>review request</b>, <b>one reminder</b> after three business days, and <b>loop closed</b> when their verdict turns into an action — they stop asking “what happened with…”.</li>
+<li>Point out the discipline: batching by default, quiet hours, per-position mute, and no decisions from Slack — every button lands in the evidence view.</li>
+</ul>
+
+<h2>3 · The leaderboard at first glance<span class="t">10–16 min</span></h2>
+<div class="do">AI Interview Center v7.html, default state. Pause for 3 seconds before speaking — let the room read it.</div>
+<div class="say">This is what the recruiter lands on. Twenty scored interviews, and in one glance: who's on top, how strong the batch is, and where the risks are.</div>
+<p><b>Walk the page top to bottom — mental-model order:</b></p>
+<ul>
+<li><b>Header:</b> position and interview-round selectors. One leaderboard per position, switchable per round — 360, coding, role fit, case study, communication. This matches how recruiters think: "my req, this round."</li>
+<li><b>The AI filter card:</b> don't use it yet — just point out the animated placeholder typing real example queries. It teaches the feature without a tooltip or a tour.</li>
+<li><b>Filter pills:</b> "Top 10 candidates" is pre-selected — the default working set. Every pill carries a <b>live count</b> so the recruiter knows what a click buys before clicking.</li>
+<li><b>The cards:</b> rank, name, score out of 5, an AI one-liner, and five criteria bars. One card = one candidate = one decision.</li>
+<li><b>Bottom-right badges:</b> the flag with a count — proctoring issues found — and "asked for help." Risk signals sit on the card, not buried in a report.</li>
+</ul>
+<div class="say">Everything above the fold answers the recruiter's first three questions: who's good, how good, and is anything off. No navigation, no report to open.</div>
+
+<h2>4 · Filtering — pills and Filter with AI<span class="t">16–23 min</span></h2>
+<p>This is the section to sell the concept, not just the UI. Two ideas married into one surface: <b>predefined filters and AI filtering are the same thing</b> — pills are just prompts we wrote for you.</p>
+<div class="do">Click "Like the ones you advanced."</div>
+<ul>
+<li>Narrate the thinking state: the skeleton shimmer, the step-by-step status ("Reading 20 scored interviews…"). The pause is honest — the AI is reading evidence, and the UI says so.</li>
+<li>When results land, read the <b>justification line</b> aloud: the filter explains exactly what bar it applied. This is the explainability claim, proven.</li>
+<li>Show the pill is now active with an ✕ inside — one click to undo, or <b>Clear all</b> at the end of the row. Selection is exclusive: one lens at a time, always visible, never hidden behind a dropdown.</li>
+</ul>
+<div class="do">Switch interview round to "Coding round" in the header.</div>
+<ul>
+<li>The skills pill rewrites itself — "Great at algorithms, code quality, debugging." The page adapts its shortcuts to the round being reviewed.</li>
+</ul>
+<div class="do">Now type a free query, e.g. "who handled pushback without getting defensive," and submit.</div>
+<div class="say">And when the preset lenses aren't the question, the recruiter just asks. Same engine, same evidence, same explainability — the pills are training wheels for this input.</div>
+<ul>
+<li>Point out "Feedback not reviewed" and "Requested human assistance" pills: operational filters, not just quality filters — they answer "what needs me today?"</li>
+</ul>
+
+<h2>5 · One candidate deep — summary, Ask, evidence, highlights<span class="t">23–30 min</span></h2>
+<div class="do">Clear filters, click the top candidate's card.</div>
+<div class="say">Ranking gets you to the right five candidates. This rail is where the recruiter decides — without losing their place in the list.</div>
+<ul>
+<li><b>AI Interview summary:</b> the verdict in two sentences against the batch average, and the Ask box lives inside it. Click into the input — suggestions appear — pick “Handling of pushback”, narrate the loading state (reading the transcript, checking criteria, pulling evidence), then the sourced answer. Type one of your own (“How did she handle ambiguity?”). Selling point: Ask removes the last reason to leave the page — re-watching 40 minutes to answer one question.</li>
+<li><b>Hiring criteria:</b> expand one live. Score → band bar → evidence, green up-arrows and red down-arrows, each with a timestamp. Say the line: <b>“every score is a claim, and every claim has a receipt.”</b></li>
+<li><b>Interview highlights:</b> a slide deck, not a video — one slide per round with a recording still or whiteboard capture and two or three evidence bullets. Step through two, then click one open in the modal. Say why: recruiters scan, they don't scrub; and the deck downloads for sharing with a panel.</li>
+<li><b>Proctoring:</b> flag with a count on the card; specifics in the rail next to the evidence they qualify.</li>
+</ul>
+
+<h2>6 · Acting — advance, share, bulk, compare<span class="t">30–36 min</span></h2>
+<div class="say">Review that doesn't end in an action is a report. Everything we just saw ends in a verb.</div>
+<ul>
+<li><b>Advance stage</b> on card hover — pick a stage from the menu; toast with <b>Undo</b>. Misclicks are recoverable, so acting feels safe.</li>
+<li><b>Share with HM</b> — same hover row. One click sends the candidate with all their evidence.</li>
+<li><b>Bulk:</b> the select-all checkbox by the title, per-card checkboxes, the action bar — advance or share five candidates in one move. Batch day stops being click-by-click.</li>
+</ul>
+<div class="do">Select two or three candidates — the compare bar rises from the bottom. Click "Who's the best match?"</div>
+<ul>
+<li>The compare panel opens: an AI answer over side-by-side cards — strengths, weakest criterion, tests, proctoring.</li>
+<li>Run one more prompt ("Find skill gaps") and expand to full width. Finalists stop being a spreadsheet exercise.</li>
+</ul>
+
+<h2>7 · The hiring manager's side<span class="t">36–41 min</span></h2>
+<div class="do">Emails file — the review request (right column). Then the hiring-manager column in the Slack file. Then click through to <a href="AI Interview Center v7 - HM view.html">AI Interview Center v7 - HM view.html</a> — the same page, personalised for the HM. PRD §5-G if asked for detail.</div>
+<div class="say">Half the delay in hiring isn't the recruiter — it's the handoff. Today that's a meeting, a deck, or "log into the ATS." Here, sharing creates a review request the HM can finish from their inbox in ten minutes.</div>
+<ul>
+<li>HM gets the review request — email and a Slack DM, once — and lands on a <b>shared-with-you view</b>: only their candidates, Sarah’s note at the top, and her per-candidate notes in the rail. Say the engineering point out loud: it is the recruiter’s page with a role filter and a different action row, not a second product.</li>
+<li>They see the <b>same evidence</b> — summary, criteria, timestamps, highlights. Independent judgment, same source of truth.</li>
+<li>Hover a card or open the rail: <b>Thumbs up / Discuss / Thumbs down</b>. Give one live — the toast confirms it went to Sarah, the card carries the verdict chip, and the “Awaiting your verdict” count drops by one. <b>No meeting, no status email.</b></li>
+<li>If a review sits idle three business days, one Slack reminder — not a drip. At five, the recruiter is told instead. And when the verdict turns into an action, the HM gets a “loop closed” DM at the end of the day: they learn what happened without asking.</li>
+</ul>
+
+<h2>8 · Close — why this ships hires faster<span class="t">41–45 min</span></h2>
+<p>Return to the three claims and land each with what the room just saw:</p>
+<ul>
+<li><b>Zero-effort entry:</b> ticker on the pipeline, two purposeful emails, Slack for the moments that need a person today, deep links that land pre-filtered — the first review starts minutes after scoring, not days.</li>
+<li><b>Explainable AI:</b> justified filters, evidence-backed criteria, sourced Ask answers — recruiters can defend every advance, which is what makes them trust the ranking enough to act on it.</li>
+<li><b>Review ends in action:</b> advance, share, bulk, compare, HM verdicts — the loop from "interview scored" to "decision recorded" closes on one page.</li>
+</ul>
+<div class="say">The AI interview compressed screening from weeks to days. This compresses the decision from days to minutes — for both people who make it. That's the difference between an AI feature and a faster hire.</div>
+<p><b>Asks for the room</b> (from PRD §10, pick what fits your audience):</p>
+<ol>
+<li>Alignment on shipping the leaderboard as the default post-interview surface for AI-interviewed positions.</li>
+<li>A decision on the HM shared view: role-gated reuse of this page vs. a lightweight separate surface.</li>
+<li>Backend commitment for profile deep links and verdict sync.</li>
+</ol>
+
+<h2>Q&amp;A prep — likely questions<span class="t">buffer</span></h2>
+<table>
+<thead><tr><th style="width:38%">Question</th><th>Answer</th></tr></thead>
+<tbody>
+<tr><td>"What if the AI ranks someone wrong?"</td><td>The ranking is a starting order, not a decision. Every score expands into transcript evidence, and the human takes every action. Undo covers misclicks; nothing is auto-advanced.</td></tr>
+<tr><td>"How is the score built?"</td><td>Weighted blend of five criteria — problem solving 30%, coding 25%, communication 20%, craft 15%, collaboration 10%. Unassessed criteria (skipped design case) are excluded, never guessed.</td></tr>
+<tr><td>"Why pills instead of a filter menu?"</td><td>Filters were hidden behind a dropdown; usage data says hidden filters don't get used. Pills carry live counts and double as worked examples of what the AI input can do.</td></tr>
+<tr><td>"Won't Slack plus email get noisy?"</td><td>The same event never goes to both. Email carries digests and records (fresh batch, review request). Slack carries moments (standout, verdict returned, going stale) — one DM per position per day with updates threaded, quiet hours, three standout pings max, mute per position, one HM reminder ever.</td></tr>
+<tr><td>"Why a slide deck instead of the interview video?"</td><td>Recruiters review 20 candidates; video is linear and its quality varies with the candidate's camera. The deck is one slide per round with the evidence, and it downloads for sharing. Timestamps still open the recording where one exists, so every claim stays verifiable.</td></tr>
+<tr><td>"What about proctoring flags?"</td><td>Flags never change the score; they ride next to it — on the card with a count, and in the rail with specifics. The recruiter weighs them, not the model.</td></tr>
+<tr><td>"What's not built yet?"</td><td>Candidate profile backend for deep links, verdict sync plumbing, narrow-viewport rail behavior. All scoped in the PRD as open items.</td></tr>
+</tbody>
+</table>
+<p class="note">Timing discipline: sections 4 and 5 are the heart — protect them. If running long, compress section 2 to three minutes (show the fresh-batch email and one Slack message, name the rest) and cut the second compare prompt in section 6.</p>
+</doc-page>
+<script src="doc-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>AI Interview Leaderboard — PRD</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" />
+<style>
+doc-page:not(:defined){visibility:hidden}
+doc-page{font-family:'Source Sans Pro',system-ui,sans-serif;color:var(--fg-primary,#1a212e);font-size:16px;line-height:1.6}
+h1,h2,h3{font-family:'Gilroy','Source Sans Pro',sans-serif;letter-spacing:-0.01em;text-wrap:balance}
+h1{font-size:30px;line-height:1.2;font-weight:700;margin:0 0 4px}
+h2{font-size:20px;font-weight:600;margin:34px 0 10px;color:var(--fg-primary,#1a212e)}
+h3{font-size:16px;font-weight:600;margin:22px 0 6px}
+p{margin:0 0 12px;text-wrap:pretty}
+.sub{font-size:15px;color:var(--fg-secondary,#4f5666);margin:0 0 18px}
+.meta{display:flex;flex-wrap:wrap;gap:0 28px;padding:12px 16px;border:1px solid var(--border-subtle,#e4e6ea);border-radius:8px;background:var(--bg-2,#f6f7f8);font-size:13.5px;margin:0 0 8px;break-inside:avoid}
+.meta div{display:flex;gap:6px}
+.meta dt{font-weight:700;color:var(--fg-secondary,#4f5666)}
+.meta dd{margin:0}
+ul,ol{margin:0 0 12px;padding-left:22px}
+li{margin:0 0 5px;orphans:3;widows:3}
+table{width:100%;border-collapse:collapse;font-size:13.5px;line-height:1.5;margin:8px 0 16px}
+th{text-align:left;font-family:'Gilroy',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:0.02em;color:var(--fg-secondary,#4f5666);border-bottom:2px solid var(--border-strong,#858b98);padding:6px 10px 6px 0}
+td{border-bottom:1px solid var(--border-subtle,#e4e6ea);padding:7px 10px 7px 0;vertical-align:top}
+tr{break-inside:avoid}
+td.id,th.id{width:52px;font-weight:700;color:var(--accent-primary,#025966);white-space:nowrap}
+.callout{border:1px solid var(--border-subtle,#e4e6ea);border-left:3px solid var(--accent-primary,#025966);border-radius:6px;padding:12px 16px;font-size:14px;margin:0 0 14px;break-inside:avoid}
+.callout b{font-family:'Gilroy',sans-serif}
+.opt{border:1px solid var(--border-default,#d9dce1);border-radius:8px;padding:14px 18px;margin:0 0 12px;break-inside:avoid}
+.opt h4{margin:0 0 4px;font-family:'Gilroy',sans-serif;font-size:15px;font-weight:600}
+.opt .tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-left:8px;vertical-align:1px}
+.tag.base{background:var(--status-success-bg,#f0fefa);color:var(--status-success-fg,#1b5143)}
+.tag.poc{background:var(--status-info-bg,#ebf7ff);color:var(--status-info-fg,#054d7b)}
+.opt p{font-size:14px;margin:0 0 8px}
+.opt ul{font-size:14px;margin:0}
+.small{font-size:13px;color:var(--fg-tertiary,#69717f)}
+.num{color:var(--accent-primary,#025966)}
+a{color:var(--fg-link,#146da6)}a:hover{color:var(--fg-link-hover,#054d7b)}
+section{orphans:3;widows:3}
+.brk{break-before:page}
+</style>
+</head>
+<body>
+<doc-page margin="0.9in">
+<h1>AI Interview leaderboard — Product Requirements</h1>
+<p class="sub">Talent Acquisition · AI Interview Center · Based on prototype v6 (with v6.1 / v6.2 variants)</p>
+<dl class="meta">
+<div><dt>Status</dt><dd>Draft for review</dd></div>
+<div><dt>Date</dt><dd>August 26, 2026</dd></div>
+<div><dt>Author</dt><dd>Product Design</dd></div>
+<div><dt>Prototype</dt><dd>AI Interview Center v6</dd></div>
+</dl>
+
+<h2><span class="num">1.</span> Overview</h2>
+<p>The AI Interview leaderboard ranks candidates for a position by their AI-evaluated interview performance and lets recruiters act on the results without leaving the page. It lives in the AI Interview Center within Talent Acquisition, scoped to one position and one interview round at a time. Recruiters can narrow the list with natural-language filters, review AI-generated evidence per hiring criterion, watch interview highlights, ask the AI questions about a candidate, and advance or share candidates individually or in bulk.</p>
+
+<h2><span class="num">2.</span> Problem</h2>
+<p>After AI interviews are scored, recruiters review candidates one profile at a time. There is no ranked, comparative view of a position's interview outcomes, no way to slice candidates by behavioral signals ("strong problem solvers who passed all coding tests"), and no path from insight to action — advancing a candidate requires navigating to a separate pipeline surface. Review is slow and the strongest candidates are not obvious.</p>
+
+<h2><span class="num">3.</span> Goals and non-goals</h2>
+<h3>Goals</h3>
+<ul>
+<li>Give recruiters a ranked, evidence-backed view of scored interviews for a position.</li>
+<li>Make every ranking explainable: verdicts, per-criterion scores, transcript evidence, timestamps.</li>
+<li>Let recruiters filter with natural language and understand how the AI curated the results.</li>
+<li>Close the loop: advance stage and share with hiring manager directly from the leaderboard, singly or in bulk, with undo.</li>
+</ul>
+<h3>Non-goals</h3>
+<ul>
+<li>Replacing the full candidate profile, interview scheduling, or feedback collection.</li>
+<li>Side-by-side candidate comparison (deferred — see §9).</li>
+<li>Authoring or tuning the interview scoring model itself.</li>
+</ul>
+
+<h2><span class="num">4.</span> Users</h2>
+<ul>
+<li><b>Recruiter (primary)</b> — owns the pipeline for a requisition; reviews scored interviews, decides who moves forward.</li>
+<li><b>Hiring manager (secondary)</b> — receives shared candidates; reviews evidence and returns a verdict per candidate (§5-G), but does not operate the pipeline.</li>
+</ul>
+
+<h2><span class="num">5.</span> User stories</h2>
+<p>Grouped by capability. All stories are implemented in prototype v6 unless noted.</p>
+
+<h3>A. Entry and scoping</h3>
+<table>
+<thead><tr><th class="id">ID</th><th>User story</th><th>Acceptance criteria</th></tr></thead>
+<tbody>
+<tr><td class="id">A1</td><td>As a recruiter on the position pipeline, I want a signal when interview scores are ready, so that I know the leaderboard is worth opening.</td><td>Pipeline toolbar shows an insight ("Top 5 candidates have scored 4.3+") with a "View leaderboard" link into this page.</td></tr>
+<tr><td class="id">A1b</td><td>As a recruiter, I want an email when a scoring milestone is reached, so that I return to the leaderboard without living in the product.</td><td>Email triggers and content per §5-A.1; "View leaderboard" CTA deep-links to this page scoped to the position and round.</td></tr>
+<tr><td class="id">A2</td><td>As a recruiter, I want to switch the position in context, so that I can review each of my requisitions without re-navigating.</td><td>Position dropdown in the header lists positions with scored-interview counts and req IDs; selection reloads the board.</td></tr>
+<tr><td class="id">A3</td><td>As a recruiter, I want to scope the board to one interview round (360, Coding, Role fit, Case study, Communication), so that scores reflect the round I care about.</td><td>Interview dropdown next to the position; each option shows its description and scored count.</td></tr>
+<tr><td class="id">A4</td><td>As a recruiter, I want preset views — Top 5, Top 10, All candidates, "Like the ones you advanced" — so that I can control list depth without writing a filter.</td><td>View switcher on the list title; each option shows its match count; title updates to the chosen view.</td></tr>
+</tbody>
+</table>
+
+<h3 style="break-after:avoid">A.1 Email entry point</h3>
+<p><b>When it sends.</b> Digest-style, not per interview — one email per position per trigger, deduplicated within 24h:</p>
+<ul>
+<li><b>First results</b> — the first 5 interviews for a round are scored ("Your first scored interviews are in").</li>
+<li><b>Batch complete</b> — all scheduled interviews for a round are scored.</li>
+<li><b>Standout candidate</b> — a new score lands in the Strong-hire band (≥4.3) while the position is open.</li>
+<li><b>Going stale</b> — strong candidates have sat unactioned for 5 business days ("3 strong candidates are waiting on you").</li>
+</ul>
+<p><b>What's in it (the nudge).</b> Enough signal to earn the click, not enough to decide from the inbox:</p>
+<ul>
+<li>Subject names the position and the headline: "UX Designer · Top 5 candidates scored 4.3+".</li>
+<li>Top 3 candidates — name, score, one-line AI verdict — no evidence, no video.</li>
+<li>One stat line: interviews scored vs scheduled, batch average.</li>
+<li>Single CTA "View leaderboard", deep-linked to the position and round; standout emails link with that candidate pre-selected in the rail.</li>
+<li>No per-candidate actions in the email — advancing requires the evidence view by design.</li>
+</ul>
+<h3>B. Reviewing the ranked list</h3>
+<table>
+<thead><tr><th class="id">ID</th><th>User story</th><th>Acceptance criteria</th></tr></thead>
+<tbody>
+<tr><td class="id">B1</td><td>As a recruiter, I want candidates ranked by overall interview score, so that the strongest are seen first.</td><td>Cards show rank, avatar, name, current role and company, and score out of 5; low scores render in a warning color.</td></tr>
+<tr><td class="id">B2</td><td>As a recruiter, I want a one-line AI summary on each card, so that I can triage without opening details.</td><td>Each card carries a generated line naming the candidate's strongest and weakest criterion.</td></tr>
+<tr><td class="id">B3</td><td>As a recruiter, I want per-criterion mini bars on each card, so that I can compare shape of skills at a glance.</td><td>Five labeled bars (Problem, Coding, Comms, Craft, Collab), color-banded green / amber / red; skipped criteria render empty.</td></tr>
+<tr><td class="id">B4</td><td>As a recruiter, I want integrity or proctoring concerns surfaced on the card, so that I never advance a flagged candidate unknowingly.</td><td>Flagged candidates show a warning dot on the card and a detailed flag note in the rail.</td></tr>
+<tr><td class="id">B5</td><td>As a recruiter, I want quick actions on hover, so that I can act on a candidate without selecting them.</td><td>Hovering a card reveals Advance stage and Share with HM buttons in place of the mini bars.</td></tr>
+</tbody>
+</table>
+
+<h3>C. Candidate detail rail</h3>
+<table>
+<thead><tr><th class="id">ID</th><th>User story</th><th>Acceptance criteria</th></tr></thead>
+<tbody>
+<tr><td class="id">C1</td><td>As a recruiter, I want to select a card and see full detail beside the list, so that I keep my place while reviewing.</td><td>Selecting a card slides in a right rail; the list shifts left; selecting again (or ×) closes it. Rail stays sticky while the list scrolls.</td></tr>
+<tr><td class="id">C2</td><td>As a recruiter, I want the interview highlight reel one click away, so that I can judge the candidate directly.</td><td>Rail shows a video thumbnail with duration; clicking opens a modal player.</td></tr>
+<tr><td class="id">C3</td><td>As a recruiter, I want an AI verdict with rationale, so that I understand the recommendation before acting.</td><td>Verdict card states the band (Strong hire signal / Moderate / Below bar) and a sentence comparing the candidate to the batch average.</td></tr>
+<tr><td class="id">C4</td><td>As a recruiter, I want each hiring criterion expandable into evidence, so that every score is traceable.</td><td>Criteria rows show name, band bar, and score; expanding reveals strengths and concerns quoted from the interview, each with a timestamp chip that opens the reel at that moment. Skipped criteria read "not assessed" with the reason.</td></tr>
+<tr><td class="id">C5</td><td>As a recruiter, I want to jump to the full profile, so that the leaderboard connects to the system of record.</td><td>Candidate name in the rail links to the profile page (mocked in prototype).</td></tr>
+<tr><td class="id">C6</td><td>As a recruiter, I want the primary actions always visible while I scroll the rail, so that acting never requires scrolling back.</td><td>Advance stage and Share with HM are pinned in the rail footer.</td></tr>
+</tbody>
+</table>
+
+<h3>D. Filter by AI</h3>
+<table>
+<thead><tr><th class="id">ID</th><th>User story</th><th>Acceptance criteria</th></tr></thead>
+<tbody>
+<tr><td class="id">D1</td><td>As a recruiter, I want to filter candidates in natural language, so that I can slice by signals that aren't columns.</td><td>Prompt input with animated gradient focus state; submit via Enter or send button.</td></tr>
+<tr><td class="id">D2</td><td>As a recruiter, I want suggested filters, so that I can start without composing a query.</td><td>Suggestion chips (e.g. "Strong problem solving", "Passed all coding tests") run the filter on click.</td></tr>
+<tr><td class="id">D3</td><td>As a recruiter, I want visible progress while the AI works, so that the wait feels accounted for.</td><td>Skeleton cards and a shimmering title for ~2.4s with staged status text (reading interviews → matching evidence → ranking).</td></tr>
+<tr><td class="id">D4</td><td>As a recruiter, I want results titled and explained, so that I trust what was included and excluded.</td><td>AI writes a result title ("Strongest problem solvers") plus a rationale line stating what was read, how it was weighted, and who was excluded.</td></tr>
+<tr><td class="id">D5</td><td>As a recruiter, I want to clear the filter in one click, so that I can return to the ranked view.</td><td>Active filter renders as a removable chip; empty result set offers a "Clear the filter" action.</td></tr>
+</tbody>
+</table>
+
+<h3>E. Ask AI about a candidate</h3>
+<table>
+<thead><tr><th class="id">ID</th><th>User story</th><th>Acceptance criteria</th></tr></thead>
+<tbody>
+<tr><td class="id">E1</td><td>As a recruiter, I want to ask free-form questions about the selected candidate, so that I can resolve doubts without reading the full transcript.</td><td>Ask card sits inline in the rail; answers cite per-criterion scores, strengths, and concerns; answer is dismissible.</td></tr>
+<tr><td class="id">E2</td><td>As a recruiter, I want suggested questions, so that I know what the AI can answer.</td><td>Suggestion chips expand on hover/focus of the Ask card and fill the input on click.</td></tr>
+</tbody>
+</table>
+
+<h3>F. Acting on candidates</h3>
+<table>
+<thead><tr><th class="id">ID</th><th>User story</th><th>Acceptance criteria</th></tr></thead>
+<tbody>
+<tr><td class="id">F1</td><td>As a recruiter, I want to advance a candidate to a chosen stage, so that review ends in a pipeline move.</td><td>Advance stage opens a menu of stages (Initial screening → Offer) below the button, flipping above when space runs out; second click closes it. Acted candidates leave the list.</td></tr>
+<tr><td class="id">F2</td><td>As a recruiter, I want to share one or many candidates with the hiring manager, so that decisions get a second opinion fast.</td><td>Share with HM available on card hover, in the rail footer, and in bulk; creates an HM review request (§5-G) and notifies the HM.</td></tr>
+<tr><td class="id">F3</td><td>As a recruiter, I want to undo an action, so that misclicks are recoverable.</td><td>Toast confirms every action with an Undo button; undo restores the candidate and prior stage.</td></tr>
+<tr><td class="id">F4</td><td>As a recruiter, I want to select several candidates and act once, so that batch days aren't click-by-click.</td><td>Checkbox per card plus Select all (with indeterminate state); bulk bar shows the count and offers Advance stage and Share with HM; selection survives filter changes only for still-visible candidates.</td></tr>
+</tbody>
+</table>
+
+<h3>G. Hiring manager — reviewing shared candidates</h3>
+<p>Sharing creates a review request. The HM works from a read-only view of the same evidence; the recruiter keeps pipeline control.</p>
+<table>
+<thead><tr><th class="id">ID</th><th>User story</th><th>Acceptance criteria</th></tr></thead>
+<tbody>
+<tr><td class="id">G1</td><td>As a hiring manager, I want to be notified when a recruiter shares candidates with me, so that reviews don't wait on me finding them.</td><td>Email + in-product notification: recruiter name, position, count, each candidate's score and one-line verdict, optional recruiter note, "Review candidates" CTA.</td></tr>
+<tr><td class="id">G2</td><td>As a hiring manager, I want to see the shared candidates only — not the whole pipeline — so that my review is focused.</td><td>CTA opens a shared-with-you view: the leaderboard filtered to the shared set, read-only (no advance, no bulk, no filter over unshared candidates).</td></tr>
+<tr><td class="id">G3</td><td>As a hiring manager, I want the same evidence the recruiter saw, so that I can judge independently.</td><td>Full rail per candidate: verdict, criteria with evidence and timestamps, highlight reel, Ask AI.</td></tr>
+<tr><td class="id">G4</td><td>As a hiring manager, I want to return a clear verdict per candidate, so that my input lands in the pipeline record.</td><td>Per candidate: Thumbs up / Thumbs down / Discuss, with an optional note. Verdicts are required to resolve the request.</td></tr>
+<tr><td class="id">G5</td><td>As a recruiter, I want to see HM verdicts on the leaderboard, so that I can act on them without a meeting.</td><td>Shared candidates show an HM-review status chip (Waiting / Endorsed / Passed / Discuss) on the card and rail; notification to the recruiter when all verdicts are in; endorsed candidates surface "Advance stage" as the suggested next action.</td></tr>
+<tr><td class="id">G6</td><td>As a hiring manager, I want to be nudged if a review request sits idle, so that candidates don't go cold on my desk.</td><td>One reminder email after 3 business days; recruiter sees "waiting N days" on the status chip.</td></tr>
+</tbody>
+</table>
+
+<h2 class="brk"><span class="num">6.</span> Functional notes</h2>
+<ul>
+<li><b>Scoring model.</b> Overall score is a weighted blend of five criteria: Problem solving 30%, Coding proficiency 25%, Communication 20%, Design craft 15%, Collaboration 10%. Criteria can be unassessed (e.g. skipped case study) and are excluded rather than zeroed.</li>
+<li><b>Verdict bands.</b> Strong hire signal / Moderate / Below bar, derived from score and flags; verdict copy references the batch average.</li>
+<li><b>Empty states.</b> Filter with no matches shows an explanation and a clear-filter action; no selection shows rail guidance.</li>
+<li><b>Responsive.</b> Rail narrows at ≤1240px and hides at ≤860px (open question §10.2); card actions compress labels at ≤1080px.</li>
+<li><b>Motion.</b> Ease-out, 120–520ms; all shimmer and slide animations respect <code>prefers-reduced-motion</code>.</li>
+</ul>
+
+<h2><span class="num">7.</span> Solution options — post-filter guidance</h2>
+<p>Three working variants exist for what the AI shows after a natural-language filter runs. A decision is needed before build.</p>
+<div class="opt"><h4>Option 1 — Rationale line only <span class="tag base">v6 · baseline</span></h4>
+<p>Beneath the AI-written result title, one line explains what was read, how evidence was weighted, and who was excluded.</p>
+<ul><li>Lowest visual cost; keeps the list dense.</li><li>Explains the past query but doesn't help compose the next one.</li></ul></div>
+<div class="opt"><h4>Option 2 — Contextual follow-up prompts <span class="tag poc">v6.1 · proof of concept</span></h4>
+<p>After each search, the AI regenerates follow-up prompt chips ("Of these, who led a team?") that chain into the input. Prompt skeletons load after the list settles.</p>
+<ul><li>Teaches the query language; encourages iterative narrowing.</li><li>More vertical space and more AI calls; prompts risk feeling generic.</li></ul></div>
+<div class="opt"><h4>Option 3 — Inline justification <span class="tag poc">v6.2 · proof of concept</span></h4>
+<p>The filter card itself shows a single justification statement — parameters applied, criteria used, weights — with no subtext under the title.</p>
+<ul><li>Strongest transparency story; audit-friendly.</li><li>No forward guidance; densest copy of the three.</li></ul></div>
+<p class="small">Recommendation: pending usability read-out. Options 2 and 3 could combine (justification in the card, prompts under the list) at extra cost.</p>
+
+<h2><span class="num">8.</span> Alternatives explored for the overall layout</h2>
+<p>Earlier prototypes tested other shapes for the same job; v6 was selected for lowest interaction cost.</p>
+<ul>
+<li><b>v3 Guided</b> — split "fresh vs acted upon" lists with inline highlights.</li>
+<li><b>v3.1 Action history</b> — single leaderboard with an actions log on top.</li>
+<li><b>v4 Refined</b> — v3 with hierarchy, copy, and state fixes from audit.</li>
+<li><b>v5 Chat</b> — conversational AI panel driving a live leaderboard.</li>
+<li><b>v6 Simplified (chosen)</b> — cards plus one persistent detail rail; Ask moved inline.</li>
+</ul>
+
+<h2><span class="num">9.</span> Out of scope / deferred</h2>
+<ul>
+<li><b>Compare candidates.</b> "Add to compare" was removed pending a compare-view design.</li>
+<li><b>Candidate profile page.</b> Linked from the rail but mocked; needs backend wiring.</li>
+<li><b>Live AI backend.</b> Prototype filter/ask responses are canned; production requires the interview-intelligence service.</li>
+<li><b>Video playback.</b> Reel modal is a stub; production uses the interview recording service with timestamp deep-links.</li>
+</ul>
+
+<h2><span class="num">10.</span> Open questions</h2>
+<ol>
+<li>Which post-filter guidance option (§7) ships first?</li>
+<li>Email cadence: are the four triggers in §5-A.1 right, and should recruiters be able to mute per position?</li>
+<li>HM review (§5-G): does a Thumbs down remove the candidate from the recruiter's default view, or only mark them?</li>
+<li>Narrow viewports: keep hiding the rail below ~900px, or overlay it above the list?</li>
+<li>Should "Share with HM" collect a note, or share silently as today?</li>
+<li>Does the HM shared view (§5-G2) reuse this page with a role gate, or ship as a separate lightweight surface?</li>
+</ol>
+
+<h2><span class="num">11.</span> Success metrics</h2>
+<ul>
+<li>Time from "scores ready" to first pipeline action, vs current profile-by-profile flow.</li>
+<li>Share of advances executed from the leaderboard (target: majority within a quarter).</li>
+<li>Filter adoption: % of sessions using natural-language filter; follow-up query rate.</li>
+<li>Undo rate below 5% of actions (proxy for decision confidence).</li>
+</ul>
+</doc-page>
+<script src="doc-page.js"></script>
+</body>
+</html>

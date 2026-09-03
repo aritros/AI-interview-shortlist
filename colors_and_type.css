@@ -1,0 +1,354 @@
+/* ============================================================
+   Octuple — Eightfold AI Design System
+   Core tokens: colors, type, spacing, radius, shadow, motion
+   Source: Octuple DS (Theme 2).fig
+   ============================================================ */
+
+/* Fonts — Gilroy is the brand display/UI face (licensed OTFs in /fonts).
+   Source Sans 3 is the secondary/body face, loaded from Google Fonts. */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Gilroy — Radomir Tinkov, via licensed OTF files */
+@font-face { font-family: 'Gilroy'; font-style: normal; font-weight: 100; font-display: swap; src: url('fonts/Gilroy-Thin.otf')        format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: italic; font-weight: 100; font-display: swap; src: url('fonts/Gilroy-ThinItalic.otf')  format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: normal; font-weight: 200; font-display: swap; src: url('fonts/Gilroy-UltraLight.otf')  format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: italic; font-weight: 200; font-display: swap; src: url('fonts/Gilroy-UltraLightItalic.otf') format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: normal; font-weight: 300; font-display: swap; src: url('fonts/Gilroy-Light.otf')       format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: italic; font-weight: 300; font-display: swap; src: url('fonts/Gilroy-LightItalic.otf') format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/Gilroy-Regular.otf')     format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: italic; font-weight: 400; font-display: swap; src: url('fonts/Gilroy-RegularItalic.otf') format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/Gilroy-Medium.otf')      format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: italic; font-weight: 500; font-display: swap; src: url('fonts/Gilroy-MediumItalic.otf') format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/Gilroy-SemiBold.otf')    format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: italic; font-weight: 600; font-display: swap; src: url('fonts/Gilroy-SemiBoldItalic.otf') format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/Gilroy-Bold.otf')        format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: italic; font-weight: 700; font-display: swap; src: url('fonts/Gilroy-BoldItalic.otf')  format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: normal; font-weight: 800; font-display: swap; src: url('fonts/Gilroy-ExtraBold.otf')   format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: italic; font-weight: 800; font-display: swap; src: url('fonts/Gilroy-ExtraBoldItalic.otf') format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: normal; font-weight: 900; font-display: swap; src: url('fonts/Gilroy-Heavy.otf')       format('opentype'); }
+@font-face { font-family: 'Gilroy'; font-style: italic; font-weight: 900; font-display: swap; src: url('fonts/Gilroy-HeavyItalic.otf') format('opentype'); }
+
+:root {
+  /* ---------- Brand / primary ---------- */
+  --blue-green-100: #001A1E;
+  --blue-green-90:  #00333B;
+  --blue-green-80:  #025966;   /* primary brand */
+  --blue-green-70:  #0B7B8B;
+  --blue-green-60:  #1999AC;
+  --blue-green-50:  #2DB3C7;
+  --blue-green-40:  #50CEE1;
+  --blue-green-30:  #7BE4F4;
+  --blue-green-20:  #B0F3FE;
+  --blue-green-10:  #EBFDFF;
+
+  /* ---------- Neutrals ---------- */
+  --grey-100: #000000;
+  --grey-90:  #1A212E;
+  --grey-80:  #343C4C;
+  --grey-70:  #4F5666;
+  --grey-60:  #69717F;
+  --grey-50:  #858B98;
+  --grey-40:  #A1A6B1;
+  --grey-30:  #BDC1C9;
+  --grey-20:  #D9DCE1;
+  --grey-10:  #F6F7F8;
+  --grey-0:   #FFFFFF;
+
+  /* ---------- Blue (links, info) ---------- */
+  --blue-100: #00060A;
+  --blue-90:  #002A47;
+  --blue-80:  #054D7B;
+  --blue-70:  #146DA6;
+  --blue-60:  #2C8CC9;
+  --blue-50:  #47A4DF;
+  --blue-40:  #68BAEF;
+  --blue-30:  #8ED0FA;
+  --blue-20:  #BCE4FF;
+  --blue-10:  #EBF7FF;
+
+  /* ---------- Blue-violet (accent) ---------- */
+  --blue-violet-100:#090B1F;
+  --blue-violet-90: #191D4A;
+  --blue-violet-80: #2B3271;
+  --blue-violet-70: #414996;
+  --blue-violet-60: #5962B7;
+  --blue-violet-50: #757ED6;
+  --blue-violet-40: #8C95E8;
+  --blue-violet-30: #A9B0F5;
+  --blue-violet-20: #CACFFC;
+  --blue-violet-10: #F1F2FF;
+
+  /* ---------- Green (positive / success) ---------- */
+  --green-100:#030A08;
+  --green-90: #0E2E26;
+  --green-80: #1B5143;
+  --green-70: #2B715F;
+  --green-60: #3D8F79;
+  --green-50: #51AB93;
+  --green-40: #67C5AC;
+  --green-30: #8CE1CA;
+  --green-20: #B9F4E4;
+  --green-10: #F0FEFA;
+
+  /* ---------- Red (negative / error) ---------- */
+  --red-100:#0A0202;
+  --red-90: #3B1010;
+  --red-80: #6C2222;
+  --red-70: #993838;
+  --red-60: #C15151;
+  --red-50: #E46F6F;
+  --red-40: #F48686;
+  --red-30: #FFA3A3;
+  --red-20: #FFC6C6;
+  --red-10: #FFEFEF;
+
+  /* ---------- Red-orange ---------- */
+  --red-orange-100:#1F0C03;
+  --red-orange-90: #4C1F0C;
+  --red-orange-80: #78351A;
+  --red-orange-70: #A54D2C;
+  --red-orange-60: #D26743;
+  --red-orange-50: #F8845F;
+  --red-orange-40: #FF9977;
+  --red-orange-30: #FFB396;
+  --red-orange-20: #FFD1BD;
+  --red-orange-10: #FFF2ED;
+
+  /* ---------- Orange (warning) ---------- */
+  --orange-100:#0A0700;
+  --orange-90: #3B2600;
+  --orange-80: #6C4500;
+  --orange-70: #9D6309;
+  --orange-60: #C97E19;
+  --orange-50: #F29D31;
+  --orange-40: #FFB650;
+  --orange-30: #FFCD78;
+  --orange-20: #FFE3B0;
+  --orange-10: #FFF8EB;
+
+  /* ---------- Yellow-green ---------- */
+  --yellow-green-100:#131300;
+  --yellow-green-90: #343500;
+  --yellow-green-80: #525400;
+  --yellow-green-70: #6D6F00;
+  --yellow-green-60: #858707;
+  --yellow-green-50: #ABAE1F;
+  --yellow-green-40: #CACD46;
+  --yellow-green-30: #E2E575;
+  --yellow-green-20: #F3F5B0;
+  --yellow-green-10: #FDFEEB;
+
+  /* ---------- Violet-red ---------- */
+  --violet-red-100:#1F0816;
+  --violet-red-90: #491635;
+  --violet-red-80: #702853;
+  --violet-red-70: #943D71;
+  --violet-red-60: #B5548E;
+  --violet-red-50: #D36FAB;
+  --violet-red-40: #E688C0;
+  --violet-red-30: #F3A5D4;
+  --violet-red-20: #FCC8E7;
+  --violet-red-10: #FFF0F9;
+
+  /* ---------- Chart palette (from /Elements/chart-color-*) ---------- */
+  --chart-blue:        #2393ED;
+  --chart-orange:      #E96900;
+  --chart-blue-violet: #7C4DFF;
+  --chart-blue-green:  #1F9E92;
+  --chart-violet:      #E040FB;
+  --chart-red:         #E00202;
+  --chart-violet-red:  #FF4081;
+  --chart-grey:        #858B98;
+
+  /* ============================================================
+     SEMANTIC TOKENS (light theme)
+     ============================================================ */
+
+  /* Foreground / text */
+  --fg-primary:    var(--grey-90);   /* body */
+  --fg-secondary:  var(--grey-70);
+  --fg-tertiary:   var(--grey-60);
+  --fg-disabled:   var(--grey-40);
+  --fg-on-primary: var(--grey-0);
+  --fg-link:       var(--blue-70);
+  --fg-link-hover: var(--blue-80);
+  --fg-positive:   var(--green-70);
+  --fg-negative:   var(--red-70);
+  --fg-warning:    var(--orange-70);
+
+  /* Backgrounds / surfaces */
+  --bg-1: var(--grey-0);      /* page */
+  --bg-2: var(--grey-10);     /* subtle panel */
+  --bg-3: #EDEFF2;            /* deeper panel */
+  --surface-raised: var(--grey-0);
+  --surface-overlay: rgba(26,33,46,0.64);
+
+  /* Accents */
+  --accent-primary:       var(--blue-green-80);
+  --accent-primary-hover: var(--blue-green-70);
+  --accent-primary-press: var(--blue-green-90);
+  --accent-on-primary:    var(--grey-0);
+  --accent-soft-bg:       var(--blue-green-10);
+
+  --accent-disruptive:       var(--red-70);
+  --accent-disruptive-hover: var(--red-80);
+  --accent-disruptive-soft:  var(--red-10);
+
+  /* Borders */
+  --border-subtle: var(--grey-20);
+  --border-default: var(--grey-30);
+  --border-strong: var(--grey-50);
+  --border-focus: var(--blue-70);
+
+  /* Status soft fills */
+  --status-info-bg:    var(--blue-10);
+  --status-info-fg:    var(--blue-80);
+  --status-success-bg: var(--green-10);
+  --status-success-fg: var(--green-80);
+  --status-warning-bg: var(--orange-10);
+  --status-warning-fg: var(--orange-80);
+  --status-danger-bg:  var(--red-10);
+  --status-danger-fg:  var(--red-80);
+
+  /* ============================================================
+     TYPOGRAPHY
+     Gilroy = display/UI. Source Sans Pro = secondary body.
+     10px root → 1rem = 10px (Octuple convention).
+     ============================================================ */
+  font-size: 62.5%;
+
+  --font-display: 'Gilroy', 'Source Sans 3', system-ui, sans-serif;
+  --font-body:    'Source Sans 3', 'Source Sans Pro', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Display (Gilroy Light / Semibold) */
+  --type-display-1-size: 9.6rem;  --type-display-1-lh: 11.2rem;  --type-display-1-tr: -0.03em;  --type-display-1-w: 300;
+  --type-display-2-size: 8.0rem;  --type-display-2-lh: 9.6rem;   --type-display-2-tr: -0.03em;  --type-display-2-w: 300;
+  --type-display-3-size: 6.4rem;  --type-display-3-lh: 7.2rem;   --type-display-3-tr: -0.02em;  --type-display-3-w: 600;
+  --type-display-4-size: 5.6rem;  --type-display-4-lh: 6.4rem;   --type-display-4-tr: -0.02em;  --type-display-4-w: 600;
+
+  /* Headers */
+  --type-header-1-size: 4.0rem;   --type-header-1-lh: 4.8rem;    --type-header-1-tr: -0.02em;  --type-header-1-w: 600;
+  --type-header-2-size: 3.2rem;   --type-header-2-lh: 4.0rem;    --type-header-2-tr: -0.015em; --type-header-2-w: 600;
+  --type-header-3-size: 2.4rem;   --type-header-3-lh: 3.2rem;    --type-header-3-tr: -0.01em;  --type-header-3-w: 600;
+  --type-header-4-size: 2.0rem;   --type-header-4-lh: 2.8rem;    --type-header-4-tr: 0;        --type-header-4-w: 600;
+
+  /* Subtitles */
+  --type-subtitle-1-size: 1.6rem; --type-subtitle-1-lh: 2.0rem;  --type-subtitle-1-w: 600;
+  --type-subtitle-2-size: 1.4rem; --type-subtitle-2-lh: 1.6rem;  --type-subtitle-2-w: 600;
+
+  /* Body (Source Sans Pro-ish) */
+  --type-body-1-size: 1.8rem;     --type-body-1-lh: 2.4rem;      --type-body-1-w: 400;
+  --type-body-2-size: 1.6rem;     --type-body-2-lh: 2.4rem;      --type-body-2-w: 400;
+  --type-body-3-size: 1.4rem;     --type-body-3-lh: 2.0rem;      --type-body-3-w: 400;
+
+  --type-caption-size: 1.2rem;    --type-caption-lh: 1.6rem;     --type-caption-w: 400;
+
+  /* Button sizes */
+  --type-button-l-size: 2.0rem;   --type-button-l-lh: 2.4rem;    --type-button-l-w: 600;
+  --type-button-m-size: 1.6rem;   --type-button-m-lh: 2.0rem;    --type-button-m-w: 600;
+  --type-button-s-size: 1.4rem;   --type-button-s-lh: 1.6rem;    --type-button-s-w: 600;
+
+  /* ============================================================
+     SPACING (multiples of 4; "unit" == 4px)
+     ============================================================ */
+  --space-xxs: 4px;   /*  1u */
+  --space-xs:  8px;   /*  2u */
+  --space-s:   12px;  /*  3u */
+  --space-m:   16px;  /*  4u */
+  --space-l:   24px;  /*  6u */
+  --space-xl:  32px;  /*  8u */
+  --space-xxl: 40px;  /* 10u */
+  --space-xxxl:64px;  /* 16u */
+
+  /* ============================================================
+     RADII — multiples of 4
+     ============================================================ */
+  --radius-s:   4px;
+  --radius-m:   8px;
+  --radius-l:   16px;
+  --radius-xl:  20px;
+  --radius-xxl: 24px;
+  --radius-pill: 999px;
+  --radius-circle: 50%;
+
+  /* ============================================================
+     SHADOWS (grey-100 @ alpha, progressive elevation)
+     ============================================================ */
+  --shadow-object-xs: 0 1px 2px rgba(0,0,0,0.12);
+  --shadow-object-s:  0 1px 2px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.16);   /* tooltip */
+  --shadow-object-m:  0 1px 2px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.16);   /* card, menu */
+  --shadow-object-l:  0 1px 2px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.16);  /* popover, dialog */
+  --shadow-object-xl: 0 1px 2px rgba(0,0,0,0.12), 0 8px 32px rgba(0,0,0,0.16);  /* modal, drawer */
+
+  /* ============================================================
+     MOTION
+     Calm, short, ease-out. No bouncy springs in the DS.
+     ============================================================ */
+  --motion-fast:   120ms;
+  --motion-base:   200ms;
+  --motion-slow:   320ms;
+  --easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --easing-emphasized: cubic-bezier(0.3, 0, 0, 1);
+
+  /* Icon token sizes (MDI / Font Awesome calibration) */
+  --icon-mdi-s: 16px; --icon-mdi-m: 20px; --icon-mdi-l: 24px;
+  --icon-fa-s:  14px; --icon-fa-m:  17px; --icon-fa-l:  20px;
+
+  /* Focus ring (matches blue-70) */
+  --focus-ring: 0 0 0 2px rgba(255,255,255,0.9), 0 0 0 4px var(--blue-70);
+}
+
+/* ============================================================
+   SEMANTIC TYPE CLASSES (use anywhere)
+   ============================================================ */
+body {
+  font-family: var(--font-body);
+  font-size: var(--type-body-2-size);
+  line-height: var(--type-body-2-lh);
+  color: var(--fg-primary);
+  background: var(--bg-1);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .t-h1 { font-family: var(--font-display); font-size: var(--type-header-1-size); line-height: var(--type-header-1-lh); letter-spacing: var(--type-header-1-tr); font-weight: var(--type-header-1-w); color: var(--fg-primary); margin: 0; }
+h2, .t-h2 { font-family: var(--font-display); font-size: var(--type-header-2-size); line-height: var(--type-header-2-lh); letter-spacing: var(--type-header-2-tr); font-weight: var(--type-header-2-w); color: var(--fg-primary); margin: 0; }
+h3, .t-h3 { font-family: var(--font-display); font-size: var(--type-header-3-size); line-height: var(--type-header-3-lh); letter-spacing: var(--type-header-3-tr); font-weight: var(--type-header-3-w); color: var(--fg-primary); margin: 0; }
+h4, .t-h4 { font-family: var(--font-display); font-size: var(--type-header-4-size); line-height: var(--type-header-4-lh); font-weight: var(--type-header-4-w); color: var(--fg-primary); margin: 0; }
+
+.t-display-1 { font-family: var(--font-display); font-weight: var(--type-display-1-w); font-size: var(--type-display-1-size); line-height: var(--type-display-1-lh); letter-spacing: var(--type-display-1-tr); }
+.t-display-2 { font-family: var(--font-display); font-weight: var(--type-display-2-w); font-size: var(--type-display-2-size); line-height: var(--type-display-2-lh); letter-spacing: var(--type-display-2-tr); }
+.t-display-3 { font-family: var(--font-display); font-weight: var(--type-display-3-w); font-size: var(--type-display-3-size); line-height: var(--type-display-3-lh); letter-spacing: var(--type-display-3-tr); }
+.t-display-4 { font-family: var(--font-display); font-weight: var(--type-display-4-w); font-size: var(--type-display-4-size); line-height: var(--type-display-4-lh); letter-spacing: var(--type-display-4-tr); }
+
+.t-subtitle-1 { font-family: var(--font-display); font-weight: var(--type-subtitle-1-w); font-size: var(--type-subtitle-1-size); line-height: var(--type-subtitle-1-lh); }
+.t-subtitle-2 { font-family: var(--font-display); font-weight: var(--type-subtitle-2-w); font-size: var(--type-subtitle-2-size); line-height: var(--type-subtitle-2-lh); }
+
+.t-body-1   { font-family: var(--font-body); font-weight: 400; font-size: var(--type-body-1-size); line-height: var(--type-body-1-lh); }
+.t-body-2   { font-family: var(--font-body); font-weight: 400; font-size: var(--type-body-2-size); line-height: var(--type-body-2-lh); }
+.t-body-3   { font-family: var(--font-body); font-weight: 400; font-size: var(--type-body-3-size); line-height: var(--type-body-3-lh); }
+.t-caption  { font-family: var(--font-body); font-weight: var(--type-caption-w); font-size: var(--type-caption-size); line-height: var(--type-caption-lh); color: var(--fg-tertiary); }
+
+.t-mono { font-family: var(--font-mono); }
+
+
+/* ============================================================
+   Legacy alias layer — token names used by this project's pages
+   (Pipeline Page, AI Interview Center v3/v3.1/v4/v5, User Flow).
+   Maps the project's *-color-* naming onto the Octuple scales so
+   both naming schemes resolve. Do not remove.
+   ============================================================ */
+:root{
+  --primary-color-100:var(--blue-100);--primary-color-90:var(--blue-90);--primary-color-80:var(--blue-80);--primary-color-70:var(--blue-70);--primary-color-60:var(--blue-60);--primary-color-50:var(--blue-50);--primary-color-40:var(--blue-40);--primary-color-30:var(--blue-30);--primary-color-20:var(--blue-20);--primary-color-10:var(--blue-10);
+  --grey-color-100:var(--grey-100);--grey-color-90:var(--grey-90);--grey-color-80:var(--grey-80);--grey-color-70:var(--grey-70);--grey-color-60:var(--grey-60);--grey-color-50:var(--grey-50);--grey-color-40:var(--grey-40);--grey-color-30:var(--grey-30);--grey-color-20:var(--grey-20);--grey-color-10:var(--grey-10);--grey-color-0:var(--grey-0);
+  --green-color-100:var(--green-100);--green-color-90:var(--green-90);--green-color-80:var(--green-80);--green-color-70:var(--green-70);--green-color-60:var(--green-60);--green-color-50:var(--green-50);--green-color-40:var(--green-40);--green-color-30:var(--green-30);--green-color-20:var(--green-20);--green-color-10:var(--green-10);
+  --red-color-100:var(--red-100);--red-color-90:var(--red-90);--red-color-80:var(--red-80);--red-color-70:var(--red-70);--red-color-60:var(--red-60);--red-color-50:var(--red-50);--red-color-40:var(--red-40);--red-color-30:var(--red-30);--red-color-20:var(--red-20);--red-color-10:var(--red-10);
+  --orange-color-100:var(--orange-100);--orange-color-90:var(--orange-90);--orange-color-80:var(--orange-80);--orange-color-70:var(--orange-70);--orange-color-60:var(--orange-60);--orange-color-50:var(--orange-50);--orange-color-40:var(--orange-40);--orange-color-30:var(--orange-30);--orange-color-20:var(--orange-20);--orange-color-10:var(--orange-10);
+  --accent-color-100:var(--blue-green-100);--accent-color-90:var(--blue-green-90);--accent-color-80:var(--blue-green-80);--accent-color-70:var(--blue-green-70);--accent-color-60:var(--blue-green-60);--accent-color-50:var(--blue-green-50);--accent-color-40:var(--blue-green-40);--accent-color-30:var(--blue-green-30);--accent-color-20:var(--blue-green-20);--accent-color-10:var(--blue-green-10);
+  --yellowgreen-color-80:var(--yellow-green-80);--yellowgreen-color-70:var(--yellow-green-70);--yellowgreen-color-60:var(--yellow-green-60);--yellowgreen-color-50:var(--yellow-green-50);--yellowgreen-color-20:var(--yellow-green-20);--yellowgreen-color-10:var(--yellow-green-10);
+  --redorange-color-80:var(--red-orange-80);--redorange-color-70:var(--red-orange-70);--redorange-color-60:var(--red-orange-60);--redorange-color-50:var(--red-orange-50);--redorange-color-20:var(--red-orange-20);--redorange-color-10:var(--red-orange-10);
+  --yellow-color-80:#7A6800;--yellow-color-70:#8F7A00;--yellow-color-60:#A88F00;--yellow-color-50:#C9AC0B;--yellow-color-20:#F7EBAE;--yellow-color-10:#FFFBE6;
+  --error-color:var(--red-70);
+  --bluecustom:var(--blue-violet-60);
+}
