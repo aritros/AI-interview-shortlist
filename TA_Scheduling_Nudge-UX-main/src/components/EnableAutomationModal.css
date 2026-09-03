@@ -1,0 +1,321 @@
+.eam-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  background: rgba(15, 20, 31, 0.45);
+  animation: eam-overlay-in 0.2s ease;
+}
+
+@keyframes eam-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fixed-footprint modal — ~80% of the viewport, same size in both states.
+   Opening a side panel never resizes this box; it only reallocates the
+   space already inside it. */
+.eam-modal {
+  display: flex;
+  align-items: stretch;
+  width: 80vw;
+  height: 80vh;
+  max-width: 1320px;
+  max-height: 860px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 24px 64px rgba(15, 20, 31, 0.28);
+  overflow: hidden;
+  font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.eam-main {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  transition: padding 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Expanded: the content column shrinks to hug its own content (560px)
+   plus a symmetric 60px gutter on each side, so it reads as centered
+   in the space between the modal's left edge and the panel — instead of
+   stretching to fill whatever room is left. The panel absorbs the rest. */
+.eam-modal--expanded .eam-main {
+  flex: 0 0 680px;
+  padding: 48px 60px;
+}
+
+.eam-main-inner {
+  width: 100%;
+  max-width: 560px;
+  /* Auto margins center it vertically when there's room; if the content
+     is taller than .eam-main, they collapse to 0 so nothing clips and the
+     top stays reachable via the parent's scroll instead. */
+  margin: auto 0;
+}
+
+@media (max-width: 900px) {
+  .eam-modal--expanded .eam-main {
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .eam-modal {
+    width: 94vw;
+    height: 90vh;
+  }
+
+  .eam-modal--expanded {
+    flex-direction: column;
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .eam-modal--expanded .eam-main {
+    flex: none;
+    width: auto;
+    padding: 36px 28px 24px;
+  }
+
+  .eam-modal--expanded .eam-side-panel {
+    flex: none;
+    width: 100%;
+    max-width: none;
+    margin: 0 20px 20px;
+  }
+}
+
+.eam-title {
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.25;
+  background: linear-gradient(90deg, #4b6cf0 0%, #8b4fd6 55%, #d6469a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.eam-subtitle {
+  margin: 0 0 32px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #4f5666;
+}
+
+.eam-steps {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+}
+
+.eam-step {
+  display: flex;
+  gap: 16px;
+}
+
+.eam-step-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.eam-step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid #a9d4f5;
+  color: #146da6;
+  font-size: 14px;
+  font-weight: 700;
+  background: #f3faff;
+  flex-shrink: 0;
+}
+
+.eam-step-line {
+  width: 1.5px;
+  flex: 1 1 auto;
+  min-height: 28px;
+  background: #a9d4f5;
+  margin: 2px 0;
+}
+
+.eam-step-body {
+  padding-bottom: 28px;
+  min-width: 0;
+}
+
+.eam-step-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a212e;
+  margin-bottom: 4px;
+}
+
+.eam-step-desc {
+  font-size: 14px;
+  font-weight: 500;
+  color: #69717f;
+  line-height: 1.5;
+}
+
+.eam-step-sep {
+  color: #a9b0c3;
+}
+
+.eam-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: #146da6;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.eam-link:hover {
+  color: #054d7b;
+  text-decoration: underline;
+}
+
+.eam-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eam-skip-btn {
+  height: 44px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 999px;
+  background: #eceef1;
+  color: #343c4c;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.eam-skip-btn:hover {
+  background: #dfe2e8;
+}
+
+.eam-launch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #5a6bf0 0%, #a34fd6 55%, #ea4d95 100%);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 16px rgba(138, 79, 214, 0.32);
+}
+
+.eam-launch-btn:hover {
+  opacity: 0.92;
+  box-shadow: 0 6px 20px rgba(138, 79, 214, 0.4);
+}
+
+/* Right-hand panel — reveals inside the modal's fixed footprint, pushing
+   .eam-main's centered content leftward rather than growing the modal. */
+/* Floats inset inside the modal — never edge-to-edge — like a card sitting
+   on the modal's own white background. */
+.eam-side-panel {
+  position: relative;
+  flex: 1 1 auto;
+  margin: 24px 24px 24px 0;
+  border-radius: 16px;
+  background: #f3f4f6;
+  padding: 24px;
+  box-sizing: border-box;
+  animation: eam-side-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes eam-side-in {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.eam-side-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #343c4c;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15, 20, 31, 0.12);
+  transition: background 0.15s;
+}
+
+.eam-side-close:hover {
+  background: #eceef1;
+}
+
+.eam-side-content {
+  padding-top: 48px;
+}
+
+.eam-side-title {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a212e;
+}
+
+.eam-side-desc {
+  margin: 0 0 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #69717f;
+  line-height: 1.5;
+}
+
+.eam-side-placeholder {
+  flex: 1;
+  min-height: 200px;
+  border-radius: 12px;
+  background: #e4e6ea;
+}

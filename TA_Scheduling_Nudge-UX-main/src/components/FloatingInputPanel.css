@@ -1,0 +1,408 @@
+@property --fip-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes fip-copilot-border {
+  0% {
+    --fip-angle: 0deg;
+    box-shadow:
+      0 0 22px 6px rgba(142, 208, 250, 0.7),
+      0 -4px 16px 0 #A9B0F566;
+  }
+  65% {
+    --fip-angle: 270deg;
+    box-shadow:
+      0 0 14px 3px rgba(169, 176, 245, 0.5),
+      0 -4px 16px 0 #A9B0F566;
+  }
+  100% {
+    --fip-angle: 360deg;
+    box-shadow: 0 -4px 16px 0 #A9B0F566;
+  }
+}
+
+/* ── v2 wrapper overrides ── */
+.floating-input-wrapper--v2 {
+  width: 680px;
+  max-width: calc(100vw - 48px);
+}
+
+.floating-input-wrapper--v2-active {
+  width: 920px;
+}
+
+/* ── The v2 bar (replaces the text input when candidates selected) ── */
+.fip-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  margin-bottom: 32px;
+  border-radius: 999px;
+  --fip-angle: 0deg;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)) padding-box,
+    linear-gradient(135deg, #8ED0FA 0%, #A9B0F5 49%, #D8B1D4 100%) border-box;
+  animation:
+    floating-input-active-jump 0.5s cubic-bezier(0.45, 0, 0.55, 1) both,
+    fip-copilot-border 2s cubic-bezier(0.4, 0, 0.6, 1) 1 forwards;
+}
+
+/* ── Avatar stack ── */
+.fip-avatar-stack {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.fip-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  border: 2px solid #fff;
+  margin-left: -8px;
+  position: relative;
+}
+
+.fip-avatar:first-child {
+  margin-left: 0;
+}
+
+.fip-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ── Selection info ── */
+.fip-selection-info {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  line-height: 1.2;
+  min-width: 72px;
+}
+
+.fip-selection-count {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a212e;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+}
+
+.fip-selection-subtitle {
+  font-size: 11px;
+  font-weight: 500;
+  color: #69717f;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+}
+
+/* ── Divider ── */
+.fip-divider {
+  width: 1px;
+  height: 28px;
+  background: #d9dce1;
+  flex-shrink: 0;
+}
+
+/* ── Scrollable pills track ── */
+.fip-pills-track {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+
+.fip-pills-track::-webkit-scrollbar {
+  display: none;
+}
+
+.fip-pills-track .oc-button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* ── Scroll arrows ── */
+.fip-scroll-btn {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #d9dce1;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.fip-scroll-btn:hover {
+  background: #f6f7f8;
+  border-color: #bec2ca;
+}
+
+/* ── + Ask CTA ── */
+.fip-ask-btn {
+  flex-shrink: 0;
+}
+
+/* ── Collapse separator + button ── */
+.fip-collapse-sep {
+  display: block;
+  width: 1px;
+  height: 20px;
+  background: #d9dce1;
+  flex-shrink: 0;
+  margin: 0 2px;
+}
+
+.fip-collapse-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: #69717f;
+  padding: 0;
+  transition: background 0.15s;
+}
+
+.fip-collapse-btn:hover {
+  background: #f0f1f4;
+}
+
+/* ── Custom input (ask mode) ── */
+.fip-custom-input-area {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fip-custom-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a212e;
+  line-height: 24px;
+}
+
+.fip-custom-input::placeholder {
+  color: #7a8194;
+}
+
+.fip-custom-submit {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #7024d7 0%, #593cb4 55%, #983eaa 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.fip-custom-submit:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.fip-custom-submit:not(:disabled):hover {
+  opacity: 0.88;
+}
+
+/* ── Close / icon buttons ── */
+.fip-icon-btn {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.fip-icon-btn:hover {
+  background: #f0f1f3;
+}
+
+.fip-close-btn {
+  margin-left: -2px;
+}
+
+/* ── ODA 4 variant ─────────────────────────────────────────── */
+.floating-input-wrapper.floating-input-wrapper--v4 {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  width: 640px;
+  max-width: calc(100vw - 48px);
+}
+
+@media (max-width: 1024px) {
+  .floating-input-wrapper.floating-input-wrapper--v4 {
+    width: 90vw;
+  }
+}
+
+.fip-v4-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid #D9DCE1;
+  border-radius: 24px;
+  padding: 8px 12px;
+  /* box-shadow, not filter: drop-shadow, on the wrapper — a `filter` on an
+     ancestor forces this element's backdrop-filter to blur an isolated
+     offscreen layer instead of the real page behind it, killing the glass
+     effect. */
+  box-shadow: 0px -4px 32px rgba(169, 176, 245, 0.4);
+  /* Pop-up entry — same keyframe as ODA 3, no glow */
+  animation: floating-input-active-jump 0.5s cubic-bezier(0.45, 0, 0.55, 1) both;
+}
+
+.fip-v4-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 40px;
+  padding: 4px 4px;
+}
+
+/* Avatar bubble — warm pink gradient from Figma */
+.fip-v4-avatar-bubble {
+  background: linear-gradient(90deg, #fff0f9 0%, #ffefef 49%, #fff2ed 100%);
+  border-radius: 24px;
+  padding: 8px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Photo avatar with white ring */
+.fip-v4-avatar-bubble .fip-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.fip-v4-avatar-bubble .fip-avatar--overflow {
+  background-color: #993838;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Pills area */
+.fip-v4-pills-area {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+}
+
+/* Copilot Secondary V2 pill style */
+.fip-v4-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 24px;
+  border: 1px solid #5962B7;
+  background: #fff;
+  color: #2B3271;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.fip-v4-pill:hover {
+  background: #F1F2FF;
+}
+
+/* Ask AI bubble — blue-violet gradient from Figma */
+.fip-v4-ask-bubble {
+  background: linear-gradient(90deg, #ebf7ff 0%, #f1f2ff 49%, #fbf6fb 100%);
+  border-radius: 24px;
+  padding: 8px;
+  flex-shrink: 0;
+}
+
+/* AI agent Primary V2 button */
+.fip-v4-ask-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 24px;
+  border: none;
+  background: linear-gradient(90deg, #bce4ff 0%, #cacffc 49%, #ead3e8 100%);
+  color: #2B3271;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+
+.fip-v4-ask-btn:hover {
+  opacity: 0.88;
+}
+
+.fip-v4-ask-icon {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+}

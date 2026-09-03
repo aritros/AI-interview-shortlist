@@ -1,0 +1,1118 @@
+/* Slide-in-from-right panel — same skeleton as AutomationSetupPanel.css */
+.cfp-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 20, 31, 0.32);
+  z-index: 1099;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.cfp-overlay--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cfp-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(760px, 94vw);
+  background: #ffffff;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 32px rgba(15, 20, 31, 0.16), 0 -1px 2px rgba(15, 20, 31, 0.12);
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1a212e;
+}
+
+.cfp-panel--open {
+  transform: translateX(0);
+}
+
+.cfp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+  height: 72px;
+  padding: 0 24px;
+  background: linear-gradient(90deg, #2f6fed 0%, #7b4fd6 55%, #c14fc0 100%);
+}
+
+.cfp-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.cfp-header-title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cfp-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.cfp-header-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cfp-header-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.cfp-body {
+  position: relative;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 24px 32px 48px;
+}
+
+/* Detail view: leave room so the last question can scroll clear of the
+   floating input bar, which overlays the bottom of the panel. */
+.cfp-body--detail {
+  padding-bottom: 120px;
+}
+
+/* Sits between the header and the (scrollable, overlay-hosting) body so the
+   candidate identity always stays visible, even while the expanded signal
+   card overlays everything below it. */
+.cfp-detail-subheader {
+  flex: none;
+  padding: 24px 32px 0;
+}
+
+/* While the expanded overlay is open, freeze scrolling so its containing
+   block is this element's own (viewport-bound) box instead of the full
+   scrollable content height — otherwise `inset: 0` on the overlay would
+   match the tall dimmed content behind it rather than the visible area. */
+.cfp-body--frozen {
+  overflow-y: hidden;
+}
+
+/* ---------- Summary view ---------- */
+.cfp-candidate-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 4px 4px 20px;
+  border-bottom: 1px solid #eceef1;
+}
+
+.cfp-candidate-avatar {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #414996;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.cfp-candidate-identity {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.cfp-candidate-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a212e;
+}
+
+.cfp-candidate-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #69717f;
+}
+
+.cfp-candidate-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.cfp-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: #eceef1;
+  color: #343c4c;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cfp-nav-btn:hover:not(:disabled) {
+  background: #dfe2e8;
+}
+
+.cfp-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.cfp-nav-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4f5666;
+  white-space: nowrap;
+}
+
+.cfp-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 4px;
+}
+
+.cfp-summary-label-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cfp-summary-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a212e;
+}
+
+.cfp-summary-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #fdead0;
+  color: #9d6309;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.cfp-summary-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cfp-icon-circle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #a9d4f5;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #146da6;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cfp-icon-circle-btn:hover {
+  background: #f3faff;
+}
+
+.cfp-event-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 4px;
+  border-top: 1px solid #eceef1;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cfp-event-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a212e;
+}
+
+.cfp-event-date {
+  font-size: 13px;
+  font-weight: 500;
+  color: #69717f;
+}
+
+.cfp-section-title {
+  margin: 24px 4px 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a212e;
+}
+
+.cfp-section-title--ai {
+  color: #146da6;
+}
+
+.cfp-request-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cfp-request-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid #eceef1;
+  border-radius: 12px;
+  background: #ffffff;
+  position: relative;
+}
+
+.cfp-request-row--clickable {
+  cursor: pointer;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+.cfp-request-row--clickable:hover {
+  border-color: #a9b0f5;
+  box-shadow: 0 2px 10px rgba(89, 60, 180, 0.1);
+}
+
+.cfp-request-avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.cfp-request-identity {
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+}
+
+.cfp-request-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a212e;
+}
+
+.cfp-request-role {
+  font-size: 12px;
+  font-weight: 500;
+  color: #69717f;
+}
+
+.cfp-request-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.cfp-request-form-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a212e;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cfp-request-date {
+  font-size: 12px;
+  font-weight: 500;
+  color: #69717f;
+}
+
+.cfp-request-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  flex-shrink: 0;
+  min-width: 150px;
+}
+
+.cfp-request-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #fdead0;
+  color: #9d6309;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.cfp-request-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #146da6;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.cfp-request-action:hover {
+  color: #054d7b;
+  text-decoration: underline;
+}
+
+.cfp-request-chevron {
+  flex-shrink: 0;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  color: #a4abb8;
+}
+
+/* ---------- Detail view ---------- */
+.cfp-detail-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 4px 20px;
+  border-bottom: 1px solid #eceef1;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cfp-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a212e;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.cfp-back-link:hover {
+  color: #146da6;
+}
+
+.cfp-detail-candidate-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 4px;
+  transition: opacity 0.3s ease;
+}
+
+.cfp-detail-candidate-card--dimmed {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Wraps everything below the candidate identity row so the expanded
+   floating-input overlay (below) can position itself over just that
+   region, matching Figma node 775:82173. */
+.cfp-detail-dim-wrap {
+  transition: opacity 0.3s ease;
+}
+
+.cfp-detail-dim-wrap--dimmed {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.cfp-fip-expanded-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a212e;
+}
+
+.cfp-fip-signal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Same gradient direction on every row — Octuple's Blue → BlueViolet →
+   Violet AI-surface gradient (primary-10 → the violet family used
+   throughout this app's other AI affordances). No alternating reversal. */
+.cfp-fip-signal-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  /* Octuple gradient — Blue/Surface 1 → Blue-Violet/Surface 1 → Violet/
+     Surface 1 (exact hex resolved from the Figma file's own variables). */
+  background: linear-gradient(90deg, #ebf7ff 0%, #f1f2ff 49%, #fbf6fb 100%);
+}
+
+.cfp-fip-signal-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a212e;
+  line-height: 1.5;
+}
+
+.cfp-fip-signal-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.cfp-fip-signal-btn {
+  border: none;
+  border-radius: 999px;
+  background: #ffffff;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a212e;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cfp-fip-signal-btn:hover {
+  background: #f6f7f8;
+}
+
+.cfp-fip-expanded-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+/* Notes field — bordered pill with the round arrow button tucked inside it. */
+.cfp-fip-notes-field {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 6px 5px 18px;
+  border: 1px solid #a9c7e8;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.cfp-fip-notes-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #2b3271;
+  outline: none;
+}
+
+.cfp-fip-notes-input::placeholder {
+  color: #6b74a0;
+}
+
+.cfp-fip-skip-btn {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 999px;
+  background: #d9edfb;
+  padding: 12px 22px;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #146da6;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.cfp-fip-skip-btn:hover {
+  background: #c4e2f8;
+}
+
+.cfp-detail-meta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  padding: 16px;
+  margin: 0 4px 24px;
+  border: 1px solid #eceef1;
+  border-radius: 12px;
+}
+
+.cfp-detail-meta-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.cfp-detail-meta-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #69717f;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.cfp-detail-interviewer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cfp-detail-interviewer-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a212e;
+}
+
+.cfp-detail-interviewer-role {
+  font-size: 12px;
+  font-weight: 500;
+  color: #69717f;
+}
+
+.cfp-detail-meta-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a212e;
+}
+
+.cfp-detail-meta-sub {
+  font-size: 12px;
+  font-weight: 500;
+  color: #69717f;
+}
+
+.cfp-detail-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #1999ac;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.cfp-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 0 4px 24px;
+}
+
+.cfp-q-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a212e;
+  margin-bottom: 10px;
+}
+
+.cfp-q-answer {
+  padding: 12px 14px;
+  border: 1px solid #d9dce1;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #343c4c;
+  line-height: 1.5;
+  background: #fbfbfc;
+}
+
+.cfp-q-answer--placeholder {
+  color: #a4abb8;
+  background: #ffffff;
+}
+
+.cfp-add-comment {
+  margin-top: 8px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #146da6;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.cfp-add-comment:hover {
+  color: #054d7b;
+  text-decoration: underline;
+}
+
+.cfp-q-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.cfp-q-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.cfp-q-rating-label {
+  padding: 2px 10px;
+  border-radius: 6px;
+  background: #eceef1;
+  color: #343c4c;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cfp-q-delete {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: #fdecec;
+  color: #c22a2a;
+  cursor: pointer;
+}
+
+.cfp-q-delete:hover {
+  background: #fad8d8;
+}
+
+.cfp-q-radio-row {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.cfp-q-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #343c4c;
+  cursor: pointer;
+}
+
+.cfp-radio-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid #a4abb8;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.cfp-radio-dot--selected {
+  border-color: #146da6;
+}
+
+.cfp-radio-dot--selected::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: #146da6;
+}
+
+.cfp-q-checkbox-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+}
+
+.cfp-q-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #343c4c;
+  cursor: pointer;
+}
+
+.cfp-checkbox-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1.5px solid #a4abb8;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.cfp-checkbox-box--checked {
+  background: #146da6;
+  border-color: #146da6;
+}
+
+.cfp-q-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 320px;
+  padding: 10px 14px;
+  border: 1px solid #d9dce1;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a212e;
+}
+
+/* ---------- Agentic editing ---------- */
+.cfp-ai-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 4px 20px;
+  padding: 12px 16px;
+  border: 1px solid #e2d6fb;
+  border-radius: 12px;
+  background: #f6f2fe;
+  flex-wrap: wrap;
+}
+
+.cfp-ai-banner-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a2f8f;
+}
+
+.cfp-ai-banner-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.cfp-ai-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.cfp-ai-btn--ghost {
+  background: #ffffff;
+  border-color: #d9dce1;
+  color: #4f5666;
+}
+
+.cfp-ai-btn--ghost:hover {
+  background: #f4f5f7;
+}
+
+.cfp-ai-btn--primary {
+  background: #7b4fd6;
+  color: #ffffff;
+}
+
+.cfp-ai-btn--primary:hover {
+  background: #6a3fc4;
+}
+
+.cfp-ai-suggestion {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border: 1px solid #e2d6fb;
+  border-left: 3px solid #7b4fd6;
+  border-radius: 10px;
+  background: #f9f7fe;
+}
+
+.cfp-ai-suggestion-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #7b4fd6;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 8px;
+}
+
+.cfp-ai-suggestion-body {
+  font-size: 14px;
+  font-weight: 500;
+  color: #343c4c;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.cfp-ai-suggestion-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cfp-ai-suggestion-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* ── Input bar (Figma 762:148843 collapsed / 775:49369 submitted) ──
+   A white rounded card floating over the scrolling feedback form, holding a
+   single full-width blue→lavender gradient pill. */
+/* Fixed width (always left:32/right:32 — matches the panel's own content
+   padding, so this lines up with the form above it in every state), height
+   auto so it hugs whichever state's content is inside it, anchored to the
+   bottom so it grows upward as it expands rather than resizing downward. */
+.cfp-fip-bar {
+  position: absolute;
+  left: 32px;
+  right: 32px;
+  bottom: 16px;
+  z-index: 2;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 14px;
+  box-shadow: 0 12px 36px rgba(120, 130, 220, 0.28), 0 2px 8px rgba(15, 20, 31, 0.08);
+  transition: border-radius 0.2s ease;
+}
+
+.cfp-fip-bar--expanded {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  border-radius: 20px;
+  /* Fixed to 70% of the panel's height — bottom-anchored, so it grows
+     upward. Header + signal list stay pinned to the top; the footer is
+     pushed to the bottom via margin-top: auto below. */
+  height: 70vh;
+  overflow-y: auto;
+}
+
+.cfp-fip-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ebf7ff 0%, #f1f2ff 49%, #fbf6fb 100%);
+}
+
+.cfp-fip-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background: #cdeffb;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cfp-fip-thumb:hover {
+  background: #b3e6f8;
+}
+
+.cfp-fip-thumb--voted {
+  background: #4ec3e0;
+  cursor: default;
+}
+
+/* Placeholder text sits directly on the gradient — no border, no own fill. */
+.cfp-fip-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  padding: 0 8px;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #2b3271;
+  outline: none;
+}
+
+.cfp-fip-input::placeholder {
+  color: #6b74a0;
+}
+
+/* Round arrow button — light blue gradient, sits at the pill's right edge. */
+.cfp-fip-arrow-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #bce4ff 0%, #cacffc 100%);
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.cfp-fip-arrow-btn:hover {
+  opacity: 0.88;
+}
+
+.cfp-fip-arrow-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* Submitted state — gradient pill + a Cancel button outside it on the card. */
+.cfp-fip-voted-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: cfp-fip-fade-in 0.3s ease;
+}
+
+.cfp-fip-pill--voted {
+  flex: 1;
+  min-width: 0;
+  background: #ddf3fb;
+}
+
+.cfp-fip-voted-msg {
+  flex: 1;
+  min-width: 0;
+  padding-left: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a212e;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cfp-fip-submit-feedback-btn {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 999px;
+  background: #a8e5f5;
+  padding: 10px 18px;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #054d7b;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cfp-fip-submit-feedback-btn:hover {
+  background: #93dced;
+}
+
+.cfp-fip-cancel-btn {
+  flex-shrink: 0;
+  border: none;
+  background: none;
+  padding: 10px 14px;
+  font-family: 'Gilroy', -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #343c4c;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: background 0.15s;
+}
+
+.cfp-fip-cancel-btn:hover {
+  background: #f2f3f5;
+}
+
+@keyframes cfp-fip-fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 720px) {
+  .cfp-detail-meta-row {
+    grid-template-columns: 1fr;
+  }
+
+  .cfp-q-checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+}
