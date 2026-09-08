@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Review AI feedback — Emily Jones</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+<link rel="stylesheet" href="colors_and_type.css" />
+<style>
+.ms{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased;flex-shrink:0;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 20}
+html,body{height:100%}
+body{margin:0;background:#fff;font-family:'Gilroy',system-ui,sans-serif;color:#1a212e;-webkit-font-smoothing:antialiased}
+a{color:#146da6;text-decoration:none}
+a:hover{color:#054d7b;text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="width:100%;max-width:1424px;margin:0 auto;height:100%;box-sizing:border-box;background:#fff;display:flex;flex-direction:column;overflow:hidden">
+
+  <div style="flex:1;min-height:0;display:flex;align-items:stretch">
+
+    <div style="flex:1 1 55%;min-width:0;min-height:0;box-sizing:border-box;display:flex;flex-direction:column;border-right:1px solid #d9dce1">
+      <div style="flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;gap:16px;padding:16px 20px 24px">
+
+        <style>
+.ff-card{border:1px solid #d9dce1;border-radius:16px;background:#fff;display:flex;flex-direction:column}
+.ff-head{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;padding:20px 24px 4px}
+.ff-who{display:flex;align-items:center;gap:12px;min-width:0}
+.ff-who>div{min-width:0}
+.ff-av{flex:none;width:56px;height:56px;border-radius:50%;background:#993838;color:#fff;display:inline-flex;align-items:center;justify-content:center;font:600 20px/1 'Gilroy',sans-serif}
+.ff-nm{display:flex;align-items:center;gap:6px;font:600 22px/28px 'Gilroy',sans-serif;color:#1a212e}
+.ff-nm .ms{font-size:18px;color:#146da6}
+.ff-rl{display:flex;align-items:center;gap:8px;margin-top:2px;font:500 14px/20px 'Gilroy',sans-serif;color:#4f5666}
+.ff-rl i{width:3px;height:3px;border-radius:50%;background:#a1a6b1}
+.ff-pos{display:inline-flex;align-items:center;gap:6px;font:600 14px/20px 'Gilroy',sans-serif;white-space:nowrap;margin-top:4px}
+.ff-pos .ms{font-size:18px}
+.ff-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px 24px;padding:20px 24px 22px}
+.ff-fact{display:flex;flex-direction:column;gap:8px;min-width:0}
+.ff-fl{font:600 14px/20px 'Gilroy',sans-serif;color:#343c4c}
+.ff-person{display:flex;align-items:center;gap:10px;min-width:0}
+.ff-pav{flex:none;width:48px;height:48px;border-radius:50%;object-fit:cover;background:#eceef1}
+.ff-pn{display:flex;flex-direction:column;gap:2px;min-width:0}
+.ff-pn b,.ff-pn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ff-pn b{font:600 14px/20px 'Gilroy',sans-serif;color:#1a212e}
+.ff-pn span{font:500 12px/16px 'Gilroy',sans-serif;color:#343c4c}
+.ff-status{display:flex;align-items:center;gap:10px;min-width:0}
+.ff-thumb{flex:none;width:48px;height:48px;border-radius:10px;background:#b9f4e4;display:inline-flex;align-items:center;justify-content:center;color:#1b5143}
+.ff-thumb .ms{font-size:22px}
+.ff-flag{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 24px;border-top:1px solid #d9dce1}
+.ff-flag-l{display:flex;align-items:center;gap:6px;font:600 14px/20px 'Gilroy',sans-serif;color:#1a212e}
+.ff-flag-l .ms{font-size:18px;color:#69717f}
+.ff-flag-r{display:flex;align-items:center;gap:12px}
+.ff-flag-n{display:inline-flex;align-items:center;gap:4px;font:600 14px/20px 'Gilroy',sans-serif;color:#6c2222}
+.ff-flag-n .ms{font-size:18px;color:#993838}
+.ff-flag-n b{background:#ffc6c6;border-radius:4px;padding:1px 6px;font-weight:600}
+.ff-sum{background:linear-gradient(135deg,#f0fbff,#fbfaff 45%,#ffffff 70%,#fff5fb) padding-box,linear-gradient(100deg,#8fd8f0,#c9c3f2 60%,#f3a5d4) border-box;border:1.5px solid transparent;border-radius:16px;padding:20px 24px 22px}
+.ff-sum-top{display:flex;align-items:flex-start;gap:16px}
+.ff-score{flex:none;width:64px;height:64px;border-radius:12px;background:#d6f5ec;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.ff-score b{font:600 24px/1 'Gilroy',sans-serif;color:#1b5143}
+.ff-score span{font:600 8px/1 'Gilroy',sans-serif;letter-spacing:.06em;color:#2b715f}
+.ff-sum-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:0;height:56px;padding-top:6px}
+.ff-sum-t h2{margin:0;font:600 20px/28px 'Gilroy',sans-serif;color:#1a212e}
+.ff-rank{font:600 14px/20px 'Gilroy',sans-serif;background:linear-gradient(90deg,#4a50d8,#cb2c9e);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;align-self:flex-start}
+.ff-rank:hover{filter:brightness(.85)}
+.ff-info{flex:none;width:36px;height:36px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(26,33,46,.14);display:inline-flex;align-items:center;justify-content:center;color:#69717f}
+.ff-info .ms{font-size:20px}
+.ff-secs{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:16px 0;margin-top:22px}
+.ff-sec{display:flex;flex-direction:column;gap:6px;padding:0 20px;border-left:1px solid #d9dce1;min-width:0}
+.ff-sec:first-child{padding-left:0;border-left:none}
+.ff-sec-l{font:600 14px/20px 'Gilroy',sans-serif;color:#1a212e}
+.ff-sec-v{display:flex;align-items:baseline;gap:10px}
+.ff-sec-v b{font:600 20px/24px 'Gilroy',sans-serif;color:#2b715f;font-variant-numeric:tabular-nums}
+.ff-sec-v b.mid{color:#d97706}.ff-sec-v b.low{color:#c15151}
+.ff-sec-v span{font:500 12px/16px 'Gilroy',sans-serif;color:#4f5666}
+.ff-txt{margin:22px 0 0;font:500 14px/22px 'Gilroy',sans-serif;color:#1a212e;text-wrap:pretty}
+.ff-txt a{font-weight:600}
+.ff-comp{display:flex;align-items:center;flex-wrap:nowrap;gap:16px;margin-top:18px;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+.ff-comp::-webkit-scrollbar{display:none}
+.ff-comp-l{font:600 14px/20px 'Gilroy',sans-serif;color:#343c4c}
+.ff-c{display:inline-flex;align-items:center;gap:6px;font:500 14px/20px 'Gilroy',sans-serif;color:#343c4c}
+.ff-c .ms{font-size:18px;color:#3d8f79}
+.ff-c.dn .ms{color:#c15151}
+</style>
+<div class="ff-card">
+  <div class="ff-head">
+    <div class="ff-who">
+      <span class="ff-av">EJ</span>
+      <div>
+        <div class="ff-nm">Emily Jones<span class="ms">open_in_new</span></div>
+        <div class="ff-rl"><span>Software engineer</span><i></i><span></span></div>
+      </div>
+    </div>
+    <a class="ff-pos" href="#"><span class="ms">work_outline</span>Software engineer (123456789)</a>
+  </div>
+  <div class="ff-facts">
+    <div class="ff-fact"><span class="ff-fl">Interviewer</span><div class="ff-person"><img class="ff-pav" src="uploads/TA_Scheduling_Nudge-UX-main/Assets/AI agent icon.svg" alt="" /><div class="ff-pn"><b>Sophia</b><span>AI Agent</span></div></div></div>
+    <div class="ff-fact"><span class="ff-fl">Reviewer</span><div class="ff-person"><img class="ff-pav" src="uploads/TA_Scheduling_Nudge-UX-main/Assets/RecruiterPhoto.svg" alt="" /><div class="ff-pn"><b>James Bob</b><span>Recruiter</span></div></div></div>
+    <div class="ff-fact"><span class="ff-fl">Interview</span><div class="ff-pn"><a href="#" style="font:600 14px/20px 'Gilroy',sans-serif">360 interview</a><span>Jan 11, 2024</span></div></div>
+    <div class="ff-fact"><span class="ff-fl">Status</span><div class="ff-status"><span class="ff-thumb"><span class="ms">thumb_up</span></span><div class="ff-pn"><b>Submitted</b><span>Dec 11, 2024</span></div></div></div>
+  </div>
+  <div class="ff-flag">
+    <div class="ff-flag-l">Flagged activity<span class="ms">info</span></div>
+    <div class="ff-flag-r"><span class="ff-flag-n"><span class="ms">flag</span><b>6</b></span><span class="ms" style="font-size:22px;color:#343c4c">expand_more</span></div>
+  </div>
+</div>
+
+<div class="ff-sum">
+  <div class="ff-sum-top">
+    <div class="ff-score"><b>4.5</b><span>OVERALL</span></div>
+    <div class="ff-sum-t"><h2>Interview summary</h2><a class="ff-rank" href="#">Ranked 6 of 147 applicants</a></div>
+    <span class="ff-info"><span class="ms">info</span></span>
+  </div>
+  <div class="ff-secs">
+    <div class="ff-sec"><span class="ff-sec-l">Screening</span><div class="ff-sec-v"><b>4.5</b><span>avg 3.5</span></div></div>
+    <div class="ff-sec"><span class="ff-sec-l">Coding</span><div class="ff-sec-v"><b class="mid">3.5</b><span>avg 3.5</span></div></div>
+    <div class="ff-sec"><span class="ff-sec-l">Case study</span><div class="ff-sec-v"><b class="mid">3.5</b><span>avg 3.5</span></div></div>
+    <div class="ff-sec"><span class="ff-sec-l">Conceptual Q &amp; A</span><div class="ff-sec-v"><b class="low">1.5</b><span>avg 3.5</span></div></div>
+  </div>
+  <p class="ff-txt">Emily brings 13 years of experience with a clear growth trajectory and strong technical fundamentals. Her grasp of core concepts is solid across all sections. Communication is a development area worth probing further, particularly around how she structures and articulates complex ideas under pressure. <a href="#">See more</a></p>
+  <div class="ff-comp"><span class="ff-comp-l">Competencies evaluated:</span><span class="ff-c"><span class="ms">arrow_upward</span>Leadership</span><span class="ff-c"><span class="ms">arrow_upward</span>Reasoning</span><span class="ff-c"><span class="ms">arrow_upward</span>Communication</span><span class="ff-c dn"><span class="ms">arrow_downward</span>Technical knowledge</span></div>
+</div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;background:#fff;border:1px solid #e1e4e9;border-radius:12px;padding:16px 20px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="flex:none;background:#fce8d2;border-radius:6px;padding:2px 8px;font:600 13px/18px 'Gilroy',sans-serif;color:#7a4a14">3.5</span>
+            <span style="flex:1;font:600 16px/24px 'Gilroy',sans-serif;color:#1a212e">Screening</span>
+            <span style="font-family:'Material Symbols Outlined';font-size:20px;line-height:1;color:#69717f;transform:rotate(180deg)">expand_more</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#3d8f79">arrow_upward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">13 years of experience for this role</span></div>
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#3d8f79">arrow_upward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">Emily is currently managing a team</span></div>
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#3d8f79">arrow_upward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">Relevant skills and a good growth trajectory</span></div>
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#c15151">arrow_downward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">Emily did not study software engineering. Her degree is in literature from University of Mumbai</span></div>
+          </div>
+          <div style="height:1px;background:#e1e4e9"></div>
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px">
+            <span style="font:600 12px/16px 'Gilroy',sans-serif;color:#69717f;white-space:nowrap">Hiring criteria</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:4px;background:#f6f7f8;font:500 12px/16px 'Gilroy',sans-serif;color:#343c4c;white-space:nowrap"><span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1;color:#3d8f79">arrow_upward</span>Leads and grows a team of engineers</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:4px;background:#f6f7f8;font:500 12px/16px 'Gilroy',sans-serif;color:#343c4c;white-space:nowrap"><span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1;color:#3d8f79">arrow_upward</span>Owns delivery end to end</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:4px;background:#f6f7f8;font:500 12px/16px 'Gilroy',sans-serif;color:#343c4c;white-space:nowrap"><span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1;color:#c15151">arrow_downward</span>Designs distributed systems at scale</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;background:#fff;border:1px solid #e1e4e9;border-radius:12px;padding:16px 20px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="flex:none;background:#fce8d2;border-radius:6px;padding:2px 8px;font:600 13px/18px 'Gilroy',sans-serif;color:#7a4a14">3.5</span>
+            <span style="flex:1;font:600 16px/24px 'Gilroy',sans-serif;color:#1a212e">Coding</span>
+            <span style="font-family:'Material Symbols Outlined';font-size:20px;line-height:1;color:#69717f;transform:rotate(180deg)">expand_more</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <span style="font:600 13px/16px 'Gilroy',sans-serif;color:#1a212e">3.5</span>
+            <span style="font:500 13px/16px 'Gilroy',sans-serif;color:#1a212e">Data systems design</span>
+            <span style="color:#bec2ca;font-size:13px">•</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;font:600 14px/20px 'Gilroy',sans-serif;color:#1b5143"><span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1">speed</span>Easy</span>
+            <a href="#" style="font:600 13px/16px 'Gilroy',sans-serif">View code</a>
+            <span style="margin-left:auto;font-family:'Material Symbols Outlined';font-size:20px;line-height:1;color:#69717f;transform:rotate(180deg)">expand_more</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#3d8f79">arrow_upward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">The candidate wrote code that was correct, efficient, and passed all test cases</span></div>
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#3d8f79">arrow_upward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">Efficiency and correctness were noted positively</span></div>
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#c15151">arrow_downward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">Candidate needed one hint to recognize the hashing approach</span></div>
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#c15151">arrow_downward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">Technical depth is present but pattern recognition and independent problem-solving under time pressure need development</span></div>
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#1b5143">check</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#1b5143">4/10 test cases passed</span></div>
+          </div>
+          <div style="height:1px;background:#e1e4e9"></div>
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px">
+            <span style="font:600 12px/16px 'Gilroy',sans-serif;color:#69717f;white-space:nowrap">Hiring criteria</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:4px;background:#f6f7f8;font:500 12px/16px 'Gilroy',sans-serif;color:#343c4c;white-space:nowrap"><span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1;color:#3d8f79">arrow_upward</span>Designs distributed systems at scale</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:4px;background:#f6f7f8;font:500 12px/16px 'Gilroy',sans-serif;color:#343c4c;white-space:nowrap"><span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1;color:#3d8f79">arrow_upward</span>Breaks problems into testable steps</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:4px;background:#f6f7f8;font:500 12px/16px 'Gilroy',sans-serif;color:#343c4c;white-space:nowrap"><span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1;color:#c15151">arrow_downward</span>Explains trade-offs to partners</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="flex:none;background:#ebfdff;box-shadow:0 -4px 16px rgba(0,0,0,.12)">
+        <div style="height:1px;background:#d9dce1"></div>
+        <div style="display:flex;flex-direction:column;gap:8px;padding:16px">
+          <span style="font:600 16px/20px 'Gilroy',sans-serif;color:#054d7b">Move forward?</span>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;gap:4px;align-items:center">
+              <span style="width:32px;height:32px;border-radius:50%;border:1px solid #054d7b;display:inline-flex;align-items:center;justify-content:center;font-family:'Material Symbols Outlined';font-size:16px;color:#054d7b">thumb_up</span>
+              <span style="width:32px;height:32px;border-radius:50%;border:1px solid #054d7b;display:inline-flex;align-items:center;justify-content:center;font-family:'Material Symbols Outlined';font-size:16px;color:#054d7b">thumb_down</span>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center">
+              <span style="display:inline-flex;align-items:center;gap:4px;font:500 14px/20px 'Gilroy',sans-serif;color:#343c4c"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:1;color:#4f5666">check</span>Auto-saved</span>
+              <span style="background:#b0f3fe;border-radius:24px;padding:8px 16px;font:600 16px/20px 'Gilroy',sans-serif;color:#054d7b;white-space:nowrap">Submit feedback</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:none;width:12px;background:#d9dce1;border-radius:12px;display:flex;align-items:center;justify-content:center">
+      <span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1;color:#69717f">drag_indicator</span>
+    </div>
+
+    <div id="trCol" style="position:relative;flex:1 1 45%;min-width:0;min-height:0;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden">
+      <div style="flex:none;background:#fff;padding:0 20px;border-bottom:1px solid #d9dce1;display:flex;align-items:flex-start;gap:32px;overflow-x:auto">
+        <div style="display:flex;flex-direction:column"><div style="padding:12px 0;font:600 16px/24px 'Gilroy',sans-serif;color:#4f5666;white-space:nowrap">Overview</div><div style="height:2px;background:transparent"></div></div>
+        <div style="display:flex;flex-direction:column"><div style="padding:12px 0;font:600 16px/24px 'Gilroy',sans-serif;color:#4f5666;white-space:nowrap">Resume</div><div style="height:2px;background:transparent"></div></div>
+        <div style="display:flex;flex-direction:column"><div style="padding:12px 0;font:600 16px/24px 'Gilroy',sans-serif;color:#146da6;white-space:nowrap">Transcript</div><div style="height:2px;background:#146da6;border-radius:4px 4px 0 0"></div></div>
+        <div style="display:flex;flex-direction:column"><div style="padding:12px 0;font:600 16px/24px 'Gilroy',sans-serif;color:#4f5666;white-space:nowrap">Code</div><div style="height:2px;background:transparent"></div></div>
+        <div style="display:flex;flex-direction:column"><div style="padding:12px 0;font:600 16px/24px 'Gilroy',sans-serif;color:#4f5666;white-space:nowrap">Assessments</div><div style="height:2px;background:transparent"></div></div>
+      </div>
+
+      <div style="flex:none;padding:16px 20px 0">
+        <div style="position:relative;width:100%;aspect-ratio:560/288;border-radius:16px;overflow:hidden;background:#1a212e">
+          <img src="uploads/conversation%20round.png" alt="Interview recording still" style="width:100%;height:100%;object-fit:cover;display:block" />
+        </div>
+      </div>
+
+        <style>
+.tr-list{display:flex;flex-direction:column;gap:4px}
+.tr{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:start;padding:8px 10px;margin:0 -10px;border-radius:10px;transition:background .5s ease}
+.tr.hit{background:#ebf7ff}
+.tr-t{font:600 13px/20px 'Gilroy',sans-serif;color:#146da6;background:none;border:none;padding:0;cursor:pointer;text-align:left}
+.tr-t:hover{text-decoration:underline}
+.tr-b{display:flex;flex-direction:column;gap:6px}
+.tr-w{font:600 14px/20px 'Gilroy',sans-serif;color:#1a212e}
+.tr-w.ai{color:#424242}
+.tr-p{font:500 14px/21px 'Gilroy',sans-serif;color:#343c4c;text-wrap:pretty}
+</style>
+<div class="tr-list" id="trList" style="flex:1;min-height:0;overflow-y:auto;padding:16px 20px 32px;position:relative">
+          <div class="tr" data-t="1"><button class="tr-t">00:01</button><div class="tr-b"><span class="tr-w ai">AI agent</span><span class="tr-p">Hi Emily, welcome to the technical round of your interview. I'm Sophia, your virtual interviewer for today. This round focuses on your technical skills and problem-solving approach.</span><span class="tr-p">Let's start with a warm-up question. Can you share a brief overview of your current role and the key technical challenges you've been solving?</span></div></div>
+          <div class="tr" data-t="15"><button class="tr-t">00:15</button><div class="tr-b"><span class="tr-w">Emily</span><span class="tr-p">Thank you. I'm currently leading a team of six engineers on the payments platform, where most of my time goes to the caching and reconciliation layers.</span><span class="tr-p">The last big project was rebuilding the retry pipeline. We cut duplicate charges by 40% and I owned the rollout end to end.</span></div></div>
+          <div class="tr" data-t="48"><button class="tr-t">00:48</button><div class="tr-b"><span class="tr-w ai">AI agent</span><span class="tr-p">Thanks. Before we go deeper, how do you decide which of those challenges to take on first when everything feels urgent?</span></div></div>
+          <div class="tr" data-t="82"><button class="tr-t">01:22</button><div class="tr-b"><span class="tr-w">Emily</span><span class="tr-p">I look at blast radius first. Anything touching money movement gets priority, then whatever blocks the most people. I write that ranking down so the team can push back on it.</span></div></div>
+          <div class="tr" data-t="115"><button class="tr-t">01:55</button><div class="tr-b"><span class="tr-w ai">AI agent</span><span class="tr-p">Let's move to the retry pipeline. What made duplicate charges hard to eliminate in the first place?</span></div></div>
+          <div class="tr" data-t="139"><button class="tr-t">02:19</button><div class="tr-b"><span class="tr-w">Emily</span><span class="tr-p">Sorry, could you repeat that?</span><span class="tr-p">Right, the retries. The hard part was that a timeout didn't tell us whether the charge had landed, so we couldn't retry blindly. We introduced idempotency keys so a retried request would be recognised and dropped.</span></div></div>
+          <div class="tr" data-t="165"><button class="tr-t">02:45</button><div class="tr-b"><span class="tr-w ai">AI agent</span><span class="tr-p">And how did you explain that change to the partner teams who depended on the old behaviour?</span><span class="tr-p">Let me rephrase: what did you do to bring the partner teams along?</span></div></div>
+          <div class="tr" data-t="185"><button class="tr-t">03:05</button><div class="tr-b"><span class="tr-w">Emily</span><span class="tr-p">I put together a doc, and there were some meetings. It was mostly the same information repeated in different formats until it stuck.</span></div></div>
+          <div class="tr" data-t="210"><button class="tr-t">03:30</button><div class="tr-b"><span class="tr-w ai">AI agent</span><span class="tr-p">That sounds impactful. Could you walk me through how you decided where to put the cache, and what you would monitor once it was live?</span></div></div>
+          <div class="tr" data-t="255"><button class="tr-t">04:15</button><div class="tr-b"><span class="tr-w">Emily</span><span class="tr-p">We put it in front of the ledger reads, since those were the hot path and tolerant of a short staleness window. Writes stayed synchronous.</span><span class="tr-p">For monitoring I watched hit rate, tail latency, and stale-read counts. If hit rate dropped below 80% we knew the key design was wrong.</span></div></div>
+        </div>
+    </div>
+
+  </div>
+</div>
+<script>
+(function(){
+  const list = document.getElementById('trList'), col = list;
+  const toSec = v => { if (v==null) return null; const p = String(v).trim().split(':').map(Number); return p.length===2 ? p[0]*60+p[1] : p.length===3 ? p[0]*3600+p[1]*60+p[2] : (isNaN(p[0]) ? null : p[0]); };
+  let hitT = null;
+  function seek(v, instant){
+    const s = toSec(v); if (s==null) return;
+    const rows = [...list.querySelectorAll('.tr')];
+    let hit = rows[0];
+    for (const r of rows) if (+r.dataset.t <= s) hit = r;
+    rows.forEach(r=>r.classList.remove('hit'));
+    hit.classList.add('hit');
+    const top = hit.getBoundingClientRect().top - col.getBoundingClientRect().top + col.scrollTop - 8;
+    col.scrollTo({top: Math.max(0, top), behavior: instant ? 'auto' : 'smooth'});
+    clearTimeout(hitT); hitT = setTimeout(()=>hit.classList.remove('hit'), 4000);
+  }
+  const q = new URLSearchParams(location.search).get('seek');
+  if (q){ const go = ()=>setTimeout(()=>seek(q), 380); if (document.readyState === 'complete') go(); else window.addEventListener('load', go, {once:true}); }
+  window.addEventListener('message', e=>{ if (e.data && e.data.type==='aic-seek') seek(e.data.t); });
+  list.addEventListener('click', e=>{ const b = e.target.closest('.tr-t'); if (b) seek(b.textContent); });
+  const P = new URLSearchParams(location.search);
+  const nm = P.get('name');
+  if (nm){
+    const init = P.get('init') || nm.trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    const COL = {red:'#c15151',yellow:'#858707',green:'#1999ac',orange:'#c97e19',blue:'#2c8cc9',violet:'#5962b7',yellow2:'#a88f00',red2:'#d26743',magenta:'#b5548e'};
+    const av = document.querySelector('.ff-av');
+    av.textContent = init; if (COL[P.get('col')]) av.style.background = COL[P.get('col')];
+    document.querySelector('.ff-nm').firstChild.textContent = nm;
+    const parts = (P.get('role') || '').split(' \u00b7 ');
+    const rl = document.querySelector('.ff-rl');
+    rl.children[0].textContent = parts[0] || '';
+    rl.children[2].textContent = parts[1] || '';
+  }
+})();
+</script>
+</body>
+</html>

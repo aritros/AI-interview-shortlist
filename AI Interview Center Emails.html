@@ -185,5 +185,34 @@ h1{font-family:'Gilroy',sans-serif;font-weight:700;font-size:var(--type-header-1
   </div>
   </div>
 </div>
+<style>
+.ver-fab { position:fixed; bottom:24px; left:32px; z-index:93; }
+.ver-btn { display:inline-flex; align-items:center; gap:8px; height:40px; padding:0 12px; border-radius:999px; border:1px solid var(--grey-color-20,#d9dce1); background:#fff; box-shadow:0 8px 24px rgba(26,33,46,0.16); font-family:inherit; font-size:13px; font-weight:600; color:var(--grey-color-80,#343c4c); cursor:pointer; white-space:nowrap; opacity:0.9; }
+.ver-btn:hover { background:var(--grey-color-10,#f6f7f8); }
+.ver-btn .vlbl { display:none; }
+.ver-fab:hover .ver-btn .vlbl, .ver-fab.open .ver-btn .vlbl { display:inline; }
+.ver-fab:hover .ver-btn, .ver-fab.open .ver-btn { opacity:1; }
+.ver-btn .ms { font-size:18px; color:var(--grey-color-60,#69717f); }
+.ver-menu { position:absolute; bottom:calc(100% + 8px); left:0; width:300px; background:#fff; border-radius:12px; box-shadow:0 8px 24px rgba(26,33,46,0.16), 0 2px 8px rgba(26,33,46,0.08); padding:6px; display:none; }
+.ver-fab.open .ver-menu { display:block; }
+.ver-item { display:flex; flex-direction:column; gap:1px; padding:10px 12px; border-radius:8px; text-decoration:none; cursor:pointer; }
+.ver-item:hover { background:var(--grey-color-10,#f6f7f8); }
+.ver-item .vt { font-size:13px; font-weight:600; line-height:18px; color:var(--grey-color-90,#1a212e); text-wrap:pretty; }
+.ver-item .vd { font-size:12px; line-height:16px; color:var(--grey-color-60,#69717f); }
+.ver-item.cur { background:var(--primary-color-10,#ebf7ff); }
+.ver-item.cur .vt { color:var(--primary-color-70,#146da6); }
+</style>
+  <div class="ver-fab" id="verFab">
+    <button class="ver-btn" title="Switch page" onclick="event.stopPropagation();this.parentNode.classList.toggle('open')"><span class="ms">layers</span><span class="vlbl">Emails</span><span class="ms">expand_less</span></button>
+    <div class="ver-menu">
+      <a class="ver-item" href="index.html"><span class="vt">Pipeline page</span><span class="vd">Position pipeline and entry points</span></a>
+      <a class="ver-item" href="AI Interview Center v7.html"><span class="vt">AI Interview shortlist page - Recruiter view V7</span><span class="vd">Score, filter, compare and act</span></a>
+      <a class="ver-item" href="AI Interview Center v7 - HM view v2.html"><span class="vt">AI Interview shortlist page: HM view V2</span><span class="vd">Shared scope, recruiter notes, compare</span></a>
+      <a class="ver-item cur" href="AI Interview Center Emails.html"><span class="vt">Emails</span><span class="vd">Digest and share notifications</span></a>
+      <a class="ver-item" href="AI Interview Center Slack Messages.html"><span class="vt">Slack messages</span><span class="vd">Recruiter and HM notifications</span></a>
+    </div>
+  </div>
+<script>document.addEventListener('click', e=>{ if (!e.target.closest('.ver-fab')) document.getElementById('verFab').classList.remove('open'); });</script>
+
 </body>
 </html>

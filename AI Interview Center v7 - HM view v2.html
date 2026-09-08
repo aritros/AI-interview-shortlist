@@ -279,7 +279,7 @@ a:hover { color:var(--primary-color-80,#054d7b); }
 .rl-sec h3 { margin:0; display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; line-height:16px; color:#393B40; }
 .hl-grad { font-size:14px; color:#393B40; }
 .rl-sec:last-child h3 { position:relative; top:12px; }
-.rl-sub { margin:3px 0 6px; font-size:12.5px; font-weight:500; line-height:1.5; color:var(--grey-color-60,#69717f); text-wrap:pretty; }
+.rl-sub { margin:-6px 0 6px; font-size:12.5px; font-weight:500; line-height:1.5; color:var(--grey-color-60,#69717f); text-wrap:pretty; }
 .rep-dl { margin-left:auto; display:inline-flex; align-items:center; gap:4px; height:26px; padding:0 8px; border-radius:6px; border:none; background:transparent; box-shadow:none; color:var(--primary-color-80,#054d7b); font-family:inherit; font-size:12px; font-weight:600; cursor:pointer; }
 .rep-dl:hover { background:var(--grey-color-10,#f6f7f8); }
 .rep-dl .material-icons-round { font-size:14px; }
@@ -331,7 +331,7 @@ a:hover { color:var(--primary-color-80,#054d7b); }
 .ev.plus { color:var(--green-color-80,#1b5143); }
 .ev.minus { color:var(--orange-color-80,#8a5411); }
 .ev span { flex:1; min-width:0; text-wrap:pretty; }
-.ts { display:inline-flex; align-items:center; gap:2px; height:22px; padding:0 8px 0 5px; border-radius:999px; border:none; background:#fff; color:var(--primary-color-70,#146da6); font-size:11.5px; font-weight:600; cursor:pointer; flex-shrink:0; font-variant-numeric:tabular-nums; }
+.ts { display:inline-flex; align-items:center; gap:2px; height:22px; padding:0 8px 0 5px; border-radius:999px; border:none; background:var(--grey-color-10,#f6f7f8); color:var(--primary-color-70,#146da6); font-size:11.5px; font-weight:600; cursor:pointer; flex-shrink:0; font-variant-numeric:tabular-nums; }
 .ts:hover { background:var(--primary-color-10,#ebf7ff); }
 .ts .material-icons-round { font-size:13px; }
 .rl-ask { margin-top:14px; border:1px solid rgba(0,0,0,0); border-radius:16px; background:#fff; box-shadow:0 4px 20px rgba(114,52,201,0.1); padding:14px; display:flex; flex-direction:column; gap:12px; transition:box-shadow .28s ease; }
@@ -398,6 +398,10 @@ a:hover { color:var(--primary-color-80,#054d7b); }
 .rl-cta { display:inline-flex; align-items:center; gap:4px; font-size:13px; font-weight:600; color:var(--primary-color-70,#146da6); text-decoration:none; }
 .rl-cta:hover { color:var(--primary-color-80,#054d7b); text-decoration:underline; text-underline-offset:2px; }
 .rl-cta .material-icons-round { font-size:16px; }
+.rl-links { margin-top:18px; padding-top:14px; border-top:1px solid var(--grey-color-20,#d9dce1); display:flex; flex-direction:column; align-items:flex-start; gap:10px; }
+.rl-link { display:inline-flex; align-items:center; gap:5px; font-size:13.5px; font-weight:600; color:var(--primary-color-80,#054d7b); text-decoration:none; }
+.rl-link:hover { color:var(--primary-color-90,#002a47); text-decoration:underline; }
+.rl-link .material-icons-round { font-size:15px; }
 /* action row: the card's own pinned footer */
 .rail-acts { flex-shrink:0; display:flex; align-items:center; gap:8px; padding:12px 16px; border-top:1px solid var(--grey-color-20,#d9dce1); background:#fff; border-radius:0 0 15px 15px; }
 @media (max-width:1240px){ .rail-acts{ padding:11px 12px; gap:6px; } .ract{ font-size:12.5px; } .ract.adv{ padding:0 6px 0 11px; } .ract.hm{ padding:0 11px; } .ract.adv .lbl2{ display:none; } }
@@ -444,14 +448,14 @@ a:hover { color:var(--primary-color-80,#054d7b); }
 .ver-btn { padding:0 12px; opacity:0.9; }
 .ver-fab:hover .ver-btn, .ver-fab.open .ver-btn { opacity:1; }
 .ver-btn .material-icons-round { font-size:18px; color:var(--grey-color-60,#69717f); }
-.ver-menu { position:absolute; bottom:calc(100% + 8px); left:0; width:270px; background:#fff; border-radius:12px; box-shadow:0 8px 24px rgba(26,33,46,0.16), 0 2px 8px rgba(26,33,46,0.08); padding:6px; display:none; }
+.ver-menu { position:absolute; bottom:calc(100% + 8px); left:0; width:300px; background:#fff; border-radius:12px; box-shadow:0 8px 24px rgba(26,33,46,0.16), 0 2px 8px rgba(26,33,46,0.08); padding:6px; display:none; }
 .ver-grp { padding:8px 12px 4px; font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--grey-color-50,#858b98); }
 .ver-item + .ver-grp { margin-top:6px; border-top:1px solid var(--grey-color-20,#d9dce1); padding-top:10px; }
 .ver-fab.open .ver-menu { display:block; }
 .ver-item { display:flex; flex-direction:column; gap:1px; padding:10px 12px; border-radius:8px; text-decoration:none; cursor:pointer; }
 .ver-item:hover { background:var(--grey-color-10,#f6f7f8); }
-.ver-item .vt { font-size:13px; font-weight:600; color:var(--grey-color-90,#1a212e); }
-.ver-item .vd { font-size:12px; color:var(--grey-color-60,#69717f); }
+.ver-item .vt { font-size:13px; font-weight:600; line-height:18px; color:var(--grey-color-90,#1a212e); text-wrap:pretty; }
+.ver-item .vd { font-size:12px; line-height:16px; color:var(--grey-color-60,#69717f); }
 .ver-item.cur { background:var(--primary-color-10,#ebf7ff); }
 .ver-item.cur .vt { color:var(--primary-color-70,#146da6); }
 /* === Share modal === */
@@ -517,6 +521,7 @@ a:hover { color:var(--primary-color-80,#054d7b); }
 .toast button:hover { background:var(--grey-color-10,#f6f7f8); }
 </style>
 <link rel="stylesheet" href="aic-compare.css" />
+<link rel="stylesheet" href="aic-feedback.css" />
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="sparkGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="rgb(97,96,231)"/><stop offset="0.5" stop-color="rgb(139,61,212)"/><stop offset="1" stop-color="rgb(227,31,100)"/></linearGradient><symbol id="aiSparkle" viewBox="0 0 24 24"><g fill="url(#sparkGrad)"><path transform="translate(2 2.5) scale(0.875)" d="M 9.438 0.204 C 9.522 -0.068 9.907 -0.068 9.99 0.204 L 10.531 1.956 C 11.556 5.274 14.154 7.872 17.473 8.897 L 19.225 9.438 C 19.496 9.522 19.496 9.907 19.225 9.99 L 17.473 10.531 C 14.154 11.556 11.556 14.154 10.531 17.473 L 9.99 19.225 C 9.907 19.496 9.522 19.496 9.438 19.225 L 8.897 17.473 C 7.872 14.154 5.274 11.556 1.956 10.531 L 0.204 9.99 C -0.068 9.907 -0.068 9.522 0.204 9.438 L 1.956 8.897 C 5.274 7.872 7.872 5.274 8.897 1.956 L 9.438 0.204 Z"/><path transform="translate(0.25 16.25) scale(0.335)" d="M 9.438 0.204 C 9.522 -0.068 9.907 -0.068 9.99 0.204 L 10.531 1.956 C 11.556 5.274 14.154 7.872 17.473 8.897 L 19.225 9.438 C 19.496 9.522 19.496 9.907 19.225 9.99 L 17.473 10.531 C 14.154 11.556 11.556 14.154 10.531 17.473 L 9.99 19.225 C 9.907 19.496 9.522 19.496 9.438 19.225 L 8.897 17.473 C 7.872 14.154 5.274 11.556 1.956 10.531 L 0.204 9.99 C -0.068 9.907 -0.068 9.522 0.204 9.438 L 1.956 8.897 C 5.274 7.872 7.872 5.274 8.897 1.956 L 9.438 0.204 Z"/><path transform="translate(18 1.5) scale(0.257)" d="M 9.438 0.204 C 9.522 -0.068 9.907 -0.068 9.99 0.204 L 10.531 1.956 C 11.556 5.274 14.154 7.872 17.473 8.897 L 19.225 9.438 C 19.496 9.522 19.496 9.907 19.225 9.99 L 17.473 10.531 C 14.154 11.556 11.556 14.154 10.531 17.473 L 9.99 19.225 C 9.907 19.496 9.522 19.496 9.438 19.225 L 8.897 17.473 C 7.872 14.154 5.274 11.556 1.956 10.531 L 0.204 9.99 C -0.068 9.907 -0.068 9.522 0.204 9.438 L 1.956 8.897 C 5.274 7.872 7.872 5.274 8.897 1.956 L 9.438 0.204 Z"/></g></symbol></defs></svg>
@@ -525,7 +530,7 @@ a:hover { color:var(--primary-color-80,#054d7b); }
     <div class="brand"><div class="brand-logo" aria-hidden="true"></div><div class="brand-divider"></div></div>
     <div class="product"><div class="product-ic"></div><div class="product-text"><b>Talent</b>Acquisition</div></div>
     <nav class="primary-tabs" aria-label="Primary">
-      <div class="tab" onclick="location.href='Pipeline Page.html'">Positions <span class="material-icons-round">expand_more</span></div>
+      <div class="tab" onclick="location.href='index.html'">Positions <span class="material-icons-round">expand_more</span></div>
       <div class="tab">Talent <span class="material-icons-round">expand_more</span></div>
       <div class="tab">Engage <span class="material-icons-round">expand_more</span></div>
       <div class="tab">Insights <span class="material-icons-round">expand_more</span></div>
@@ -558,9 +563,9 @@ a:hover { color:var(--primary-color-80,#054d7b); }
 
   <div class="lb-header">
     <nav class="crumbs" aria-label="Breadcrumb">
-      <a href="Pipeline Page.html">Positions</a>
+      <a href="index.html">Positions</a>
       <span class="material-icons-round">chevron_right</span>
-      <a href="Pipeline Page.html">User Experience Designer</a>
+      <a href="index.html">User Experience Designer</a>
     </nav>
     <h1 class="page-title">AI Interview shortlist</h1>
     <div class="lb-meta"><div class="pos-wrap" id="posWrap">
@@ -638,18 +643,13 @@ a:hover { color:var(--primary-color-80,#054d7b); }
   </div>
 
   <div class="ver-fab" id="verFab">
-    <button class="ver-btn" title="Switch version" onclick="event.stopPropagation();this.parentNode.classList.toggle('open')"><span class="material-icons-round">layers</span><span class="vlbl">Version 7 · HM view v2</span><span class="material-icons-round">expand_less</span></button>
+    <button class="ver-btn" title="Switch page" onclick="event.stopPropagation();this.parentNode.classList.toggle('open')"><span class="material-icons-round">layers</span><span class="vlbl">HM view V2</span><span class="material-icons-round">expand_less</span></button>
     <div class="ver-menu">
-      <div class="ver-grp">Recruiter view</div>
-      <a class="ver-item" href="AI Interview Center v6.html"><span class="vt">Version 6 · Simplified</span><span class="vd">Cards and one detail rail</span></a>
-      <a class="ver-item" href="AI Interview Center v6.1.html"><span class="vt">Version 6.1 · Contextual prompts</span><span class="vd">Follow-up prompts after each search</span></a>
-      <a class="ver-item" href="AI Interview Center v6.2.html"><span class="vt">Version 6.2 · Inline justification</span><span class="vd">Search rationale in the filter card</span></a>
-      <a class="ver-item" href="AI Interview Center v6.3 - Without compare.html"><span class="vt">Version 6.3 · Without compare</span><span class="vd">Preset pills under the AI input</span></a>
-      <a class="ver-item" href="AI Interview Center v6.4.html"><span class="vt">Version 6.4 · Compare candidates</span><span class="vd">Multi-select compare panel</span></a>
-      <a class="ver-item" href="AI Interview Center v7.html"><span class="vt">Version 7 · Octuple consistency</span><span class="vd">Unified buttons, toast and tags</span></a>
-      <div class="ver-grp">Hiring manager view</div>
-      <a class="ver-item" href="AI Interview Center v7 - HM view.html"><span class="vt">Version 7 · HM view</span><span class="vd">Shared candidates, verdict actions</span></a>
-      <a class="ver-item cur" href="AI Interview Center v7 - HM view v2.html"><span class="vt">Version 7 · HM view v2</span><span class="vd">Shared scope, recruiter notes, compare</span></a>
+      <a class="ver-item" href="index.html"><span class="vt">Pipeline page</span><span class="vd">Position pipeline and entry points</span></a>
+      <a class="ver-item" href="AI Interview Center v7.html"><span class="vt">AI Interview shortlist page - Recruiter view V7</span><span class="vd">Score, filter, compare and act</span></a>
+      <a class="ver-item cur" href="AI Interview Center v7 - HM view v2.html"><span class="vt">AI Interview shortlist page: HM view V2</span><span class="vd">Shared scope, recruiter notes, compare</span></a>
+      <a class="ver-item" href="AI Interview Center Emails.html"><span class="vt">Emails</span><span class="vd">Digest and share notifications</span></a>
+      <a class="ver-item" href="AI Interview Center Slack Messages.html"><span class="vt">Slack messages</span><span class="vd">Recruiter and HM notifications</span></a>
     </div>
   </div>
 
@@ -680,5 +680,6 @@ a:hover { color:var(--primary-color-80,#054d7b); }
 </div>
 <script src="ai-interview-center-v7-hm2.js"></script>
 <script src="aic-compare.js"></script>
+<script src="aic-feedback.js"></script>
 </body>
 </html>

@@ -300,6 +300,16 @@ function setSel(i){
   clampRail();
   setTimeout(clampRail, 560);
 }
+window.aicFeedbackNav = function(dir){
+  const arr = visible();
+  let idx = arr.findIndex(x=>x.i===selI);
+  if (idx < 0) idx = 0;
+  idx = Math.max(0, Math.min(arr.length-1, idx+dir));
+  const c = arr[idx];
+  if (!c) return null;
+  setSel(c.i);
+  return {name:c.name, role:c.role+' \u00b7 '+c.company, init:c.init, col:c.col, i:idx, n:arr.length};
+};
 const SKEL = n => Array.from({length:n}, ()=>`<article class="ccard skel" aria-hidden="true">
   <div class="cc-top"><span class="sk sk-cb"></span><span class="sk sk-rk"></span><span class="sk sk-av"></span>
     <span class="who"><span class="sk sk-nm"></span><span class="sk sk-rl"></span></span><span class="sk sk-sc"></span></div>
@@ -412,7 +422,7 @@ function railCrit(c){
     </div>`;
   }).join('');
 }
-const HL_SHOT = {ps:'uploads/conversation round.png', proto:'uploads/run test cases.png', craft:'uploads/HLD.png', comm:'uploads/conversation round.png'};
+const HL_SHOT = {ps:R.shotConv||'uploads/conversation round.png', proto:R.shotTests||'uploads/run test cases.png', craft:R.shotHld||'uploads/HLD.png', comm:R.shotConv||'uploads/conversation round.png'};
 let hlIdx = 0;
 function hlSlides(c){
   const ev = k => compEval(c, COMP_DEFS.find(d=>d.k===k), COMP_DEFS.find(d=>d.k===k).get(c));
@@ -460,7 +470,7 @@ function renderRail(){
     <div class="rail-scroll">
       <div class="rl-id">
         <span class="avatar ${c.col}">${c.init}</span>
-        <span class="rl-who"><a class="rl-nm" href="#" onclick="return false;" title="View candidate profile">${c.name}</a><span class="rl-rl">${c.role} · ${c.company}</span></span>
+        <span class="rl-who"><a class="rl-nm" href="#" title="View candidate profile" data-cp="${c.i}" data-cp-name="${c.name}" data-cp-role="${c.role}" data-cp-company="${c.company}" data-cp-init="${c.init}" data-cp-col="${c.col}" data-cp-i="${Math.max(0, visible().findIndex(x=>x.i===c.i))}" data-cp-n="${visible().length}" data-cp-score="${c.score}">${c.name}</a><span class="rl-rl">${c.role} · ${c.company}</span></span>
         <span class="rl-sc"><b>${c.score.toFixed(1)}</b><small>/5</small></span>
         <button class="rl-x" id="railX" title="Close"><span class="material-icons-round">close</span></button>
       </div>
@@ -484,8 +494,8 @@ function renderRail(){
       </div>
       ${reportSec(c)}
       <div class="rl-links">
-        <a class="rl-link" href="#" target="_blank" rel="noopener">View candidate profile<span class="material-icons-round">open_in_new</span></a>
-        <a class="rl-link" href="#" target="_blank" rel="noopener">View detailed feedback<span class="material-icons-round">open_in_new</span></a>
+        <a class="rl-link" href="#" data-cp="${c.i}" data-cp-name="${c.name}" data-cp-role="${c.role}" data-cp-company="${c.company}" data-cp-init="${c.init}" data-cp-col="${c.col}" data-cp-i="${Math.max(0, visible().findIndex(x=>x.i===c.i))}" data-cp-n="${visible().length}" data-cp-score="${c.score}">View candidate profile<span class="material-icons-round">open_in_new</span></a>
+        <a class="rl-link" href="#" data-fb="${c.i}" data-fb-name="${c.name}" data-fb-role="${c.role} · ${c.company}" data-fb-init="${c.init}" data-fb-col="${c.col}" data-fb-i="${Math.max(0, visible().findIndex(x=>x.i===c.i))}" data-fb-n="${visible().length}">View detailed feedback<span class="material-icons-round">open_in_new</span></a>
       </div>
     </div>
     <div class="rail-acts" id="railActs">
@@ -586,11 +596,11 @@ document.addEventListener('click', e=>{
     if (busy) return;
     const ref = chx.dataset.chipx;
     if (ref === 'cap'){ cap = null; picked.clear(); render(); return; }
-    stopFilter(); aiF = null; picked.clear(); render(); return;
+    stopFilter(); aiF = null; picked.clear(); $('aiIn').value=''; setTyping(false); updX(); startPh(); render(); return;
   }
-  if (e.target.closest('#clearAll')){ if (busy) return; stopFilter(); aiF = null; cap = null; picked.clear(); render(); return; }
+  if (e.target.closest('#clearAll')){ if (busy) return; stopFilter(); aiF = null; cap = null; picked.clear(); $('aiIn').value=''; setTyping(false); updX(); startPh(); render(); return; }
   const capc = e.target.closest('[data-cap]');
-  if (capc){ stopFilter(); aiF = null; cap = +capc.dataset.cap; picked.clear(); render(); return; }
+  if (capc){ stopFilter(); aiF = null; cap = +capc.dataset.cap; picked.clear(); $('aiIn').value=''; setTyping(false); updX(); startPh(); render(); return; }
   const pi = e.target.closest('[data-pos]');
   if (pi){ $('posLbl').textContent = pi.dataset.pos; $('posWrap').classList.remove('open'); [...document.querySelectorAll('[data-pos]')].forEach(x=>x.classList.toggle('cur', x===pi)); return; }
   const ii = e.target.closest('[data-int]');
@@ -634,7 +644,7 @@ document.addEventListener('click', e=>{
   const rd = e.target.closest('[data-reeldot]');
   if (rd){ deckI = +rd.dataset.reeldot; paintDeck(); return; }
   const ts = e.target.closest('[data-ts]');
-  if (ts){ e.stopPropagation(); openReel(C[selI], ts.dataset.ts); return; }
+  if (ts){ e.stopPropagation(); const tc = C[selI]; const arr = visible(), idx = Math.max(0, arr.findIndex(x=>x.i===tc.i)); if (window.aicOpenFeedback) aicOpenFeedback({name:tc.name, role:tc.role+' \u00b7 '+tc.company, init:tc.init, col:tc.col, i:idx, n:arr.length, t:ts.dataset.ts}); else openReel(tc, ts.dataset.ts); return; }
   if (e.target.closest('#railVid')){ openReel(C[selI]); return; }
   const ra = e.target.closest('[data-act]');
   if (ra){ const ids = selI==null ? [] : [selI]; if (ra.dataset.act==='hm') openShare(ids); else act(ids, ra.dataset.act); return; }
@@ -643,7 +653,7 @@ document.addEventListener('click', e=>{
   if (e.target.closest('#clearF') || e.target.closest('#clearF2')){ stopFilter(); aiF=null; $('aiIn').value=''; setTyping(false); updX(); startPh(); render(); return; }
   if (e.target.closest('#fltX')){ $('aiIn').value=''; setTyping(false); updX(); startPh(); $('aiIn').focus(); return; }
   const sug = e.target.closest('[data-q]');
-  if (sug){ if (busy) return; cap = null; $('aiIn').value=''; setTyping(false); updX(); startPh(); runFilter(buildF(sug.dataset.q, [])); return; }
+  if (sug){ if (busy) return; cap = null; $('aiIn').value=FILTERS[sug.dataset.q]?FILTERS[sug.dataset.q].label:''; setTyping(false); updX(); runFilter(buildF(sug.dataset.q, [])); return; }
   if (e.target.closest('#askGo')){ answer(); return; }
   if (e.target.closest('#reelX') || e.target === $('reelModal')){ $('reelModal').classList.remove('on'); return; }
 });

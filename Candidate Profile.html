@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Candidate profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="colors_and_type.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" />
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:#fff;font-family:'Gilroy',system-ui,sans-serif;color:#1a212e;font-weight:500;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;overflow:hidden}
+button{font-family:inherit}
+a{color:#146da6;text-decoration:none}
+a:hover{color:#054d7b;text-decoration:underline}
+.mi{font-family:'Material Icons Round';font-weight:normal;font-style:normal;font-size:20px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased;flex-shrink:0}
+/* header */
+.cp-header{display:flex;align-items:center;justify-content:space-between;padding:0 20px;min-height:48px;background:linear-gradient(90deg,#1c6a9b,#1f8f92 55%,#57a982);flex-shrink:0}
+.cp-header-name{font-size:17px;font-weight:700;color:#fff;line-height:24px;letter-spacing:-0.02em}
+.cp-header-right{display:flex;align-items:center;gap:10px}
+.cp-header-nav{display:flex;align-items:center;gap:6px}
+.cp-nav-btn{width:24px;height:24px;border-radius:12px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;background:rgba(255,255,255,0.18);color:#fff}
+.cp-nav-btn:hover:not(:disabled){background:rgba(255,255,255,0.28)}
+.cp-nav-btn:disabled{opacity:.35;cursor:default}
+.cp-nav-btn .mi{font-size:18px}
+.cp-nav-label{color:rgba(255,255,255,0.92);font-size:14px;font-weight:600;white-space:nowrap}
+.cp-hbtn{background:none;border:none;cursor:pointer;padding:4px;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#fff}
+.cp-hbtn:hover{background:rgba(255,255,255,0.15)}
+/* action bar */
+.cp-actions{display:flex;align-items:center;flex-wrap:nowrap;gap:8px;padding:16px 20px;border-bottom:1px solid #e4e7eb;flex-shrink:0;overflow-x:auto;scrollbar-width:none}
+.cp-actions::-webkit-scrollbar{display:none}
+.cp-pillbtn{display:inline-flex;align-items:center;justify-content:center;gap:4px;height:36px;padding:0 16px;border-radius:999px;border:1.5px solid #1999ac;background:#fff;font-size:14px;font-weight:600;color:#054d7b;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .15s}
+.cp-pillbtn:hover{background:#ebfdff}
+.cp-pillbtn .mi{font-size:17px}
+.cp-pillbtn.dd{padding-right:10px}
+.cp-pillbtn.ai{border-color:#c4b5e8;color:#593cb4}
+.cp-pillbtn.ai:hover{background:#f6f2ff}
+.cp-pillbtn.reject{border-color:#f0c4bc;color:#b5341a}
+.cp-pillbtn.reject:hover{background:#fdf2f0}
+.cp-pillbtn.ic{width:36px;padding:0}
+/* body */
+.cp-body{display:flex;align-items:stretch;padding:16px 20px 20px;flex:1;min-height:0;overflow:hidden}
+.cp-main{flex:1;display:flex;flex-direction:column;gap:16px;min-width:0;min-height:0;padding-right:10px;overflow-x:hidden;overflow-y:auto}
+.cp-divider{position:relative;width:24px;flex-shrink:0;display:flex;align-items:stretch;justify-content:center}
+.cp-divider-line{width:1px;background:#d9dce1}
+.cp-divider-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;background:#fff;border:1px solid #d9dce1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;z-index:1;box-shadow:0 1px 3px rgba(15,20,31,0.1);color:#146da6;transition:background .15s,border-color .15s,transform .35s cubic-bezier(.4,0,.2,1)}
+.cp-divider-btn:hover{background:#ebf7ff;border-color:#1999ac}
+.cp-divider-btn .mi{font-size:18px}
+.cp-body.collapsed .cp-divider-btn{transform:translate(-50%,-50%) rotate(180deg)}
+.cp-sidebar{width:300px;flex-shrink:0;display:flex;flex-direction:column;gap:16px;padding-left:10px;min-height:0;overflow-x:hidden;overflow-y:auto;opacity:1;transition:width .35s cubic-bezier(.4,0,.2,1),opacity .25s ease,padding .35s cubic-bezier(.4,0,.2,1)}
+.cp-body.collapsed .cp-sidebar{width:0;padding-left:0;opacity:0}
+.card{background:#fff;border:1px solid #e4e7eb;border-radius:8px}
+/* profile card */
+.cp-profile{padding:18px 20px;display:flex;flex-direction:column;gap:16px}
+.cp-profile-row{display:flex;gap:24px;align-items:flex-start}
+.cp-avatar{width:64px;height:64px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:600;background:#2c8cc9}
+.cp-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.cp-name-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cp-name{font-size:32px;font-weight:600;line-height:40px;letter-spacing:-0.32px;margin:0;color:#1a212e}
+.cp-name-actions{display:flex;gap:12px;opacity:.8}
+.cp-sib{width:36px;height:36px;border-radius:24px;background:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;color:#4f5666}
+.cp-sib:hover{background:#d9dce1}
+.cp-title{font-size:16px;font-weight:600;color:#343c4c;line-height:24px;margin:0}
+.cp-meta{display:flex;align-items:center;gap:4px;font-size:14px;font-weight:500;color:#343c4c;line-height:20px}
+.cp-meta .mi{font-size:17px;color:#4f5666}
+.cp-meta-details{display:flex;flex-direction:column;gap:8px;padding-left:88px}
+.cp-contact{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-top:2px}
+.cp-clink{display:inline-flex;align-items:center;gap:4px;font-size:14px;font-weight:600;color:#146da6;text-decoration:underline;line-height:20px}
+.cp-clink .mi{font-size:15px}
+.cp-csep{color:#69717f;margin:0 4px}
+/* match card */
+.cp-match{padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.cp-match-top{display:flex;align-items:center;justify-content:space-between}
+.cp-match-role{font-size:16px;font-weight:600;line-height:24px}
+.cp-match-top .mi{color:#4f5666}
+.cp-match-bottom{display:flex;align-items:center;gap:8px}
+.dots{display:flex;gap:4px;align-items:center}
+.dot{width:12px;height:12px;border-radius:50%;background:#d9dce1}
+.dot.f{background:#2c8cc9}.dot.h{background:linear-gradient(90deg,#2c8cc9 50%,#d9dce1 50%)}
+.cp-match-sep{color:#69717f}
+.cp-round{font-size:14px;font-weight:600;background:#ebf7ff;padding:2px 10px;border-radius:4px;line-height:20px}
+/* tabs */
+.cp-tabs{display:flex;border-bottom:2px solid #eceef1;flex-shrink:0}
+.cp-tab{padding:10px 16px;font-size:16px;font-weight:500;color:#69717f;background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap}
+.cp-tab:hover{color:#343c4c}
+.cp-tab.active{color:#146da6;font-weight:600;border-bottom-color:#146da6}
+.cp-subtabs{display:flex;align-items:center}
+.cp-subtab{padding:6px 12px;font-size:14px;font-weight:500;color:#69717f;background:none;border:1px solid transparent;border-radius:20px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.cp-subtab.active{color:#146da6;font-weight:600;border-color:#146da6;background:#ebf7ff}
+.cp-badge{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 4px;background:#ebf7ff;border-radius:4px;font-size:12px;font-weight:600;color:#146da6}
+/* ai insights */
+.cp-ai{border:1px solid #e4dcf5;border-radius:8px;background:linear-gradient(135deg,#faf8ff 0%,#f3eeff 100%);flex-shrink:0}
+.cp-ai-sum{display:flex;align-items:center;gap:8px;padding:10px 14px}
+.cp-ai-ic{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#ede6fa;color:#593cb4}
+.cp-ai-ic .mi{font-size:16px}
+.cp-ai-text{flex:1;min-width:0;font-size:13px;line-height:1.4;color:#3d3552}
+.cp-ai-text strong{font-weight:600;color:#593cb4}
+.cp-ai-tg{flex-shrink:0;display:inline-flex;align-items:center;gap:3px;font-size:13px;font-weight:600;color:#593cb4;background:none;border:none;cursor:pointer;padding:2px 6px;border-radius:6px;white-space:nowrap}
+.cp-ai-tg:hover{background:#ede6fa}
+.cp-ai-tg .mi{font-size:18px;transition:transform .2s}
+.cp-ai.open .cp-ai-tg .mi{transform:rotate(180deg)}
+.cp-ai-detail{display:none;border-top:1px solid #e4dcf5}
+.cp-ai.open .cp-ai-detail{display:block}
+.cp-ai-item{display:flex;align-items:flex-start;gap:10px;padding:12px 14px 12px 48px;font-size:13px;color:#3d3552;line-height:1.45}
+.cp-ai-item+.cp-ai-item{border-top:1px solid #ede6fa}
+.cp-ai-b{flex-shrink:0;display:inline-flex;align-items:center;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:4px;white-space:nowrap;background:#fde8e5;color:#b5341a}
+.cp-ai-l{font-weight:600;color:#1a212e;white-space:nowrap}
+.cp-ai-d{color:#69717f}
+/* overview */
+.cp-ov{display:flex;flex-direction:column;gap:16px;padding-bottom:8px}
+.sec{padding:18px 20px 20px}
+.sec-t{font-size:16px;font-weight:600;margin:0 0 14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.nbadge{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 7px;font-size:12px;font-weight:600;color:#4f5666;background:#eceef1;border-radius:4px}
+.edit{background:none;border:none;cursor:pointer;padding:2px;border-radius:4px;display:inline-flex;opacity:.5;color:#69717f}
+.edit:hover{opacity:1}
+.edit .mi{font-size:15px}
+.sum{font-size:14px;line-height:1.6;color:#4f5666;margin:0}
+.more{background:none;border:none;color:#146da6;font-size:13px;font-weight:600;cursor:pointer;padding:0}
+.more:hover{text-decoration:underline}
+.job{display:flex;gap:12px;padding:10px 0}
+.job+.job{border-top:1px solid #f3f4f6}
+.logo{width:40px;height:40px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;background:#6c6c6c}
+.logo.ef{background:linear-gradient(135deg,#4a47c4,#7b61ff)}
+.logo.li{background:#0a66c2}
+.logo.gg{background:#fff;border:1px solid #eceef1;color:#4285f4;font-size:18px}
+.job-c{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.job-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.job-h strong{font-size:14px}
+.job-d{font-size:12px;color:#69717f;white-space:nowrap}
+.job-co{font-size:13px;color:#69717f}
+.job-desc{font-size:13px;color:#4f5666;line-height:1.5;margin:4px 0 0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tag{padding:3px 10px;font-size:12px;font-weight:500;color:#343c4c;background:#f6f7f8;border:1px solid #eceef1;border-radius:14px;white-space:nowrap}
+.showmore{background:none;border:1px solid #d9dce1;border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;color:#146da6;cursor:pointer;margin-top:12px}
+.showmore:hover{background:#ebf7ff}
+.row{display:flex;gap:12px;padding:8px 0;align-items:flex-start}
+.row>.mi{font-size:22px;color:#2c8cc9}
+.row-c{display:flex;flex-direction:column;gap:1px}
+.row-c strong{font-size:14px}
+.row-s{font-size:13px;color:#4f5666}
+.row-s em{color:#146da6;font-style:normal;font-weight:500}
+.row-d{font-size:12px;color:#69717f}
+.row-id{font-size:12px;color:#8c939e}
+.mob{margin:0;display:flex;flex-direction:column;gap:12px}
+.mob div{display:grid;gap:2px}
+.mob dt{font-size:13px;font-weight:500;color:#69717f}
+.mob dd{margin:0;font-size:14px;font-weight:500}
+.rec{display:flex;gap:12px;padding:10px 0}
+.rec+.rec{border-top:1px solid #f3f4f6}
+.rec-av{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:#975590;color:#fff;font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.rec-c{flex:1;min-width:0}
+.rec-h{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;font-size:13px;color:#69717f}
+.rec-h strong{font-size:14px;color:#1a212e}
+.rec-date{margin-left:auto;font-size:12px;white-space:nowrap}
+.rec-t{font-size:13px;color:#4f5666;line-height:1.55;margin:4px 0 0}
+/* sidebar */
+.sb{padding:16px 18px 18px;display:flex;flex-direction:column;gap:12px}
+.sb-h{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.sb-t{font-size:16px;font-weight:600;margin:0;display:flex;align-items:center;gap:8px}
+.addnew{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:#146da6;background:none;border:1px solid #1999ac;border-radius:20px;padding:4px 10px 4px 12px;cursor:pointer;flex-shrink:0}
+.addnew:hover{background:#ebf7ff}
+.addnew .mi{font-size:16px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:flex;align-items:center;gap:4px;padding:5px 10px;font-size:13px;font-weight:500;color:#69717f;background:#ebf7ff;border:1px solid transparent;border-radius:8px;cursor:pointer}
+.pill.active{background:#d9eefc;color:#054d7b;font-weight:600;border-color:#9cc9ec}
+.pill-n{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 4px;background:rgba(255,255,255,0.85);border-radius:4px;font-size:11px;font-weight:600;color:#4f5666}
+.pill.active .pill-n{background:#fff;color:#054d7b}
+.cv{display:flex;flex-direction:column;gap:8px;padding-top:4px}
+.cv-l{font-size:13px;font-weight:600}
+.cv-e{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:10px 12px;background:#fffaf0;border:1px solid #f5e6c8;border-radius:6px;font-size:13px;color:#4f5666}
+.cv-e .mi{color:#9a6700;font-size:20px}
+.cv-e span{flex:1 1 auto;min-width:0}
+.cv-e button{background:none;border:none;padding:0;font-size:13px;font-weight:600;color:#146da6;cursor:pointer;text-decoration:underline}
+.contacts{display:flex;flex-direction:column;gap:10px}
+.ct{display:flex;align-items:center;gap:8px;font-size:14px;color:#343c4c}
+.ct .mi{font-size:18px;color:#146da6}
+.ct .mi.k{color:#69717f;font-size:17px}
+.ct-v{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ct-m{font-size:12px;font-weight:600;color:#146da6;white-space:nowrap}
+.sim{display:flex;flex-direction:column;gap:2px}
+.sim-r{display:flex;align-items:flex-start;gap:10px;width:calc(100% + 12px);padding:8px 6px;margin:0 -6px;border:none;border-radius:6px;background:none;cursor:pointer;text-align:left}
+.sim-r:hover{background:#f6f7f8}
+.sim-av{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600}
+.sim-t{display:flex;flex-direction:column;gap:2px;min-width:0}
+.sim-n{font-size:14px;font-weight:600;color:#1a212e}
+.sim-s{font-size:12px;color:#69717f;line-height:1.35}
+.sim-more{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:0;background:none;border:none;font-size:13px;font-weight:600;color:#146da6;cursor:pointer}
+.sim-more:hover{text-decoration:underline}
+.sim-more .mi{font-size:16px}
+.mp{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #eceef1}
+.mp:last-child{border-bottom:none}
+.mp-ic{width:40px;height:40px;border-radius:8px;background:#ebf7ff;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#2c8cc9}
+.mp-i{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.mp-t{font-size:14px;font-weight:600;line-height:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mp-m{display:flex;align-items:center;gap:3px;font-size:12px;font-weight:500;color:#69717f;line-height:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mp-m .mi{font-size:13px}
+.mp-tr{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.mp-tr .dots{gap:3px}.mp-tr .dot{width:10px;height:10px}
+.kebab{display:flex;align-items:center;justify-content:center;width:28px;height:28px;padding:0;border:none;border-radius:6px;background:none;cursor:pointer;color:#69717f}
+.kebab:hover{background:#f6f7f8}
+@media (max-width:760px){.cp-sidebar,.cp-divider{display:none}}
+</style>
+</head>
+<body>
+<div class="cp-header">
+  <span class="cp-header-name" id="hName">Candidate</span>
+  <div class="cp-header-right">
+    <div class="cp-header-nav">
+      <button class="cp-nav-btn" id="navPrev" aria-label="Previous candidate"><span class="mi">chevron_left</span></button>
+      <span class="cp-nav-label" id="navLbl">1 of 10</span>
+      <button class="cp-nav-btn" id="navNext" aria-label="Next candidate"><span class="mi">chevron_right</span></button>
+    </div>
+    <button class="cp-hbtn" aria-label="Open in new tab"><span class="mi">open_in_new</span></button>
+    <button class="cp-hbtn" id="cpClose" aria-label="Close"><span class="mi">close</span></button>
+  </div>
+</div>
+<div class="cp-actions">
+  <button class="cp-pillbtn ic" aria-label="Favorite"><span class="mi">star_outline</span></button>
+  <button class="cp-pillbtn dd">Advance Stage<span class="mi">expand_more</span></button>
+  <button class="cp-pillbtn dd">Feedback<span class="mi">expand_more</span></button>
+  <button class="cp-pillbtn ai">Interview with AI<span class="mi">auto_awesome</span></button>
+  <button class="cp-pillbtn">Request Decision</button>
+  <button class="cp-pillbtn dd">Contact<span class="mi">expand_more</span></button>
+  <button class="cp-pillbtn reject">Reject</button>
+  <button class="cp-pillbtn dd">Schedule<span class="mi">expand_more</span></button>
+  <button class="cp-pillbtn ic" aria-label="More actions"><span class="mi">more_horiz</span></button>
+</div>
+<div class="cp-body" id="cpBody">
+  <div class="cp-main">
+    <div class="card cp-profile">
+      <div class="cp-profile-row">
+        <div class="cp-avatar" id="pAv">ST</div>
+        <div class="cp-info">
+          <div class="cp-name-row">
+            <h2 class="cp-name" id="pName">Candidate</h2>
+            <div class="cp-name-actions">
+              <button class="cp-sib" aria-label="Download"><span class="mi">file_download</span></button>
+              <button class="cp-sib" aria-label="Edit"><span class="mi">edit</span></button>
+            </div>
+          </div>
+          <p class="cp-title" id="pTitle">Designer</p>
+          <div class="cp-meta"><span class="mi">place</span><span id="pLoc">San Francisco, CA (9:32 AM PT)</span></div>
+        </div>
+      </div>
+      <div class="cp-meta-details">
+        <div class="cp-meta"><span class="mi">work_outline</span><span>8 years of total experience | 6 years relevant to this position</span></div>
+        <div class="cp-meta"><span class="mi">person_outline</span><span>Sourced by Jonathan Delauri</span></div>
+        <div class="cp-contact">
+          <a class="cp-clink" href="#" onclick="return false"><span class="mi">call</span>+1 415 555 0142</a>
+          <span class="cp-csep">·</span>
+          <a class="cp-clink" href="#" onclick="return false" id="pMail"><span class="mi">mail_outline</span>candidate@email.com</a>
+          <span class="cp-csep">·</span>
+          <a class="cp-clink" href="#" onclick="return false"><span class="mi" style="color:#0a66c2">link</span>LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="card cp-match">
+      <div class="cp-match-top"><span class="cp-match-role">User Experience Designer – Design Systems</span><span class="mi">expand_more</span></div>
+      <div class="cp-match-bottom"><div class="dots" id="pDots"></div><span class="cp-match-sep">·</span><span class="cp-round">AI Interview round</span></div>
+    </div>
+    <div class="cp-tabs">
+      <button class="cp-tab active">Profile</button><button class="cp-tab">Pipeline activity</button><button class="cp-tab">Notes &amp; Tags</button><button class="cp-tab">Messages</button><button class="cp-tab">Engagement</button>
+    </div>
+    <div class="cp-subtabs">
+      <button class="cp-subtab active">Overview</button><button class="cp-subtab">CV</button><button class="cp-subtab">LinkedIn</button><button class="cp-subtab">Files<span class="cp-badge">0</span></button>
+    </div>
+    <div class="cp-ai" id="aiBox">
+      <div class="cp-ai-sum">
+        <span class="cp-ai-ic"><span class="mi">auto_awesome</span></span>
+        <span class="cp-ai-text"><strong>2 mismatches</strong> between Resume &amp; LinkedIn</span>
+        <button class="cp-ai-tg" id="aiTg">Show more<span class="mi">expand_more</span></button>
+      </div>
+      <div class="cp-ai-detail">
+        <div class="cp-ai-item"><span class="cp-ai-b">Mismatch</span><span class="cp-ai-l">Job title</span><span class="cp-ai-d">Resume lists "Sr Principal UX Designer"; LinkedIn shows "Principal Designer" for the same period.</span></div>
+        <div class="cp-ai-item"><span class="cp-ai-b">Mismatch</span><span class="cp-ai-l">Dates</span><span class="cp-ai-d">Google tenure ends Nov 2022 on the resume and Jan 2023 on LinkedIn.</span></div>
+      </div>
+    </div>
+    <div class="cp-ov">
+      <section class="card sec">
+        <h3 class="sec-t">Summary<button class="edit" aria-label="Edit"><span class="mi">edit</span></button></h3>
+        <p class="sum">Product-minded UX designer with 8+ years of experience shipping complex enterprise applications. Specializes in design systems, data-heavy interfaces, and cross-functional collaboration. Built and scaled a component library adopted by 40+ engineers at Cisco. <button class="more">see more</button></p>
+      </section>
+      <section class="card sec">
+        <h3 class="sec-t">Work Experience<span class="nbadge">3</span><button class="edit" aria-label="Edit"><span class="mi">edit</span></button></h3>
+        <div class="job"><div class="logo ef">8f</div><div class="job-c"><div class="job-h"><strong>Sr Principal UX Designer</strong><span class="job-d">Nov 2022 – Present</span></div><span class="job-co">Eightfold AI</span><p class="job-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <button class="more">see more</button></p></div></div>
+        <div class="job"><div class="logo gg">G</div><div class="job-c"><div class="job-h"><strong>Sr Principal UX Designer</strong><span class="job-d">Oct 2020 – Nov 2022</span></div><span class="job-co">Google</span><p class="job-desc">Design system lead for internal developer tools platform. <button class="more">see more</button></p><div class="tags"><span class="tag">Interaction Design</span><span class="tag">Prototyping</span><span class="tag">UX</span><span class="tag">Agile</span><span class="tag">Team Management</span></div></div></div>
+        <div class="job"><div class="logo li">in</div><div class="job-c"><div class="job-h"><strong>UX Designer</strong><span class="job-d">May 2017 – Oct 2020</span></div><span class="job-co">LinkedIn</span><p class="job-desc">Designed recruiter-facing features and candidate experience flows. <button class="more">see more</button></p><div class="tags"><span class="tag">Interaction Design</span><span class="tag">Prototyping</span><span class="tag">UX</span><span class="tag">UX Research</span></div></div></div>
+        <button class="showmore">See 3 more work experience</button>
+      </section>
+      <section class="card sec">
+        <h3 class="sec-t">Education<span class="nbadge">2</span><button class="edit" aria-label="Edit"><span class="mi">edit</span></button></h3>
+        <div class="row"><span class="mi">school</span><div class="row-c"><strong>Masters in Design</strong><span class="row-s">University of California, Berkeley · <em>Industrial Design</em></span><span class="row-d">2007 – 2009</span></div></div>
+        <div class="row"><span class="mi">school</span><div class="row-c"><strong>Bachelor of Fine Arts</strong><span class="row-s">IIT, Delhi · <em>Computer Science</em></span><span class="row-d">2003 – 2007</span></div></div>
+      </section>
+      <section class="card sec">
+        <h3 class="sec-t">Mobility</h3>
+        <dl class="mob"><div><dt>Are you willing to Relocate?</dt><dd>No</dd></div><div><dt>Region</dt><dd>N/A</dd></div><div><dt>Country</dt><dd>N/A</dd></div><div><dt>Area of Preference</dt><dd>N/A</dd></div></dl>
+      </section>
+      <section class="card sec">
+        <h3 class="sec-t">Skills<button class="edit" aria-label="Edit"><span class="mi">edit</span></button></h3>
+        <div class="tags" style="margin-top:0"><span class="tag">Product Design</span><span class="tag">Product Management</span><span class="tag">Design Systems</span><span class="tag">UX Design</span><span class="tag">Prototyping</span></div>
+        <button class="more" style="margin-top:10px">See more</button>
+      </section>
+      <section class="card sec">
+        <h3 class="sec-t">Recommendations</h3>
+        <div class="rec"><div class="rec-av">MM</div><div class="rec-c"><div class="rec-h"><strong>Mark Masscroft</strong><span>Lead UX Designer</span><span class="rec-date">Sep 1, 2023</span></div><p class="rec-t">April 20, 2021 · Tim worked with him on the same team. Lorem ipsum dolor sit amet, consectetur adipiscing elit. <button class="more">see more</button></p></div></div>
+        <div class="rec"><div class="rec-av">MM</div><div class="rec-c"><div class="rec-h"><strong>Mark Masscroft</strong><span>Lead UX Designer</span><span class="rec-date">Sep 1, 2023</span></div><p class="rec-t">April 20, 2021 · Tim worked with him on the same team. Lorem ipsum dolor sit amet, consectetur adipiscing elit. <button class="more">see more</button></p></div></div>
+        <button class="more" style="margin-top:4px">See more</button>
+      </section>
+      <section class="card sec">
+        <h3 class="sec-t">Certifications</h3>
+        <div class="row"><span class="mi">verified</span><div class="row-c"><strong>Google UX Design Professional Certificate</strong><span class="row-d" style="font-size:13px">Google · Jun 2020 – Jun 2025</span><span class="row-id">Certificate number: GOOG1234</span></div></div>
+      </section>
+      <section class="card sec">
+        <h3 class="sec-t">Awards</h3>
+        <div class="row"><span class="mi" style="color:#e5a100">emoji_events</span><div class="row-c"><strong>Interaction and User experience</strong><span class="row-d" style="font-size:13px">Red Dot Award · Jun 2024</span></div></div>
+      </section>
+    </div>
+  </div>
+  <div class="cp-divider"><div class="cp-divider-line"></div><button class="cp-divider-btn" id="sbTg" aria-label="Collapse sidebar"><span class="mi">chevron_right</span></button></div>
+  <div class="cp-sidebar">
+    <div class="card sb">
+      <div class="sb-h"><h4 class="sb-t">Personal Details</h4><button class="addnew">Add new<span class="mi">expand_more</span></button></div>
+      <div class="pills"><button class="pill active">Contact<span class="pill-n">1</span></button><button class="pill">Hyperlinks<span class="pill-n">2</span></button><button class="pill">Files<span class="pill-n">0</span></button></div>
+      <div class="cv"><span class="cv-l">CV</span><div class="cv-e"><span class="mi">warning_amber</span><span>There is no CV yet.</span><button>Upload</button></div></div>
+      <div class="contacts">
+        <div class="ct"><span class="mi">mail_outline</span><span class="ct-v" id="sbMail">candidate@email.com</span><span class="ct-m">2 more</span><span class="mi k">more_horiz</span></div>
+        <div class="ct"><span class="mi">call</span><span class="ct-v">+1 415 555 0142</span><span class="ct-m">2 more</span><span class="mi k">more_horiz</span></div>
+      </div>
+    </div>
+    <div class="card sb"><div class="sb-h"><h4 class="sb-t">Add notes &amp; tags</h4><button class="addnew">Add new<span class="mi">expand_more</span></button></div></div>
+    <div class="card sb">
+      <h4 class="sb-t">Similar Candidates</h4>
+      <div class="sim">
+        <button class="sim-r"><span class="sim-av" style="background:#2c8cc9">RK</span><span class="sim-t"><span class="sim-n">Ravi Kumar</span><span class="sim-s">Senior Designer · Bengaluru</span></span></button>
+        <button class="sim-r"><span class="sim-av" style="background:#975590">PS</span><span class="sim-t"><span class="sim-n">Priya Sharma</span><span class="sim-s">Staff Designer · Hyderabad</span></span></button>
+        <button class="sim-r"><span class="sim-av" style="background:#9d6309">AM</span><span class="sim-t"><span class="sim-n">Amit Mehta</span><span class="sim-s">Principal Designer · Pune</span></span></button>
+        <button class="sim-r"><span class="sim-av" style="background:#1a7a2e">LN</span><span class="sim-t"><span class="sim-n">Lakshmi Nair</span><span class="sim-s">Design Manager · Chennai</span></span></button>
+      </div>
+      <button class="sim-more">View More Results<span class="mi">open_in_new</span></button>
+    </div>
+    <div class="card sb">
+      <h4 class="sb-t">Matched Positions<span class="nbadge">5</span></h4>
+      <div id="mpList"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  const q = new URLSearchParams(location.search);
+  const COL = {red:'#c15151',yellow:'#858707',green:'#1999ac',orange:'#c97e19',blue:'#2c8cc9',violet:'#5962b7',yellow2:'#a88f00',red2:'#d26743',magenta:'#b5548e'};
+  const name = q.get('name') || 'Candidate', role = q.get('role') || 'Designer', co = q.get('company') || '';
+  const init = q.get('init') || name.split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  const idx = +(q.get('i') || 0), total = +(q.get('n') || 10);
+  const score = +(q.get('score') || 4);
+  const $ = id=>document.getElementById(id);
+  document.title = name + ' — Candidate profile';
+  $('hName').textContent = name; $('pName').textContent = name;
+  $('pTitle').textContent = co ? role + ', ' + co : role;
+  $('pAv').textContent = init; $('pAv').style.background = COL[q.get('col')] || '#2c8cc9';
+  const mail = (name.split(/\s+/)[0][0] + name.split(/\s+/).slice(-1)[0]).toLowerCase() + '@email.com';
+  $('pMail').lastChild.textContent = mail; $('sbMail').textContent = mail;
+  $('navLbl').textContent = (idx+1) + ' of ' + total;
+  $('navPrev').disabled = idx <= 0; $('navNext').disabled = idx >= total-1;
+  const dots = s=>{ let h=''; for (let i=0;i<5;i++){ h += '<span class="dot'+(s>=i+1?' f':s>=i+0.5?' h':'')+'"></span>'; } return h; };
+  $('pDots').innerHTML = dots(Math.round(score*2)/2);
+  const MP = [['UX Designer-887678997 (IC4)','Santa Clara, CA','Julian Brandt · Open',4.5],['Product Designer-9921001 (IC3)','Remote US','Sam Lee · Open',3.5],['Sr UX Designer-7712002 (IC4)','New York, NY','Alex Kim · Open',5],['Design Systems Lead-6600443','Austin, TX','Jordan Pat · Open',4],['Staff Designer-5544332','Seattle, WA','Chris Wu · Open',3]];
+  $('mpList').innerHTML = MP.map(r=>`<div class="mp"><div class="mp-ic"><span class="mi">work_outline</span></div><div class="mp-i"><span class="mp-t">${r[0]}</span><span class="mp-m"><span class="mi">place</span>${r[1]}&nbsp;<span class="mi">person_outline</span>${r[2]}</span></div><div class="mp-tr"><div class="dots">${dots(r[3])}</div><button class="kebab" aria-label="More"><span class="mi">more_vert</span></button></div></div>`).join('');
+  $('aiTg').addEventListener('click', ()=>{ const on = $('aiBox').classList.toggle('open'); $('aiTg').firstChild.textContent = on ? 'Show less' : 'Show more'; });
+  $('sbTg').addEventListener('click', ()=>$('cpBody').classList.toggle('collapsed'));
+  const close = ()=>{ if (window.parent !== window) window.parent.postMessage({type:'aic-sheet-close'}, '*'); };
+  $('cpClose').addEventListener('click', close);
+  document.addEventListener('keydown', e=>{ if (e.key === 'Escape') close(); });
+  document.querySelectorAll('.cp-tab, .cp-subtab').forEach(b=>b.addEventListener('click', ()=>{ b.parentElement.querySelectorAll('.active').forEach(x=>x.classList.remove('active')); b.classList.add('active'); }));
+})();
+</script>
+</body>
+</html>

@@ -95,7 +95,7 @@ h1{font-family:'Gilroy',sans-serif;font-weight:700;font-size:var(--type-header-1
   <div class="pagehead">
     <div class="brandline"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M 15.757 13.343 L 13.292 13.343 L 13.292 17.331 C 13.295 20.947 10.426 23.907 6.826 24 C 6.087 24.012 5.477 23.42 5.465 22.678 C 5.453 21.935 6.042 21.323 6.782 21.311 L 6.867 21.311 C 8.97 21.193 10.617 19.447 10.618 17.331 L 10.618 13.343 L 9.625 13.343 C 8.885 13.343 8.286 12.741 8.286 11.998 C 8.286 11.256 8.885 10.654 9.625 10.654 L 10.618 10.654 L 10.618 6.671 C 10.615 3.044 13.5 0.08 17.111 0 C 17.85 0.017 18.436 0.632 18.42 1.374 C 18.404 2.117 17.791 2.706 17.051 2.689 C 14.943 2.801 13.292 4.551 13.292 6.671 L 13.292 10.658 L 15.757 10.658 C 16.496 10.658 17.096 11.26 17.096 12.003 C 17.096 12.746 16.496 13.348 15.757 13.348 L 15.757 13.343 Z M 5.101 22.658 C 5.101 22.095 5.368 21.566 5.819 21.233 C 3.833 20.806 2.487 18.943 2.699 16.914 C 2.912 14.885 4.615 13.345 6.646 13.343 L 8.545 13.343 C 8.154 13.006 7.929 12.515 7.929 11.998 C 7.929 11.482 8.154 10.99 8.545 10.654 L 6.646 10.654 C 3.173 10.653 0.285 13.34 0.02 16.818 C -0.246 20.296 2.201 23.393 5.635 23.924 C 5.294 23.591 5.102 23.135 5.101 22.658 Z M 18.801 1.462 C 18.837 0.945 18.645 0.438 18.276 0.075 C 20.554 0.427 22.487 1.94 23.381 4.085 C 24.243 6.145 24.022 8.501 22.791 10.363 C 21.561 12.225 19.485 13.345 17.26 13.348 L 16.834 13.348 C 17.225 13.011 17.449 12.52 17.449 12.003 C 17.449 11.486 17.225 10.995 16.834 10.658 L 17.26 10.658 C 19.3 10.669 21.017 9.126 21.231 7.088 C 21.445 5.051 20.087 3.181 18.09 2.764 C 18.505 2.456 18.765 1.98 18.801 1.462 Z"></path></svg><span>Eightfold · AI Interview Center</span></div>
     <h1>AI Interview Center Slack notifications</h1>
-    <div class="lede">Slack carries the moments that need a person today; email carries digests and records. The same event never goes to both. Four messages in total — two for recruiters, two for hiring managers — each batched, capped and deep-linked into the leaderboard.</div>
+    <div class="lede">Slack carries the moments that need a person today; email carries digests and records. The same event never goes to both. Four messages in total — two for recruiters, two for hiring managers — each batched, capped and deep-linked into the shortlist.</div>
   </div>
 
   <div class="cad">
@@ -235,5 +235,34 @@ h1{font-family:'Gilroy',sans-serif;font-weight:700;font-size:var(--type-header-1
   </div>
   </div>
 </div>
+<style>
+.ver-fab { position:fixed; bottom:24px; left:32px; z-index:93; }
+.ver-btn { display:inline-flex; align-items:center; gap:8px; height:40px; padding:0 12px; border-radius:999px; border:1px solid var(--grey-color-20,#d9dce1); background:#fff; box-shadow:0 8px 24px rgba(26,33,46,0.16); font-family:inherit; font-size:13px; font-weight:600; color:var(--grey-color-80,#343c4c); cursor:pointer; white-space:nowrap; opacity:0.9; }
+.ver-btn:hover { background:var(--grey-color-10,#f6f7f8); }
+.ver-btn .vlbl { display:none; }
+.ver-fab:hover .ver-btn .vlbl, .ver-fab.open .ver-btn .vlbl { display:inline; }
+.ver-fab:hover .ver-btn, .ver-fab.open .ver-btn { opacity:1; }
+.ver-btn .ms { font-size:18px; color:var(--grey-color-60,#69717f); }
+.ver-menu { position:absolute; bottom:calc(100% + 8px); left:0; width:300px; background:#fff; border-radius:12px; box-shadow:0 8px 24px rgba(26,33,46,0.16), 0 2px 8px rgba(26,33,46,0.08); padding:6px; display:none; }
+.ver-fab.open .ver-menu { display:block; }
+.ver-item { display:flex; flex-direction:column; gap:1px; padding:10px 12px; border-radius:8px; text-decoration:none; cursor:pointer; }
+.ver-item:hover { background:var(--grey-color-10,#f6f7f8); }
+.ver-item .vt { font-size:13px; font-weight:600; line-height:18px; color:var(--grey-color-90,#1a212e); text-wrap:pretty; }
+.ver-item .vd { font-size:12px; line-height:16px; color:var(--grey-color-60,#69717f); }
+.ver-item.cur { background:var(--primary-color-10,#ebf7ff); }
+.ver-item.cur .vt { color:var(--primary-color-70,#146da6); }
+</style>
+  <div class="ver-fab" id="verFab">
+    <button class="ver-btn" title="Switch page" onclick="event.stopPropagation();this.parentNode.classList.toggle('open')"><span class="ms">layers</span><span class="vlbl">Slack messages</span><span class="ms">expand_less</span></button>
+    <div class="ver-menu">
+      <a class="ver-item" href="index.html"><span class="vt">Pipeline page</span><span class="vd">Position pipeline and entry points</span></a>
+      <a class="ver-item" href="AI Interview Center v7.html"><span class="vt">AI Interview shortlist page - Recruiter view V7</span><span class="vd">Score, filter, compare and act</span></a>
+      <a class="ver-item" href="AI Interview Center v7 - HM view v2.html"><span class="vt">AI Interview shortlist page: HM view V2</span><span class="vd">Shared scope, recruiter notes, compare</span></a>
+      <a class="ver-item" href="AI Interview Center Emails.html"><span class="vt">Emails</span><span class="vd">Digest and share notifications</span></a>
+      <a class="ver-item cur" href="AI Interview Center Slack Messages.html"><span class="vt">Slack messages</span><span class="vd">Recruiter and HM notifications</span></a>
+    </div>
+  </div>
+<script>document.addEventListener('click', e=>{ if (!e.target.closest('.ver-fab')) document.getElementById('verFab').classList.remove('open'); });</script>
+
 </body>
 </html>

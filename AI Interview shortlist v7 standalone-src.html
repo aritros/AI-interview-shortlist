@@ -3,6 +3,15 @@
 <head>
 <meta charset="utf-8" />
 <title>AI Interview shortlist v7 — Octuple consistency</title>
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=900&amp;h=560&amp;fit=crop&amp;crop=faces&amp;auto=format&amp;q=80" data-resource-id="photo0" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=900&amp;h=560&amp;fit=crop&amp;crop=faces&amp;auto=format&amp;q=80" data-resource-id="photo1" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=900&amp;h=560&amp;fit=crop&amp;crop=faces&amp;auto=format&amp;q=80" data-resource-id="photo2" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&amp;h=560&amp;fit=crop&amp;crop=faces&amp;auto=format&amp;q=80" data-resource-id="photo3" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=900&amp;h=560&amp;fit=crop&amp;crop=faces&amp;auto=format&amp;q=80" data-resource-id="photo4" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&amp;h=560&amp;fit=crop&amp;crop=faces&amp;auto=format&amp;q=80" data-resource-id="photo5" />
+<meta name="ext-resource-dependency" content="uploads/conversation round.png" data-resource-id="shotConv" />
+<meta name="ext-resource-dependency" content="uploads/run test cases.png" data-resource-id="shotTests" />
+<meta name="ext-resource-dependency" content="uploads/HLD.png" data-resource-id="shotHld" />
 <link rel="stylesheet" href="colors_and_type.css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" />
@@ -279,7 +288,7 @@ a:hover { color:var(--primary-color-80,#054d7b); }
 .rl-sec h3 { margin:0; display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; line-height:16px; color:#393B40; }
 .hl-grad { font-size:14px; color:#393B40; }
 .rl-sec:last-child h3 { position:relative; top:12px; }
-.rl-sub { margin:-6px 0 6px; font-size:12.5px; font-weight:500; line-height:1.5; color:var(--grey-color-60,#69717f); text-wrap:pretty; }
+.rl-sub { margin:3px 0 6px; font-size:12.5px; font-weight:500; line-height:1.5; color:var(--grey-color-60,#69717f); text-wrap:pretty; }
 .rep-dl { margin-left:auto; display:inline-flex; align-items:center; gap:4px; height:26px; padding:0 8px; border-radius:6px; border:none; background:transparent; box-shadow:none; color:var(--primary-color-80,#054d7b); font-family:inherit; font-size:12px; font-weight:600; cursor:pointer; }
 .rep-dl:hover { background:var(--grey-color-10,#f6f7f8); }
 .rep-dl .material-icons-round { font-size:14px; }
@@ -331,7 +340,7 @@ a:hover { color:var(--primary-color-80,#054d7b); }
 .ev.plus { color:var(--green-color-80,#1b5143); }
 .ev.minus { color:var(--orange-color-80,#8a5411); }
 .ev span { flex:1; min-width:0; text-wrap:pretty; }
-.ts { display:inline-flex; align-items:center; gap:2px; height:22px; padding:0 8px 0 5px; border-radius:999px; border:none; background:var(--grey-color-10,#f6f7f8); color:var(--primary-color-70,#146da6); font-size:11.5px; font-weight:600; cursor:pointer; flex-shrink:0; font-variant-numeric:tabular-nums; }
+.ts { display:inline-flex; align-items:center; gap:2px; height:22px; padding:0 8px 0 5px; border-radius:999px; border:none; background:#fff; color:var(--primary-color-70,#146da6); font-size:11.5px; font-weight:600; cursor:pointer; flex-shrink:0; font-variant-numeric:tabular-nums; }
 .ts:hover { background:var(--primary-color-10,#ebf7ff); }
 .ts .material-icons-round { font-size:13px; }
 .rl-ask { margin-top:14px; border:1px solid rgba(0,0,0,0); border-radius:16px; background:#fff; box-shadow:0 4px 20px rgba(114,52,201,0.1); padding:14px; display:flex; flex-direction:column; gap:12px; transition:box-shadow .28s ease; }
@@ -510,7 +519,6 @@ a:hover { color:var(--primary-color-80,#054d7b); }
 .toast button:hover { background:var(--grey-color-10,#f6f7f8); }
 </style>
 <link rel="stylesheet" href="aic-compare.css" />
-<link rel="stylesheet" href="aic-feedback.css" />
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="sparkGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="rgb(97,96,231)"/><stop offset="0.5" stop-color="rgb(139,61,212)"/><stop offset="1" stop-color="rgb(227,31,100)"/></linearGradient><symbol id="aiSparkle" viewBox="0 0 24 24"><g fill="url(#sparkGrad)"><path transform="translate(2 2.5) scale(0.875)" d="M 9.438 0.204 C 9.522 -0.068 9.907 -0.068 9.99 0.204 L 10.531 1.956 C 11.556 5.274 14.154 7.872 17.473 8.897 L 19.225 9.438 C 19.496 9.522 19.496 9.907 19.225 9.99 L 17.473 10.531 C 14.154 11.556 11.556 14.154 10.531 17.473 L 9.99 19.225 C 9.907 19.496 9.522 19.496 9.438 19.225 L 8.897 17.473 C 7.872 14.154 5.274 11.556 1.956 10.531 L 0.204 9.99 C -0.068 9.907 -0.068 9.522 0.204 9.438 L 1.956 8.897 C 5.274 7.872 7.872 5.274 8.897 1.956 L 9.438 0.204 Z"/><path transform="translate(0.25 16.25) scale(0.335)" d="M 9.438 0.204 C 9.522 -0.068 9.907 -0.068 9.99 0.204 L 10.531 1.956 C 11.556 5.274 14.154 7.872 17.473 8.897 L 19.225 9.438 C 19.496 9.522 19.496 9.907 19.225 9.99 L 17.473 10.531 C 14.154 11.556 11.556 14.154 10.531 17.473 L 9.99 19.225 C 9.907 19.496 9.522 19.496 9.438 19.225 L 8.897 17.473 C 7.872 14.154 5.274 11.556 1.956 10.531 L 0.204 9.99 C -0.068 9.907 -0.068 9.522 0.204 9.438 L 1.956 8.897 C 5.274 7.872 7.872 5.274 8.897 1.956 L 9.438 0.204 Z"/><path transform="translate(18 1.5) scale(0.257)" d="M 9.438 0.204 C 9.522 -0.068 9.907 -0.068 9.99 0.204 L 10.531 1.956 C 11.556 5.274 14.154 7.872 17.473 8.897 L 19.225 9.438 C 19.496 9.522 19.496 9.907 19.225 9.99 L 17.473 10.531 C 14.154 11.556 11.556 14.154 10.531 17.473 L 9.99 19.225 C 9.907 19.496 9.522 19.496 9.438 19.225 L 8.897 17.473 C 7.872 14.154 5.274 11.556 1.956 10.531 L 0.204 9.99 C -0.068 9.907 -0.068 9.522 0.204 9.438 L 1.956 8.897 C 5.274 7.872 7.872 5.274 8.897 1.956 L 9.438 0.204 Z"/></g></symbol></defs></svg>
@@ -668,6 +676,25 @@ a:hover { color:var(--primary-color-80,#054d7b); }
 </div>
 <script src="ai-interview-center-v7.js"></script>
 <script src="aic-compare.js"></script>
-<script src="aic-feedback.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#f6f7f8">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#f6f7f8"/>
+    <rect x="240" y="196" width="720" height="96" rx="16" fill="#ffffff" stroke="#d9dce1" stroke-width="4"/>
+    <circle cx="312" cy="244" r="26" fill="#ebf7ff"/>
+    <rect x="366" y="222" width="300" height="20" rx="10" fill="#343c4c"/>
+    <rect x="366" y="256" width="188" height="14" rx="7" fill="#bdc1c9"/>
+    <rect x="836" y="228" width="76" height="32" rx="8" fill="#3d8f79"/>
+    <rect x="240" y="316" width="720" height="96" rx="16" fill="#ffffff" stroke="#d9dce1" stroke-width="4"/>
+    <circle cx="312" cy="364" r="26" fill="#ebfdff"/>
+    <rect x="366" y="342" width="256" height="20" rx="10" fill="#343c4c"/>
+    <rect x="366" y="376" width="212" height="14" rx="7" fill="#bdc1c9"/>
+    <rect x="836" y="348" width="76" height="32" rx="8" fill="#1999ac"/>
+    <rect x="240" y="436" width="720" height="96" rx="16" fill="#ffffff" stroke="#d9dce1" stroke-width="4"/>
+    <circle cx="312" cy="484" r="26" fill="#fff4e5"/>
+    <rect x="366" y="462" width="220" height="20" rx="10" fill="#343c4c"/>
+    <rect x="366" y="496" width="164" height="14" rx="7" fill="#bdc1c9"/>
+    <rect x="836" y="468" width="76" height="32" rx="8" fill="#d99326"/>
+  </svg>
+</template>
 </body>
 </html>
