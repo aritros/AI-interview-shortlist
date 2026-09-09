@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0">
+<script src="./image-slot.js"></script>
+<style>
+@font-face{font-family:'Gilroy';font-weight:300;font-style:normal;font-display:swap;src:url('fonts/Gilroy-Light.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:400;font-style:normal;font-display:swap;src:url('fonts/Gilroy-Regular.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:500;font-style:normal;font-display:swap;src:url('fonts/Gilroy-Medium.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:600;font-style:normal;font-display:swap;src:url('fonts/Gilroy-SemiBold.woff2') format('woff2')}
+@font-face{font-family:'Gilroy';font-weight:700;font-style:normal;font-display:swap;src:url('fonts/Gilroy-Bold.woff2') format('woff2')}
+body{margin:0;background:#fff;font-family:'Gilroy',system-ui,sans-serif;color:#1a212e;-webkit-font-smoothing:antialiased}
+a{color:#146da6;text-decoration:none}
+a:hover{color:#054d7b;text-decoration:underline}
+</style>
+</helmet>
+
+<div style="width:100%;max-width:1424px;box-sizing:border-box;background:#fff;display:flex;flex-direction:column">
+
+  <div style="flex:none;display:flex;align-items:center;justify-content:space-between;padding:24px 40px;border-bottom:1px solid #d9dce1">
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="flex:none;width:24px;height:24px;border-radius:12px;background:#f6f7f8;display:inline-flex;align-items:center;justify-content:center;font-family:'Material Symbols Outlined';font-size:16px;color:#4f5666">chevron_left</span>
+      <span style="font:500 18px/24px 'Gilroy',sans-serif;color:#1a212e">Go to feedback center</span>
+    </div>
+    <span style="font:600 24px/32px 'Gilroy',sans-serif;color:#343c4c">Review AI feedback</span>
+    <div style="display:flex;align-items:center;gap:12px">
+      <span style="flex:none;width:24px;height:24px;border-radius:12px;background:#f6f7f8;display:inline-flex;align-items:center;justify-content:center;font-family:'Material Symbols Outlined';font-size:16px;color:#4f5666;opacity:.4">chevron_left</span>
+      <span style="font:500 16px/24px 'Gilroy',sans-serif;color:#1a212e">1 of 10</span>
+      <span style="flex:none;width:24px;height:24px;border-radius:12px;background:#f6f7f8;display:inline-flex;align-items:center;justify-content:center;font-family:'Material Symbols Outlined';font-size:16px;color:#4f5666">chevron_right</span>
+    </div>
+  </div>
+
+  <div style="flex:1;display:flex;align-items:stretch">
+
+    <div style="flex:1 1 55%;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;border-right:1px solid #d9dce1">
+      <div style="flex:1;display:flex;flex-direction:column;gap:16px;padding:16px 20px 24px">
+
+        <div style="border:1px solid #d9dce1;border-radius:16px;display:flex;flex-direction:column;gap:12px;padding:8px 8px 0">
+          <div style="display:flex;flex-direction:column;padding:4px">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;padding-bottom:4px">
+              <div style="display:flex;align-items:center;gap:8px;padding:6px 0">
+                <span style="flex:none;width:40px;height:40px;border-radius:40px;background:#993838;color:#fff;display:inline-flex;align-items:center;justify-content:center;font:600 16px/24px 'Gilroy',sans-serif">EJ</span>
+                <div style="display:flex;flex-direction:column">
+                  <div style="display:flex;align-items:center;gap:4px">
+                    <span style="font:600 16px/24px 'Gilroy',sans-serif;color:#1a212e">Emily Jones</span>
+                    <span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:1;color:#146da6">open_in_new</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:4px;font:500 14px/20px 'Gilroy',sans-serif;color:#4f5666"><span>Software engineer</span><span style="color:#a1a6b1">·</span><span>Netflix</span></div>
+                </div>
+              </div>
+              <a href="#" style="display:inline-flex;align-items:center;gap:4px;font:600 14px/20px 'Gilroy',sans-serif;white-space:nowrap"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:1">work_outline</span>Software engineer (123456789)</a>
+            </div>
+            <div style="height:1px;background:#d9dce1"></div>
+            <div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:20px 56px;padding:12px 4px 16px">
+              <div style="flex:1 0 auto;min-width:160px;display:flex;flex-direction:column;gap:4px">
+                <span style="font:500 12px/16px 'Gilroy',sans-serif;color:#1a212e;white-space:nowrap">Interviewer</span>
+                <div style="display:flex;align-items:center;gap:6px">
+                  <span style="flex:none;width:40px;height:40px;border-radius:40px;background:#8b5ca6;color:#fff;display:inline-flex;align-items:center;justify-content:center;font:600 14px/20px 'Gilroy',sans-serif">SO</span>
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <span style="font:600 14px/20px 'Gilroy',sans-serif;color:#1a212e;white-space:nowrap">Sophia</span>
+                    <span style="font:500 12px/16px 'Gilroy',sans-serif;color:#1a212e;white-space:nowrap">AI agent</span>
+                  </div>
+                </div>
+              </div>
+              <div style="flex:1 0 auto;min-width:160px;display:flex;flex-direction:column;gap:4px">
+                <span style="font:500 12px/16px 'Gilroy',sans-serif;color:#1a212e;white-space:nowrap">Reviewer</span>
+                <div style="display:flex;align-items:center;gap:6px">
+                  <span style="flex:none;width:40px;height:40px;border-radius:40px;background:#025966;color:#fff;display:inline-flex;align-items:center;justify-content:center;font:600 14px/20px 'Gilroy',sans-serif">JB</span>
+                  <div style="display:flex;flex-direction:column;gap:4px">
+                    <span style="font:600 14px/20px 'Gilroy',sans-serif;color:#1a212e;white-space:nowrap">James Bob</span>
+                    <span style="font:500 12px/16px 'Gilroy',sans-serif;color:#1a212e;white-space:nowrap">Recruiter</span>
+                  </div>
+                </div>
+              </div>
+              <div style="flex:1 0 auto;min-width:140px;display:flex;flex-direction:column;gap:4px">
+                <span style="font:500 12px/16px 'Gilroy',sans-serif;color:#1a212e;white-space:nowrap">Interview</span>
+                <a href="#" style="font:600 14px/20px 'Gilroy',sans-serif;white-space:nowrap">Smart interview</a>
+                <span style="font:500 12px/16px 'Gilroy',sans-serif;color:#1a212e;white-space:nowrap">Jan 11, 2024</span>
+              </div>
+              <div style="flex:1 0 auto;min-width:182px;display:flex;flex-direction:column;gap:4px">
+                <span style="font:500 12px/16px 'Gilroy',sans-serif;color:#1a212e;white-space:nowrap">Status</span>
+                <div style="display:flex;align-items:flex-start;gap:4px">
+                  <span style="flex:none;height:36px;box-sizing:border-box;background:#b9f4e4;border-radius:8px;padding:8px;display:inline-flex;align-items:center;justify-content:center;font-family:'Material Symbols Outlined';font-size:20px;color:#1b5143">thumb_up</span>
+                  <div style="display:flex;flex-direction:column;gap:2px">
+                    <span style="font:500 14px/20px 'Gilroy',sans-serif;color:#343c4c;white-space:nowrap">Submitted</span>
+                    <span style="font:500 12px/16px 'Gilroy',sans-serif;color:#4f5666;white-space:nowrap">Dec 11, 2024</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div style="height:1px;background:#d9dce1"></div>
+            <div style="background:#fff;border-radius:16px;padding:16px;display:flex;align-items:center;justify-content:space-between">
+              <div style="display:flex;align-items:center;gap:4px">
+                <span style="font:600 14px/20px 'Gilroy',sans-serif;color:#1a212e">Flagged activity</span>
+                <span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:1;color:#69717f">info</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span style="display:inline-flex;align-items:center;gap:4px;background:#ffc6c6;border-radius:4px;padding:2px 6px;font:600 14px/20px 'Gilroy',sans-serif;color:#6c2222"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:1">flag</span>6</span>
+                <span style="font-family:'Material Symbols Outlined';font-size:20px;line-height:1;color:#343c4c">expand_more</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:linear-gradient(135deg,#FFF7FC,#FBFAFF 55%,#FFFFFF) padding-box,linear-gradient(100deg,#F3A5D4,#A9B0F5) border-box;border:1px solid transparent;border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.16);padding:16px 20px">
+          <div style="display:flex;align-items:flex-start;gap:16px">
+            <div style="flex:none;width:56px;height:56px;border-radius:8px;background:#ebfdff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px">
+              <span style="font:600 22px/1 'Gilroy',sans-serif;color:#00333b">4.5</span>
+              <span style="font:600 8px/1 'Gilroy',sans-serif;letter-spacing:.08em;color:#0b7b8b">OVERALL</span>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+              <div style="font:600 20px/28px 'Gilroy',sans-serif;color:#1a212e">Interview summary</div>
+              <a href="#" style="font:600 14px/20px 'Gilroy',sans-serif">Ranked 6 of 147 applicants</a>
+            </div>
+            <span style="font-family:'Material Symbols Outlined';font-size:20px;line-height:1;color:#a1a6b1">info</span>
+          </div>
+
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px 24px;margin-top:16px;font:500 14px/20px 'Gilroy',sans-serif;color:#4f5666">
+            <span>Screening <span style="font:600 16px/20px 'Gilroy',sans-serif;color:#1a212e">4.5</span></span>
+            <span>Coding <span style="font:600 16px/20px 'Gilroy',sans-serif;color:#1a212e">3.5</span></span>
+            <span>Case study <span style="font:600 16px/20px 'Gilroy',sans-serif;color:#1a212e">3.5</span></span>
+            <span>Conceptual Q &amp; A <span style="font:600 16px/20px 'Gilroy',sans-serif;color:#c15151">1.5</span></span>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid #e1e4e9">
+            <div style="display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start">
+              <span style="font-family:'Material Symbols Outlined';font-size:17px;line-height:20px;color:#3d8f79">arrow_upward</span>
+              <div style="display:flex;flex-direction:column;gap:1px">
+                <span style="font:600 14px/20px 'Gilroy',sans-serif;color:#1a212e;text-wrap:pretty">Designs and operates distributed systems at production scale</span>
+                <span style="font:500 13px/19px 'Gilroy',sans-serif;color:#4f5666;text-wrap:pretty">Walked through caching trade-offs unprompted, including failure modes.</span>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start">
+              <span style="font-family:'Material Symbols Outlined';font-size:17px;line-height:20px;color:#3d8f79">arrow_upward</span>
+              <div style="display:flex;flex-direction:column;gap:1px">
+                <span style="font:600 14px/20px 'Gilroy',sans-serif;color:#1a212e;text-wrap:pretty">Breaks ambiguous problems into testable steps</span>
+                <span style="font:500 13px/19px 'Gilroy',sans-serif;color:#4f5666;text-wrap:pretty">Split the case study into three testable hypotheses before writing code.</span>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start">
+              <span style="font-family:'Material Symbols Outlined';font-size:17px;line-height:20px;color:#3d8f79">arrow_upward</span>
+              <div style="display:flex;flex-direction:column;gap:1px">
+                <span style="font:600 14px/20px 'Gilroy',sans-serif;color:#1a212e;text-wrap:pretty">Leads and grows a team of engineers</span>
+                <span style="font:500 13px/19px 'Gilroy',sans-serif;color:#4f5666;text-wrap:pretty">Manages six engineers and has grown two into new specialisms.</span>
+              </div>
+            </div>
+            <a href="#" style="font:600 13px/18px 'Gilroy',sans-serif">See 2 more</a>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;background:#fff;border:1px solid #e1e4e9;border-radius:12px;padding:16px 20px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="flex:none;background:#fce8d2;border-radius:6px;padding:2px 8px;font:600 13px/18px 'Gilroy',sans-serif;color:#7a4a14">3.5</span>
+            <span style="flex:1;font:600 16px/24px 'Gilroy',sans-serif;color:#1a212e">Screening</span>
+            <span style="font-family:'Material Symbols Outlined';font-size:20px;line-height:1;color:#69717f;transform:rotate(180deg)">expand_more</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#3d8f79">arrow_upward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">13 years of experience for this role</span></div>
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#3d8f79">arrow_upward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">Emily is currently managing a team</span></div>
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#3d8f79">arrow_upward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">Relevant skills and a good growth trajectory</span></div>
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#c15151">arrow_downward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">Emily did not study software engineering. Her degree is in literature from University of Mumbai</span></div>
+          </div>
+          <div style="height:1px;background:#e1e4e9"></div>
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px">
+            <span style="font:600 12px/16px 'Gilroy',sans-serif;color:#69717f;white-space:nowrap">Hiring criteria</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:4px;background:#f6f7f8;font:500 12px/16px 'Gilroy',sans-serif;color:#343c4c;white-space:nowrap"><span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1;color:#3d8f79">arrow_upward</span>Leads and grows a team of engineers</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:4px;background:#f6f7f8;font:500 12px/16px 'Gilroy',sans-serif;color:#343c4c;white-space:nowrap"><span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1;color:#3d8f79">arrow_upward</span>Owns delivery end to end</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:4px;background:#f6f7f8;font:500 12px/16px 'Gilroy',sans-serif;color:#343c4c;white-space:nowrap"><span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1;color:#c15151">arrow_downward</span>Designs distributed systems at scale</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;background:#fff;border:1px solid #e1e4e9;border-radius:12px;padding:16px 20px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="flex:none;background:#fce8d2;border-radius:6px;padding:2px 8px;font:600 13px/18px 'Gilroy',sans-serif;color:#7a4a14">3.5</span>
+            <span style="flex:1;font:600 16px/24px 'Gilroy',sans-serif;color:#1a212e">Coding</span>
+            <span style="font-family:'Material Symbols Outlined';font-size:20px;line-height:1;color:#69717f;transform:rotate(180deg)">expand_more</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <span style="font:600 13px/16px 'Gilroy',sans-serif;color:#1a212e">3.5</span>
+            <span style="font:500 13px/16px 'Gilroy',sans-serif;color:#1a212e">Data systems design</span>
+            <span style="color:#bec2ca;font-size:13px">•</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;font:600 14px/20px 'Gilroy',sans-serif;color:#1b5143"><span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1">speed</span>Easy</span>
+            <a href="#" style="font:600 13px/16px 'Gilroy',sans-serif">View code</a>
+            <span style="margin-left:auto;font-family:'Material Symbols Outlined';font-size:20px;line-height:1;color:#69717f;transform:rotate(180deg)">expand_more</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#3d8f79">arrow_upward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">The candidate wrote code that was correct, efficient, and passed all test cases</span></div>
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#3d8f79">arrow_upward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">Efficiency and correctness were noted positively</span></div>
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#c15151">arrow_downward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">Candidate needed one hint to recognize the hashing approach</span></div>
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#c15151">arrow_downward</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#343c4c">Technical depth is present but pattern recognition and independent problem-solving under time pressure need development</span></div>
+            <div style="display:grid;grid-template-columns:16px 1fr;gap:10px;align-items:start"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:20px;color:#1b5143">check</span><span style="font:500 13px/20px 'Gilroy',sans-serif;color:#1b5143">4/10 test cases passed</span></div>
+          </div>
+          <div style="height:1px;background:#e1e4e9"></div>
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px">
+            <span style="font:600 12px/16px 'Gilroy',sans-serif;color:#69717f;white-space:nowrap">Hiring criteria</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:4px;background:#f6f7f8;font:500 12px/16px 'Gilroy',sans-serif;color:#343c4c;white-space:nowrap"><span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1;color:#3d8f79">arrow_upward</span>Designs distributed systems at scale</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:4px;background:#f6f7f8;font:500 12px/16px 'Gilroy',sans-serif;color:#343c4c;white-space:nowrap"><span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1;color:#3d8f79">arrow_upward</span>Breaks problems into testable steps</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 6px;border-radius:4px;background:#f6f7f8;font:500 12px/16px 'Gilroy',sans-serif;color:#343c4c;white-space:nowrap"><span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1;color:#c15151">arrow_downward</span>Explains trade-offs to partners</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="flex:none;background:#ebfdff;box-shadow:0 -4px 16px rgba(0,0,0,.12)">
+        <div style="height:1px;background:#d9dce1"></div>
+        <div style="display:flex;flex-direction:column;gap:8px;padding:16px">
+          <span style="font:600 16px/20px 'Gilroy',sans-serif;color:#054d7b">Move forward?</span>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;gap:4px;align-items:center">
+              <span style="width:32px;height:32px;border-radius:50%;border:1px solid #054d7b;display:inline-flex;align-items:center;justify-content:center;font-family:'Material Symbols Outlined';font-size:16px;color:#054d7b">thumb_up</span>
+              <span style="width:32px;height:32px;border-radius:50%;border:1px solid #054d7b;display:inline-flex;align-items:center;justify-content:center;font-family:'Material Symbols Outlined';font-size:16px;color:#054d7b">thumb_down</span>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center">
+              <span style="display:inline-flex;align-items:center;gap:4px;font:500 14px/20px 'Gilroy',sans-serif;color:#343c4c"><span style="font-family:'Material Symbols Outlined';font-size:16px;line-height:1;color:#4f5666">check</span>Auto-saved</span>
+              <span style="background:#b0f3fe;border-radius:24px;padding:8px 16px;font:600 16px/20px 'Gilroy',sans-serif;color:#054d7b;white-space:nowrap">Submit feedback</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:none;width:12px;background:#d9dce1;border-radius:12px;display:flex;align-items:center;justify-content:center">
+      <span style="font-family:'Material Symbols Outlined';font-size:14px;line-height:1;color:#69717f">drag_indicator</span>
+    </div>
+
+    <div style="flex:1 1 45%;min-width:0;box-sizing:border-box;display:flex;flex-direction:column">
+      <div style="padding:0 20px;border-bottom:1px solid #d9dce1;display:flex;align-items:flex-start;gap:32px;overflow-x:auto">
+        <div style="display:flex;flex-direction:column"><div style="padding:12px 0;font:600 16px/24px 'Gilroy',sans-serif;color:#4f5666;white-space:nowrap">Overview</div><div style="height:2px;background:transparent"></div></div>
+        <div style="display:flex;flex-direction:column"><div style="padding:12px 0;font:600 16px/24px 'Gilroy',sans-serif;color:#4f5666;white-space:nowrap">Resume</div><div style="height:2px;background:transparent"></div></div>
+        <div style="display:flex;flex-direction:column"><div style="padding:12px 0;font:600 16px/24px 'Gilroy',sans-serif;color:#146da6;white-space:nowrap">Transcript</div><div style="height:2px;background:#146da6;border-radius:4px 4px 0 0"></div></div>
+        <div style="display:flex;flex-direction:column"><div style="padding:12px 0;font:600 16px/24px 'Gilroy',sans-serif;color:#4f5666;white-space:nowrap">Code</div><div style="height:2px;background:transparent"></div></div>
+        <div style="display:flex;flex-direction:column"><div style="padding:12px 0;font:600 16px/24px 'Gilroy',sans-serif;color:#4f5666;white-space:nowrap">Assessments</div><div style="height:2px;background:transparent"></div></div>
+      </div>
+
+      <div style="padding:16px 20px 32px;display:flex;flex-direction:column;gap:16px">
+        <div style="position:relative;width:100%;aspect-ratio:560/288;border-radius:16px;overflow:hidden;background:#1a212e">
+          <image-slot id="ff-interview-still" shape="rect" placeholder="Drop the interview video still"></image-slot>
+        </div>
+
+        <div style="display:grid;grid-template-columns:52px 1fr;gap:16px 12px;align-items:start">
+          <span style="font:600 13px/20px 'Gilroy',sans-serif;color:#146da6">00:01</span>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 14px/20px 'Gilroy',sans-serif;color:#424242">AI agent</span>
+            <span style="font:500 14px/21px 'Gilroy',sans-serif;color:#343c4c;text-wrap:pretty">Hi Emily, welcome to the technical round of your interview. I'm Sophia, your virtual interviewer for today. This round focuses on your technical skills and problem-solving approach.</span>
+            <span style="font:500 14px/21px 'Gilroy',sans-serif;color:#343c4c;text-wrap:pretty">Let's start with a warm-up question. Can you share a brief overview of your current role and the key technical challenges you've been solving?</span>
+          </div>
+
+          <span style="font:600 13px/20px 'Gilroy',sans-serif;color:#146da6">00:15</span>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 14px/20px 'Gilroy',sans-serif;color:#1a212e">Emily</span>
+            <span style="font:500 14px/21px 'Gilroy',sans-serif;color:#343c4c;text-wrap:pretty">Thank you. I'm currently leading a team of six engineers on the payments platform, where most of my time goes to the caching and reconciliation layers.</span>
+            <span style="font:500 14px/21px 'Gilroy',sans-serif;color:#343c4c;text-wrap:pretty">The last big project was rebuilding the retry pipeline. We cut duplicate charges by 40% and I owned the rollout end to end.</span>
+          </div>
+
+          <span style="font:600 13px/20px 'Gilroy',sans-serif;color:#146da6">03:30</span>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 14px/20px 'Gilroy',sans-serif;color:#424242">AI agent</span>
+            <span style="font:500 14px/21px 'Gilroy',sans-serif;color:#343c4c;text-wrap:pretty">That sounds impactful. Could you walk me through how you decided where to put the cache, and what you would monitor once it was live?</span>
+          </div>
+
+          <span style="font:600 13px/20px 'Gilroy',sans-serif;color:#146da6">04:15</span>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 14px/20px 'Gilroy',sans-serif;color:#1a212e">Emily</span>
+            <span style="font:500 14px/21px 'Gilroy',sans-serif;color:#343c4c;text-wrap:pretty">We put it in front of the ledger reads, since those were the hot path and tolerant of a short staleness window. Writes stayed synchronous.</span>
+            <span style="font:500 14px/21px 'Gilroy',sans-serif;color:#343c4c;text-wrap:pretty">For monitoring I watched hit rate, tail latency, and stale-read counts. If hit rate dropped below 80% we knew the key design was wrong.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</x-dc>
+</body>
+</html>
