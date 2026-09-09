@@ -47,7 +47,7 @@ a:hover{color:#054d7b;text-decoration:underline}
 .cp-divider-btn:hover{background:#ebf7ff;border-color:#1999ac}
 .cp-divider-btn .mi{font-size:18px}
 .cp-body.collapsed .cp-divider-btn{transform:translate(-50%,-50%) rotate(180deg)}
-.cp-sidebar{width:300px;flex-shrink:0;display:flex;flex-direction:column;gap:16px;padding-left:10px;min-height:0;overflow-x:hidden;overflow-y:auto;opacity:1;transition:width .35s cubic-bezier(.4,0,.2,1),opacity .25s ease,padding .35s cubic-bezier(.4,0,.2,1)}
+.cp-sidebar{width:390px;flex-shrink:0;display:flex;flex-direction:column;gap:16px;padding-left:10px;min-height:0;overflow-x:hidden;overflow-y:auto;opacity:1;transition:width .35s cubic-bezier(.4,0,.2,1),opacity .25s ease,padding .35s cubic-bezier(.4,0,.2,1)}
 .cp-body.collapsed .cp-sidebar{width:0;padding-left:0;opacity:0}
 .card{background:#fff;border:1px solid #e4e7eb;border-radius:8px}
 /* profile card */
@@ -84,6 +84,7 @@ a:hover{color:#054d7b;text-decoration:underline}
 .cp-tab{padding:10px 16px;font-size:16px;font-weight:500;color:#69717f;background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap}
 .cp-tab:hover{color:#343c4c}
 .cp-tab.active{color:#146da6;font-weight:600;border-bottom-color:#146da6}
+.cp-tab.static{cursor:default;pointer-events:none}
 .cp-subtabs{display:flex;align-items:center}
 .cp-subtab{padding:6px 12px;font-size:14px;font-weight:500;color:#69717f;background:none;border:1px solid transparent;border-radius:20px;cursor:pointer;display:flex;align-items:center;gap:6px}
 .cp-subtab.active{color:#146da6;font-weight:600;border-color:#146da6;background:#ebf7ff}
@@ -259,21 +260,10 @@ a:hover{color:#054d7b;text-decoration:underline}
       <div class="cp-match-bottom"><div class="dots" id="pDots"></div><span class="cp-match-sep">·</span><span class="cp-round">AI Interview round</span></div>
     </div>
     <div class="cp-tabs">
-      <button class="cp-tab active">Profile</button><button class="cp-tab">Pipeline activity</button><button class="cp-tab">Notes &amp; Tags</button><button class="cp-tab">Messages</button><button class="cp-tab">Engagement</button>
+      <button class="cp-tab active">Profile</button><button class="cp-tab">Pipeline activity</button><button class="cp-tab">Notes &amp; Tags</button><button class="cp-tab">Messages</button><button class="cp-tab">Engagement</button><button class="cp-tab static" tabindex="-1" aria-disabled="true">Feedback</button>
     </div>
     <div class="cp-subtabs">
       <button class="cp-subtab active">Overview</button><button class="cp-subtab">CV</button><button class="cp-subtab">LinkedIn</button><button class="cp-subtab">Files<span class="cp-badge">0</span></button>
-    </div>
-    <div class="cp-ai" id="aiBox">
-      <div class="cp-ai-sum">
-        <span class="cp-ai-ic"><span class="mi">auto_awesome</span></span>
-        <span class="cp-ai-text"><strong>2 mismatches</strong> between Resume &amp; LinkedIn</span>
-        <button class="cp-ai-tg" id="aiTg">Show more<span class="mi">expand_more</span></button>
-      </div>
-      <div class="cp-ai-detail">
-        <div class="cp-ai-item"><span class="cp-ai-b">Mismatch</span><span class="cp-ai-l">Job title</span><span class="cp-ai-d">Resume lists "Sr Principal UX Designer"; LinkedIn shows "Principal Designer" for the same period.</span></div>
-        <div class="cp-ai-item"><span class="cp-ai-b">Mismatch</span><span class="cp-ai-l">Dates</span><span class="cp-ai-d">Google tenure ends Nov 2022 on the resume and Jan 2023 on LinkedIn.</span></div>
-      </div>
     </div>
     <div class="cp-ov">
       <section class="card sec">
@@ -366,7 +356,6 @@ a:hover{color:#054d7b;text-decoration:underline}
   $('pDots').innerHTML = dots(Math.round(score*2)/2);
   const MP = [['UX Designer-887678997 (IC4)','Santa Clara, CA','Julian Brandt · Open',4.5],['Product Designer-9921001 (IC3)','Remote US','Sam Lee · Open',3.5],['Sr UX Designer-7712002 (IC4)','New York, NY','Alex Kim · Open',5],['Design Systems Lead-6600443','Austin, TX','Jordan Pat · Open',4],['Staff Designer-5544332','Seattle, WA','Chris Wu · Open',3]];
   $('mpList').innerHTML = MP.map(r=>`<div class="mp"><div class="mp-ic"><span class="mi">work_outline</span></div><div class="mp-i"><span class="mp-t">${r[0]}</span><span class="mp-m"><span class="mi">place</span>${r[1]}&nbsp;<span class="mi">person_outline</span>${r[2]}</span></div><div class="mp-tr"><div class="dots">${dots(r[3])}</div><button class="kebab" aria-label="More"><span class="mi">more_vert</span></button></div></div>`).join('');
-  $('aiTg').addEventListener('click', ()=>{ const on = $('aiBox').classList.toggle('open'); $('aiTg').firstChild.textContent = on ? 'Show less' : 'Show more'; });
   $('sbTg').addEventListener('click', ()=>$('cpBody').classList.toggle('collapsed'));
   const close = ()=>{ if (window.parent !== window) window.parent.postMessage({type:'aic-sheet-close'}, '*'); };
   $('cpClose').addEventListener('click', close);

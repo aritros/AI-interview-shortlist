@@ -2,19 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Pipeline · AI Interviews v2 — User Experience Designer</title>
+<title>Pipeline · AI Interview tab — User Experience Designer</title>
 <link rel="stylesheet" href="colors_and_type.css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" />
 <link rel="stylesheet" href="pipeline-chrome.css" />
 <link rel="stylesheet" href="pipeline-ai-tab.css" />
-<link rel="stylesheet" href="aic-compare.css" />
-<link rel="stylesheet" href="aic-feedback.css" />
-<link rel="stylesheet" href="pipeline-ai-v2.css" />
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="aiGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a50d8"></stop><stop offset=".55" stop-color="#9038c9"></stop><stop offset="1" stop-color="#cb2c9e"></stop></linearGradient><symbol id="aiSparkle" viewBox="0 0 24 24"><path fill="url(#aiGrad)" d="M12 2.5c.4 3.9 2.6 7 7.5 8.5-4.9 1.5-7.1 4.6-7.5 8.5-.4-3.9-2.6-7-7.5-8.5 4.9-1.5 7.1-4.6 7.5-8.5zM19.5 1.2c.2 1.6 1 2.8 3 3.4-2 .6-2.8 1.8-3 3.4-.2-1.6-1-2.8-3-3.4 2-.6 2.8-1.8 3-3.4z"></path></symbol><symbol id="aiSparkleW" viewBox="0 0 24 24"><path fill="#fff" d="M12 2.5c.4 3.9 2.6 7 7.5 8.5-4.9 1.5-7.1 4.6-7.5 8.5-.4-3.9-2.6-7-7.5-8.5 4.9-1.5 7.1-4.6 7.5-8.5zM19.5 1.2c.2 1.6 1 2.8 3 3.4-2 .6-2.8 1.8-3 3.4-.2-1.6-1-2.8-3-3.4 2-.6 2.8-1.8 3-3.4z"></path></symbol></defs></svg>
-<div class="page" id="page" data-screen-label="Pipeline · AI Interviews v2">
+<div class="page" id="page">
   <header class="topbar">
     <div class="brand"><div class="brand-logo" aria-hidden="true"></div><div class="brand-divider"></div></div>
     <div class="product"><div class="product-ic"></div><div class="product-text"><b>Talent</b>Acquisition</div></div>
@@ -48,13 +45,13 @@
   </header>
 
   <div class="live-toolbar">
-    <span class="lt-status"><span class="lt-dot"></span><b>Hey Martha 👋</b>&nbsp;19 interviews scored — top 5 are at 4.2+</span>
-    <button class="lt-link" style="border:none;padding:0;font-size:13.5px;cursor:pointer;background:transparent;" data-act="gotoai">View AI Interviews</button>
+    <span class="lt-status"><span class="lt-dot"></span><b>Hey Martha 👋</b>&nbsp;20 interviews scored — top 5 are at 4.3+</span>
+    <button class="lt-link" style="border:none;padding:0;font-size:13.5px;cursor:pointer;background:transparent;" data-act="gotoai">View shortlist</button>
     <button class="lt-chev" title="Expand"><span class="material-icons-round">expand_more</span></button>
     <div class="lt-counters">
-      <button class="lt-count" data-act="ltf" data-ltf="invited" title="Show everyone invited, at any stage"><span class="material-icons-round">mail_outline</span><b>24</b>&nbsp;Invites sent</button>
-      <button class="lt-count" data-act="ltf" data-ltf="done" title="Show completed interviews"><span class="material-icons-round">task_alt</span><b>19</b>&nbsp;Interviews completed</button>
-      <button class="lt-count" data-act="ltf" data-ltf="assist" title="Show candidates who asked for a human"><span class="material-icons-round">error_outline</span><b>3</b>&nbsp;Assistance requests</button>
+      <span class="lt-count"><span class="material-icons-round">mail_outline</span><b>32</b>&nbsp;Invites sent</span>
+      <span class="lt-count"><span class="material-icons-round">task_alt</span><b>20</b>&nbsp;Interviews completed</span>
+      <span class="lt-count"><span class="material-icons-round">error_outline</span><b>2</b>&nbsp;Assistance requests</span>
     </div>
     <div class="lt-actions"><button class="icon-btn" title="More"><span class="material-icons-round">more_vert</span></button></div>
   </div>
@@ -79,27 +76,58 @@
   </main>
 </div>
 
-<div class="fa" id="fa"></div>
-<aside class="ovl sum" id="sumOver" role="dialog" aria-label="AI Interview summary"><div class="cpanel" id="sumPanel"></div></aside>
-<aside class="ovl cmp" id="cmpOver" role="dialog" aria-label="Compare candidates"><div class="cmp-panel" id="cmpPanel"></div></aside>
+<div class="fask" id="fask" hidden><div class="fask-pop" id="faskPop"></div><button class="fask-btn" data-act="fasktoggle"><svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><use href="#aiSparkle"></use></svg>Ask about candidates</button></div>
+<div class="bulk" id="bulk"><span class="bc" id="bulkCount"></span><div style="position:relative;display:flex"><button class="bb pri" data-act="bulkadv">Advance stage<span class="material-icons-round">expand_more</span></button><div class="menu" id="bulkMenu" data-ctx="bulk" style="bottom:calc(100% + 10px);left:0"><div class="menu-i" data-adv="Interviews"><span class="material-icons-round">arrow_forward</span>Move to Interviews</div><div class="menu-i" data-adv="Offer"><span class="material-icons-round">arrow_forward</span>Move to Offer</div></div></div><button class="bb" data-act="bulkshare"><span class="material-icons-round">send</span>Share with HM</button><button class="bb" data-act="export"><span class="material-icons-round">download</span>Export</button><button class="bx" data-act="bulkclear" title="Clear selection"><span class="material-icons-round">close</span></button></div>
 <div class="toast" id="toast"></div>
-<div class="menu" id="ctx"></div>
+<div class="menu" id="ctx" style="position:fixed"></div>
 
 <div class="ver-fab" id="verFab">
-  <button class="ver-btn" title="Switch page" onclick="event.stopPropagation();this.parentNode.classList.toggle('open')"><span class="material-icons-round">layers</span><span class="vlbl">Pipeline · AI Interviews v2</span><span class="material-icons-round">expand_less</span></button>
+  <button class="ver-btn" title="Switch page" onclick="event.stopPropagation();this.parentNode.classList.toggle('open')"><span class="material-icons-round">layers</span><span class="vlbl">Pipeline · AI Interview tab</span><span class="material-icons-round">expand_less</span></button>
   <div class="ver-menu">
-    <a class="ver-item cur" href="Pipeline - AI Interviews v2.html"><span class="vt">Pipeline · AI Interviews v2</span><span class="vd">Structured filters, flip-to-actions, overlays</span></a>
+    <a class="ver-item" href="index.html"><span class="vt">Pipeline page</span><span class="vd">Position pipeline and entry points</span></a>
+    <a class="ver-item cur" href="Pipeline - AI Interview tab.html"><span class="vt">Pipeline · AI Interview tab</span><span class="vd">Shortlist inside the pipeline, cross-round panel</span></a>
+    <a class="ver-item" href="AI Interview Center v7.html"><span class="vt">AI Interview shortlist page - Recruiter view V7</span><span class="vd">Score, filter, compare and act</span></a>
+    <a class="ver-item" href="AI Interview Center v7 - HM view v2.html"><span class="vt">AI Interview shortlist page: HM view V2</span><span class="vd">Shared scope, recruiter notes, compare</span></a>
     <a class="ver-item" href="AI Interview Center Emails.html"><span class="vt">Emails</span><span class="vd">Digest and share notifications</span></a>
     <a class="ver-item" href="AI Interview Center Slack Messages.html"><span class="vt">Slack messages</span><span class="vd">Recruiter and HM notifications</span></a>
   </div>
 </div>
 <script>document.addEventListener('click', e=>{ if (!e.target.closest('.ver-fab')) document.getElementById('verFab').classList.remove('open'); });</script>
-<script src="pipeline-ai-v2-data.js"></script>
-<script src="pipeline-ai-v2.js"></script>
-<script src="pipeline-ai-v2-panel.js"></script>
-<script src="pipeline-ai-v2-compare.js"></script>
-<script src="pipeline-ai-v2-share.js"></script>
-<script src="aic-feedback.js"></script>
-<script>PAI.init();</script>
+
+<div id="tweaks"></div>
+<script>window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "placement": "lens",
+  "roundCols": "stacked",
+  "listScope": "top10",
+  "askSurface": "floating",
+  "density": "compact",
+  "panelMatrix": true
+}/*EDITMODE-END*/;</script>
+<script src="pipeline-ai-tab.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+function PipelineTweaks(){
+  const [t, setTweak] = useTweaks(window.TWEAK_DEFAULTS);
+  React.useEffect(()=>{ window.applyTweaks && window.applyTweaks(t); }, [t]);
+  return (
+    <TweaksPanel title="AI Interview tab — options">
+      <TweakSection label="Where it lives" />
+      <TweakRadio label="Entry point" value={t.placement} options={[{value:'tab',label:'Stage tab'},{value:'pinned',label:'Pinned'},{value:'lens',label:'Lens'}]} onChange={v=>setTweak('placement',v)} />
+      <TweakSection label="Candidate list" />
+      <TweakRadio label="Round scores" value={t.roundCols} options={[{value:'perRound',label:'Column per round'},{value:'stacked',label:'One column'}]} onChange={v=>setTweak('roundCols',v)} />
+      <TweakRadio label="Default view" value={t.listScope} options={[{value:'top10',label:'Top 10'},{value:'all',label:'All scored'}]} onChange={v=>setTweak('listScope',v)} />
+      <TweakRadio label="Density" value={t.density} options={[{value:'comfortable',label:'Comfortable'},{value:'compact',label:'Compact'}]} onChange={v=>setTweak('density',v)} />
+      <TweakSection label="AI query" />
+      <TweakRadio label="Surface" value={t.askSurface} options={[{value:'bar',label:'Inline bar'},{value:'floating',label:'Floating'}]} onChange={v=>setTweak('askSurface',v)} />
+      <TweakSection label="Candidate panel" />
+      <TweakToggle label="Cross-round matrix" value={t.panelMatrix} onChange={v=>setTweak('panelMatrix',v)} />
+    </TweaksPanel>
+  );
+}
+ReactDOM.createRoot(document.getElementById('tweaks')).render(<PipelineTweaks />);
+</script>
 </body>
 </html>
